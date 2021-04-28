@@ -1,6 +1,6 @@
-.jfx-text-field, .jfx-password-field {
-    -fx-text-inner-color: #00d2ea;
+#textFields{
+    -fx-text-inner-color: #4059a9;
     -fx-font-weight: bold;
-    -jfx-disable-animation: false
+    -fx-font-size: 18px;
+    -jfx-disable-animation: false;
 }
-

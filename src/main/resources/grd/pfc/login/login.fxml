@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <JFXTextField alignment="CENTER" editable="false" layoutY="14.0" prefHeight="85.0" prefWidth="900.0" text="INICIAR SESIÓN" unFocusColor="#4059a9">
+         <font>
+            <Font name="Arial Bold" size="36.0" />
+         </font>
+      </JFXTextField>
+      <Text fill="#303030" layoutX="385.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Empleado">
+         <font>
+            <Font name="System Bold" size="28.0" />
+         </font>
+      </Text>
+      <JFXTextField layoutX="314.0" layoutY="194.0" prefHeight="46.0" prefWidth="272.0" />
+      <Text fill="#303030" layoutX="376.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña">
+         <font>
+            <Font name="System Bold" size="28.0" />
+         </font>
+      </Text>
+      <JFXTextField layoutX="314.0" layoutY="317.0" prefHeight="46.0" prefWidth="272.0" />
+      <JFXButton layoutX="789.0" layoutY="477.0" prefHeight="46.0" prefWidth="97.0" text="Salir" />
+      <JFXButton fx:id="jButLogin" layoutX="325.0" layoutY="420.0" onAction="#login" prefHeight="80.0" prefWidth="250.0" ripplerFill="#668cff" style="-fx-border-color: #4059a9; -fx-border-radius: 8; -fx-border-width: 2;" text="Login" textFill="#4059a9">
+         <font>
+            <Font name="Rubik Bold Italic" size="34.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

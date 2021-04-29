@@ -1,7 +1,10 @@
 package grd.pfc.login;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import grd.pfc.dao.DAO;
+import java.sql.SQLException;
 import javafx.fxml.FXML;
 
 public class Login {
@@ -10,17 +13,18 @@ public class Login {
     private JFXTextField userInput;
 
     @FXML
-    private JFXTextField pwdInput;
+    private JFXPasswordField pwdInput;
 
     @FXML
     private JFXButton butLogin;
 
-    public void login(){
-       if(userInput.getText().equals("root") && pwdInput.getText().equals("abc123.")) {
-           System.out.println("Entra");
-       }else{
-           System.out.println("No entra");
-       }
+    public void login() throws ClassNotFoundException, SQLException{
+        DAO dao = new DAO();
+        if(dao.login(userInput.getText(), pwdInput.getText())){
+            System.out.println("Entra");
+        }else{
+            System.out.println("Nope");
+        }
     }
     
     public void close(){

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
@@ -22,7 +23,6 @@
             <Font name="System Bold" size="28.0" />
          </font>
       </Text>
-      <JFXTextField id="textFields" fx:id="pwdInput" layoutX="314.0" layoutY="280.0" prefHeight="46.0" prefWidth="272.0" stylesheets="@textField.css" />
       <JFXButton fx:id="butLogin" layoutX="325.0" layoutY="390.0" onAction="#login" prefHeight="80.0" prefWidth="250.0" ripplerFill="#668cff" style="-fx-border-color: #4059a9; -fx-border-radius: 8; -fx-border-width: 2;" text="Login" textFill="#4059a9">
          <font>
             <Font name="Rubik Bold Italic" size="34.0" />
@@ -39,5 +39,6 @@
          </font>
       </Text>
       <Separator layoutY="66.0" prefHeight="23.0" prefWidth="900.0" />
+      <JFXPasswordField id="textFields" fx:id="pwdInput" layoutX="314.0" layoutY="280.0" prefHeight="46.0" prefWidth="272.0" stylesheets="@textField.css" />
    </children>
 </AnchorPane>

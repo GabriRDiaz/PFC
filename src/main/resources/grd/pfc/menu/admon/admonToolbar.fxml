@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="473.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grd.pfc.admon.AdministracionController">
+   <children>
+      <HBox prefHeight="45.0" prefWidth="150.0" style="-fx-background-color: #596EB3;">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Menú" textAlignment="CENTER" wrappingWidth="149.13671875">
+               <HBox.margin>
+                  <Insets top="8.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Liberation Sans Bold" size="28.0" />
+               </font>
+            </Text>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
+      <JFXButton fx:id="addEmpleado" onAction="#addEmpleado" prefHeight="72.0" prefWidth="150.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Añadir Empleado" textFill="#596eb3" wrapText="true">
+         <font>
+            <Font name="Liberation Sans Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fx:id="addEmpleado" fitHeight="55.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../multimedia/addEmpleado.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="editEmpleado" onAction="#editEmpleado" prefHeight="72.0" prefWidth="150.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Editar Empleado" textFill="#596eb3" wrapText="true">
+         <font>
+            <Font name="Liberation Sans Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="55.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../multimedia/editEmpleado.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="addPerfil" onAction="#addPerfil" prefHeight="72.0" prefWidth="150.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Añadir Perfil" textFill="#596eb3" wrapText="true">
+         <font>
+            <Font name="Liberation Sans Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="55.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../multimedia/addProfile.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="editPerfil" onAction="#editPerfil" prefHeight="72.0" prefWidth="150.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Editar Perfiles" textFill="#596eb3" wrapText="true">
+         <font>
+            <Font name="Liberation Sans Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="55.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../multimedia/editProfile.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="viewGraph" onAction="#viewGraph" prefHeight="72.0" prefWidth="150.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Visualizar Gráficas" textFill="#596eb3" wrapText="true">
+         <font>
+            <Font name="Liberation Sans Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="55.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../multimedia/viewCharts.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="genRep" onAction="#genRep" prefHeight="72.0" prefWidth="150.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Generar Reporte" textFill="#596eb3" wrapText="true">
+         <font>
+            <Font name="Liberation Sans Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="55.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../multimedia/genReport.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+   </children>
+</VBox>

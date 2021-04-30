@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DAO {
-    String connectionUrl = "jdbc:sqlserver://GABRIRDIAZ\\GRDSQL;user=sa;password=abc123.";
+    String connectionUrl = "jdbc:sqlserver://GABRIRDIAZ\\SQLGRDV2;user=sa;password=abc123.";
     String checkLogin = "DECLARE @responseMessage NVARCHAR(250)\n" +
                         "EXEC PFC.pLogin\n" +
                         "	@pEmail=?,\n" +
@@ -27,20 +27,18 @@ public class DAO {
         }
     }
     
-    public boolean login(String usr,String pwd) throws SQLException{
+    public int login(String usr,String pwd) throws SQLException{
         Connection conn=getConnetion();
         if(conn!=null){
             CallableStatement cstmt = conn.prepareCall(
-                "{call [PFC].[dbo].[pLogin](?,?,?)}");
-            cstmt.setString(1,usr);
-            cstmt.setString(2,pwd);
-            cstmt.registerOutParameter(3, Types.VARCHAR);
+                "{?=call [PFC].[dbo].[pLogin](?,?)}");
+            cstmt.setString(2,usr);
+            cstmt.setString(3,pwd);
+            cstmt.registerOutParameter(1, Types.INTEGER);
             cstmt.execute();
-            if(cstmt.getString(3).equals("y")){
-                return true;
-            }else{return false;}
+            return cstmt.getInt(1);
     }
-        return false;
+        return -1;
     }
     
     private Connection getConnetion() {

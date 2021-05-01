@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text fill="#4059a9" layoutX="227.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Añadir Empleado">
+         <font>
+            <Font name="Arial Bold" size="36.0" />
+         </font>
+      </Text>
+      <VBox layoutX="125.0" layoutY="60.0" prefHeight="310.0" prefWidth="231.0">
+         <children>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" textAlignment="CENTER" wrappingWidth="230.05078125">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+            </Text>
+            <JFXTextField prefHeight="35.0" prefWidth="231.0" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha contratación" textAlignment="CENTER" wrappingWidth="230.05078125">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Text>
+            <JFXTextField prefHeight="35.0" prefWidth="231.0">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Salario" textAlignment="CENTER" wrappingWidth="230.05078125">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Text>
+            <JFXTextField prefHeight="35.0" prefWidth="231.0" />
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" textAlignment="CENTER" wrappingWidth="230.05078125">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Text>
+            <JFXTextField prefHeight="35.0" prefWidth="231.0" />
+         </children>
+      </VBox>
+      <VBox layoutX="395.0" layoutY="60.0" prefHeight="310.0" prefWidth="231.0">
+         <children>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos" textAlignment="CENTER" wrappingWidth="230.05078125">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+            </Text>
+            <JFXTextField prefHeight="35.0" prefWidth="231.0">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha Fin Contrato" textAlignment="CENTER" wrappingWidth="230.05078125">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Text>
+            <JFXTextField prefHeight="35.0" prefWidth="231.0">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo Contrato" textAlignment="CENTER" wrappingWidth="230.05078125">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Text>
+            <JFXComboBox prefHeight="25.0" prefWidth="234.0">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </JFXComboBox>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña" textAlignment="CENTER" wrappingWidth="230.05078125">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Text>
+            <JFXPasswordField>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </JFXPasswordField>
+         </children>
+      </VBox>
+      <Separator layoutY="54.0" prefHeight="5.0" prefWidth="751.0" />
+   </children>
+</AnchorPane>

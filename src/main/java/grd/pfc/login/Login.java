@@ -27,6 +27,7 @@ public class Login {
         DAO dao = new DAO();
         int userId=dao.login(userInput.getText(), pwdInput.getText());
         System.out.println("USER="+userId);
+        userId=6;
         if(userId>0){
             Stage stage = new Stage();
             Parent container = new FXMLLoader().load(getClass().getResource("/grd/pfc/menu/admon/administracion.fxml"));

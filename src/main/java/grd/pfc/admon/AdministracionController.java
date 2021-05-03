@@ -11,6 +11,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.SubScene;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -29,8 +31,9 @@ private JFXDrawer sidebarBox;
 private JFXHamburger hamburger;
 
 @FXML
-public AnchorPane rootPane;
+private AnchorPane subPane;
 
+public static AnchorPane stPane;
 private boolean isOpened;
 private int transitionRate=1;
 private HamburgerBasicCloseTransition transition;
@@ -61,11 +64,16 @@ private HamburgerBasicCloseTransition transition;
         System.out.println("Sesión cerrada");
     }
     
+//    public void addEmpleado() throws IOException{
+//        AnchorPane pane= FXMLLoader.load(getClass().getResource("/grd/pfc/menu/admon/addEmpleado.fxml"));    
+//        System.out.println(pane);
+//        System.out.println(subPane);
+//        subPane.setCenter(pane);
+//    }
     //This is the method where I try to load my FXML into my AnchorPane
-    public void addEmpleado() throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/grd/pfc/menu/admon/addEmpleado.fxml"));
-        rootPane.getChildren().setAll(pane);
-    }
+//    public void addEmpleado() throws IOException {
+//
+//    }
 
     
     public void addPerfil() {
@@ -93,7 +101,7 @@ private HamburgerBasicCloseTransition transition;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+        stPane=subPane;
     }
 
 }

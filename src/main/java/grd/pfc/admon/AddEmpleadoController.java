@@ -11,6 +11,8 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import grd.pfc.dao.AdministracionDAO;
 import grd.pfc.dao.AdministracionDAO;
+import grd.pfc.pojo.Empleado;
+import grd.pfc.utils.Utils;
 import java.net.URL;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -64,16 +66,14 @@ public class AddEmpleadoController implements Initializable {
         }
     
     public void save(){
-        if(createAlert("Aviso","¿Desea crear un nuevo empleado?")){
+        if(Utils.alertGenerator("Aviso","","¿Desea crear un nuevo empleado?")){
             int idContrato = adminDao.getContratoId(comboContrato.getValue());
-            java.util.Date contrato = java.util.Date.from(dateContrato.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
-            java.sql.Date sqlContrato = new java.sql.Date(contrato.getTime());
+            java.sql.Date sqlContrato = Utils.dateToSql(dateContrato);
             java.sql.Date sqlSalida=null;
-            if(dateSalida!=null){
-                java.util.Date salida = java.util.Date.from(dateSalida.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
-                sqlSalida = new java.sql.Date(salida.getTime());  
+            if(dateSalida.getValue()!=null){
+                sqlSalida = Utils.dateToSql(dateSalida);
             }
-            adminDao.addEmpleado(txtNombre.getText(), txtApellidos.getText(), sqlContrato, sqlSalida, Double.parseDouble(txtSalario.getText()), idContrato, txtUsuario.getText(), txtPwd.getText());
+            adminDao.addEmpleado(new Empleado(txtNombre.getText(), txtApellidos.getText(), sqlContrato, sqlSalida, Double.parseDouble(txtSalario.getText()), idContrato, txtUsuario.getText(), txtPwd.getText()));
             clean();
         }
     }
@@ -87,15 +87,5 @@ public class AddEmpleadoController implements Initializable {
         txtPwd.setText("");
         comboContrato.getSelectionModel().clearSelection();
     }
-    
-    private boolean createAlert(String title,String txt){
-    ButtonType yes = new ButtonType("Sí", ButtonBar.ButtonData.OK_DONE);
-    ButtonType no = new ButtonType("No", ButtonBar.ButtonData.OK_DONE);;
-    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, txt, yes,no);
-    alert.setTitle(title);
-    alert.setHeaderText(null);
-    alert.showAndWait();
-    if(alert.getResult()==yes){return true;}else{return false;}
-}
 }    
     

@@ -51,7 +51,9 @@ public class NavBarController implements Initializable {
     }
 
     @FXML
-    private void editEmpleado(ActionEvent event) {
+    private void editEmpleado(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/grd/pfc/menu/admon/editEmpleado.fxml"));    
+        AdministracionController.stPane.getChildren().setAll(pane);
     }
 
     @FXML

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grd.pfc.admon.EditEmpleadoController">
+   <children>
+      <Text fill="#4059a9" layoutX="227.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Editar Empleados">
+         <font>
+            <Font name="Arial Bold" size="36.0" />
+         </font>
+      </Text>
+      <Separator layoutY="46.0" prefHeight="5.0" prefWidth="751.0" />
+      <JFXButton fx:id="butSave" layoutX="562.0" layoutY="351.0" minHeight="20.0" onAction="#save" prefHeight="51.0" prefWidth="139.0" ripplerFill="#668cff" style="-fx-border-color: #4059a9; -fx-border-radius: 8; -fx-border-width: 2;" text="Guardar" textFill="#4059a9">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="butDelete" layoutX="309.0" layoutY="351.0" minHeight="20.0" onAction="#clean" prefHeight="51.0" prefWidth="139.0" ripplerFill="#668cff" style="-fx-border-color: #4059a9; -fx-border-radius: 8; -fx-border-width: 2;" text="Eliminar" textFill="#4059a9">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <VBox layoutY="54.0" prefHeight="354.0" prefWidth="259.0">
+         <children>
+            <TableView fx:id="tableempleados" prefHeight="353.0" prefWidth="231.0" styleClass="table-row-cell" stylesheets="@table.css">
+              <columns>
+                <TableColumn prefWidth="75.0" text="Nombre">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="Nombre" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn prefWidth="108.0" text="Apellidos">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="Apellidos" />
+                    </cellValueFactory>
+                </TableColumn>
+                  <TableColumn prefWidth="76.0" text="Salario">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="Salario" />
+                    </cellValueFactory>
+                </TableColumn>
+              </columns>
+            </TableView>
+         </children>
+      </VBox>
+      <VBox layoutX="264.0" layoutY="54.0" prefHeight="287.0" prefWidth="231.0">
+         <children>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" textAlignment="CENTER" wrappingWidth="230.05078125">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Text>
+            <JFXTextField id="textFields" fx:id="txtNombre" prefHeight="35.0" prefWidth="231.0" stylesheets="@../../login/textField.css" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </JFXTextField>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha contratación" textAlignment="CENTER" wrappingWidth="230.05078125">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Text>
+            <DatePicker fx:id="dateContrato" prefHeight="25.0" prefWidth="227.0">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </DatePicker>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Salario" textAlignment="CENTER" wrappingWidth="230.05078125">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Text>
+            <JFXTextField id="textFields" fx:id="txtSalario" prefHeight="35.0" prefWidth="231.0" stylesheets="@../../login/textField.css">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </JFXTextField>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" textAlignment="CENTER" wrappingWidth="230.05078125">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Text>
+            <JFXTextField id="textFields" fx:id="txtUsuario" prefHeight="35.0" prefWidth="231.0" stylesheets="@../../login/textField.css" />
+         </children>
+      </VBox>
+      <VBox layoutX="511.0" layoutY="54.0" prefHeight="287.0" prefWidth="231.0">
+         <children>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos" textAlignment="CENTER" wrappingWidth="230.05078125">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Text>
+            <JFXTextField id="textFields" fx:id="txtApellidos" prefHeight="35.0" prefWidth="231.0" stylesheets="@../../login/textField.css">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </JFXTextField>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha Fin Contrato" textAlignment="CENTER" wrappingWidth="230.05078125">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Text>
+            <DatePicker fx:id="dateSalida" prefHeight="25.0" prefWidth="227.0">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </DatePicker>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo Contrato" textAlignment="CENTER" wrappingWidth="230.05078125">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Text>
+            <JFXComboBox id="textFields" fx:id="comboContrato" prefHeight="35.0" prefWidth="231.0" stylesheets="@../../login/textField.css">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </JFXComboBox>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña" textAlignment="CENTER" wrappingWidth="230.05078125">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Text>
+            <JFXPasswordField id="textFields" fx:id="txtPwd" prefHeight="35.0" stylesheets="@../../login/textField.css">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </JFXPasswordField>
+         </children>
+      </VBox>
+      <JFXTextField fx:id="empleadoId" disable="true" layoutX="48.0" layoutY="13.0" visible="false" />
+   </children>
+</AnchorPane>

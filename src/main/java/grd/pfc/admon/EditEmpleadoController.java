@@ -11,7 +11,13 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import grd.pfc.dao.AdministracionDAO;
 import grd.pfc.pojo.Empleado;
+import grd.pfc.utils.Utils;
 import java.net.URL;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -40,6 +46,8 @@ public class EditEmpleadoController implements Initializable {
     @FXML
     private TableView<Empleado> tableempleados;
     @FXML
+    private JFXTextField empleadoId;
+    @FXML
     private JFXTextField txtNombre;
     @FXML
     private DatePicker dateContrato;
@@ -52,24 +60,56 @@ public class EditEmpleadoController implements Initializable {
     @FXML
     private DatePicker dateSalida;
     @FXML
-    private JFXComboBox<?> comboContrato;
+    private JFXComboBox<String> comboContrato;
     @FXML
     private JFXPasswordField txtPwd;
-
+    private boolean editOn=false;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        AdministracionDAO adminDao= new AdministracionDAO();
+        ArrayList<String> contratos = adminDao.getContratos();
+        contratos.forEach(c->{
+        comboContrato.getItems().add(c);
+        });
         refreshTable();
-    }    
-
-    @FXML
-    private void save(ActionEvent event) {
     }
-
-    @FXML
-    private void clean(ActionEvent event) {
+    
+    public void save() {
+        System.out.println(editOn);
+        if(editOn){
+            AdministracionDAO adminDao = new AdministracionDAO();
+            Empleado empleado = new Empleado(
+            Integer.parseInt(empleadoId.getText()),
+            txtNombre.getText(),
+            txtApellidos.getText(),
+            Utils.pickerToSql(dateContrato),
+            Utils.pickerToSql(dateSalida),
+            Double.parseDouble(txtSalario.getText()),
+            adminDao.getContratoId(comboContrato.getValue()),
+            txtUsuario.getText(),
+            txtPwd.getText()
+            );
+            adminDao.editEmpleado(empleado);
+        }
+        refreshTable();
+        clean();
+        editOn=false;
+    }
+    public void delete(){
+        
+    }
+    private void clean() {
+        txtNombre.setText("");
+        dateContrato.setValue(null);
+        txtSalario.setText("");
+        txtUsuario.setText("");
+        txtApellidos.setText("");
+        dateSalida.setValue(null);
+        txtPwd.setText("");
+        comboContrato.getSelectionModel().clearSelection();
     }
     
     private void refreshTable() {
@@ -81,12 +121,19 @@ public class EditEmpleadoController implements Initializable {
         
         tableempleados.setOnMouseClicked( event -> {
             if(event.getClickCount()==2) {
+               editOn=true;
                Empleado empleado = tableempleados.getSelectionModel().getSelectedItem();
+               empleadoId.setText(""+empleado.getId());
                txtNombre.setText(empleado.getNombre());
                txtApellidos.setText(empleado.getApellidos());
                txtUsuario.setText(empleado.getMail());
                txtSalario.setText(""+empleado.getSalario());
-               
+               dateContrato.setValue(Utils.SqlToPicker(empleado.getContrato()));
+               if(empleado.getSalida()!=null){
+                    dateSalida.setValue(Utils.SqlToPicker(empleado.getSalida()));
+               }
+               comboContrato.setValue(adminDao.getTipoContrato(empleado.getIdTipoContrato()));
+               txtPwd.setText("");
           }
    });
        

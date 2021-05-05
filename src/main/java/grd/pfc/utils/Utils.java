@@ -1,5 +1,8 @@
 package grd.pfc.utils;
 
+import java.sql.Date;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
@@ -8,10 +11,21 @@ import javafx.scene.control.DatePicker;
 
 public class Utils {
     
-    public static java.sql.Date dateToSql(DatePicker javaDate){
-        java.util.Date utilDate = java.util.Date.from(javaDate.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+    public static java.sql.Date pickerToSql(DatePicker pickerDate){
+        java.util.Date utilDate = java.util.Date.from(pickerDate.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
         java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
         return sqlDate;
+    }
+    
+    
+    public static java.sql.Date dateToSql(java.util.Date javaDate){
+        java.sql.Date sqlDate = new java.sql.Date(javaDate.getTime());
+        return sqlDate;
+    }
+    
+    public static LocalDate SqlToPicker(Date sqlDate){
+        LocalDate fechaPicker = Instant.ofEpochMilli(sqlDate.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
+        return fechaPicker;
     }
     
     public static boolean alertGenerator(String title,String header,String body){

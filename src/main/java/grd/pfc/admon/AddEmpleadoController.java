@@ -68,10 +68,10 @@ public class AddEmpleadoController implements Initializable {
     public void save(){
         if(Utils.alertGenerator("Aviso","","¿Desea crear un nuevo empleado?")){
             int idContrato = adminDao.getContratoId(comboContrato.getValue());
-            java.sql.Date sqlContrato = Utils.dateToSql(dateContrato);
+            java.sql.Date sqlContrato = Utils.pickerToSql(dateContrato);
             java.sql.Date sqlSalida=null;
             if(dateSalida.getValue()!=null){
-                sqlSalida = Utils.dateToSql(dateSalida);
+                sqlSalida = Utils.pickerToSql(dateSalida);
             }
             adminDao.addEmpleado(new Empleado(txtNombre.getText(), txtApellidos.getText(), sqlContrato, sqlSalida, Double.parseDouble(txtSalario.getText()), idContrato, txtUsuario.getText(), txtPwd.getText()));
             clean();

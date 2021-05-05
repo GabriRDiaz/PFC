@@ -6,6 +6,7 @@
 package grd.pfc.dao;
 
 import grd.pfc.pojo.Empleado;
+import grd.pfc.utils.Utils;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Date;
@@ -27,6 +28,7 @@ public class AdministracionDAO {
     String connectionUrl = "jdbc:sqlserver://GABRIRDIAZ\\GRDSQL;user=sa;password=abc123.";
     String getContratos = "SELECT [TipoContrato] AS contrato from [PFC].[dbo].[TiposContrato] WHERE [TipoContrato] NOT LIKE 'Accionista'";
     String getContratoId = "SELECT [Id] AS id from [PFC].[dbo].[TiposContrato] WHERE [TipoContrato]=?";
+    String getTipoContrato = "SELECT [TipoContrato] AS tipo from [PFC].[dbo].[TiposContrato] WHERE [Id]=?";
     String addEmpleado = "DECLARE @pResult SMALLINT \n" +
                         "EXEC pAddEmpleado \n" +
                         "@pNombre=?,\n" +
@@ -38,7 +40,11 @@ public class AdministracionDAO {
                         "@pEmail =?,\n" +
                         "@pPassword=?,\n" +
                         "@pResult=@pResult OUTPUT";
-    String getEmpleados = "SELECT Id,Nombre,Apellidos,FechaContratacion,FechaSalida,Salario,IdTipoContrato,Email,Pwd FROM [PFC].[dbo].[Empleados]";
+    String getEmpleados = "SELECT Id,Nombre,Apellidos,FechaContratacion,FechaSalida,Salario,IdTipoContrato,Email,Pwd FROM [PFC].[dbo].[Empleados] WHERE IdTipoContrato<>9";
+    String editEmpleado = "UPDATE [PFC].[dbo].[Empleados] "
+            + "SET Nombre=?,Apellidos=?,FechaContratacion=?,FechaSalida=?,Salario=?,IdTipoContrato=?,Email=? "
+            + "WHERE Id=?";
+    
     public ArrayList<String> getContratos(){
         ArrayList<String> contratos = new ArrayList<String>();
         try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
@@ -75,6 +81,25 @@ public class AdministracionDAO {
     }
         return -1;
     }
+    public void editEmpleado(Empleado empleado){
+        try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+            PreparedStatement ps = connectDB.prepareStatement(editEmpleado);
+            ps.setString(1,empleado.getNombre());
+            ps.setString(2,empleado.getApellidos());
+            ps.setDate(3,Utils.dateToSql(empleado.getContrato()));
+            ps.setDate(4,Utils.dateToSql(empleado.getSalida()));
+            ps.setDouble(5,empleado.getSalario());
+            ps.setInt(6,empleado.getIdTipoContrato());
+            ps.setString(7,empleado.getMail());
+            ps.setInt(8,empleado.getId());
+            ps.executeUpdate();
+        }catch (SQLException ex) {ex.printStackTrace();}
+            if(empleado.getPwd().equals("")){
+                System.out.println("No modifica pwd");
+            }else{
+                System.out.println("Modifica pwd");
+            }
+    }
     
     public int getContratoId(String selection){
         int id=-1;
@@ -87,6 +112,18 @@ public class AdministracionDAO {
         }catch (SQLException ex) {ex.printStackTrace();}
         return id;
     }
+    public String getTipoContrato(int selection){
+        String tipo="";
+        try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+            PreparedStatement ps = connectDB.prepareStatement(getTipoContrato);
+            ps.setInt(1,selection);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            tipo=rs.getString("tipo");
+        }catch (SQLException ex) {ex.printStackTrace();}
+        return tipo;
+    }
+    
         private Connection getConnetion() {
         Connection conn=null;
         try {

@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import grd.pfc.dao.DAO;
+import grd.pfc.utils.Utils;
 import java.io.IOException;
 import java.sql.SQLException;
 import javafx.fxml.FXML;
@@ -27,7 +28,7 @@ public class Login {
         DAO dao = new DAO();
         int userId=dao.login(userInput.getText(), pwdInput.getText());
         System.out.println("USER="+userId);
-        userId=6;
+//        userId=6;
         if(userId>0){
             Stage stage = new Stage();
             Parent container = new FXMLLoader().load(getClass().getResource("/grd/pfc/menu/admon/administracion.fxml"));
@@ -35,12 +36,16 @@ public class Login {
             stage.setTitle("Admon");
             stage.setScene(scene);
             stage.show();
+            stage = (Stage) userInput.getScene().getWindow();
+            stage.close();
         }else{
-            System.out.println("Nope");
+            Utils.alertGenerator("ERROR", "Credenciales incorrectas", "Para cambiar sus credenciales contacte con el apartado de administración de su empresa", 3);
         }
     }
     
     public void close(){
+       if(Utils.alertGenerator("AVISO", "", "¿Seguro que desea salir?", 1)){
         System.exit(0);
+    }
     }
 }

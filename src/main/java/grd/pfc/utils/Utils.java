@@ -28,11 +28,18 @@ public class Utils {
         return fechaPicker;
     }
     
-    public static boolean alertGenerator(String title,String header,String body){
+    public static boolean alertGenerator(String title,String header,String body,int type){
+        //Types: 0-NONE,1-CONFIRMATION,2-INFORMATION,3.WARNING, 4-ERROR
         ButtonType yes = new ButtonType("Sí", ButtonBar.ButtonData.OK_DONE);
         ButtonType no = new ButtonType("No", ButtonBar.ButtonData.OK_DONE);
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "", yes,no);
+        Alert alert;
+        switch(type){
+           case 1: alert = new Alert(Alert.AlertType.CONFIRMATION, "", yes,no); break;
+           case 2: alert = new Alert(Alert.AlertType.WARNING, "", yes,no); break;
+           case 3: alert = new Alert(Alert.AlertType.ERROR); break;
+           default: alert = new Alert(Alert.AlertType.CONFIRMATION,"",yes); break;
+           
+        }
             if(!title.equals("")){
               alert.setTitle(title);  
             }else{alert.setTitle(null);}

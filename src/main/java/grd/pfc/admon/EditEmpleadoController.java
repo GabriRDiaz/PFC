@@ -78,21 +78,25 @@ public class EditEmpleadoController implements Initializable {
     }
     
     public void save() {
-        System.out.println(editOn);
         if(editOn){
-            AdministracionDAO adminDao = new AdministracionDAO();
-            Empleado empleado = new Empleado(
-            Integer.parseInt(empleadoId.getText()),
-            txtNombre.getText(),
-            txtApellidos.getText(),
-            Utils.pickerToSql(dateContrato),
-            Utils.pickerToSql(dateSalida),
-            Double.parseDouble(txtSalario.getText()),
-            adminDao.getContratoId(comboContrato.getValue()),
-            txtUsuario.getText(),
-            txtPwd.getText()
-            );
+            if(Utils.alertGenerator("Aviso", "Empleado: "+txtNombre.getText()+" "+txtApellidos.getText(), "¿Seguro que desea guardar los cambios?", 2)){
+                AdministracionDAO adminDao = new AdministracionDAO();
+                Empleado empleado = new Empleado(
+                    Integer.parseInt(empleadoId.getText()),
+                    txtNombre.getText(),
+                    txtApellidos.getText(),
+                    Utils.pickerToSql(dateContrato),
+                    Utils.pickerToSql(dateSalida),
+                    Double.parseDouble(txtSalario.getText()),
+                    adminDao.getContratoId(comboContrato.getValue()),
+                    txtUsuario.getText(),
+                    txtPwd.getText()
+                );
             adminDao.editEmpleado(empleado);
+            Utils.alertGenerator("OK", "", "El empleado se ha modificado correctamente", 0);
+            }else{Utils.alertGenerator("AVISO", "", "El empleado no se ha modificado", 0);}
+        }else{
+            Utils.alertGenerator("ERROR", "", "Seleccione un empleado de la tabla para editarlo", 3);
         }
         refreshTable();
         clean();

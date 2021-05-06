@@ -11,12 +11,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class AdministracionController implements Initializable{
     
@@ -60,21 +62,16 @@ private HamburgerBasicCloseTransition transition;
     }
 
     @FXML
-    public void logout(){
-        System.out.println("Sesión cerrada");
+    public void logout() throws IOException{
+        Stage stage = new Stage();
+        Parent container = new FXMLLoader().load(getClass().getResource("/grd/pfc/login/login.fxml"));
+        Scene scene = new Scene(container, 900,550);
+        stage.setTitle("Admon");
+        stage.setScene(scene);
+        stage.show();
+        stage = (Stage) butLogout.getScene().getWindow();
+        stage.close();
     }
-    
-//    public void addEmpleado() throws IOException{
-//        AnchorPane pane= FXMLLoader.load(getClass().getResource("/grd/pfc/menu/admon/addEmpleado.fxml"));    
-//        System.out.println(pane);
-//        System.out.println(subPane);
-//        subPane.setCenter(pane);
-//    }
-    //This is the method where I try to load my FXML into my AnchorPane
-//    public void addEmpleado() throws IOException {
-//
-//    }
-
     
     public void addPerfil() {
 

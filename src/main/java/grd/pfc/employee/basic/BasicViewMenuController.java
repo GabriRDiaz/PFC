@@ -1,4 +1,4 @@
-package grd.pfc.admon;
+package grd.pfc.employee.basic;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
@@ -20,7 +20,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class AdministracionController implements Initializable{
+public class BasicViewMenuController implements Initializable{
     
 
 @FXML
@@ -44,7 +44,7 @@ private HamburgerBasicCloseTransition transition;
 
     @FXML
     public void barSwitch() throws IOException{
-        VBox box = FXMLLoader.load(getClass().getResource("/grd/pfc/menu/admon/admonToolbar.fxml"));
+        VBox box = FXMLLoader.load(getClass().getResource("/grd/pfc/basicview/basicToolbar.fxml"));
         sidebarBox.setSidePane(box); 
         sidebarBox.setMinWidth(0);
         if(transition==null){
@@ -73,29 +73,6 @@ private HamburgerBasicCloseTransition transition;
         stage.show();
         stage = (Stage) butLogout.getScene().getWindow();
         stage.close();
-    }
-    
-    public void addPerfil() {
-
-    }
-
-    
-    public void editEmpleado() {
-
-    }
-
-    
-    public void editPerfil() {
-
-    }
-
-    public void genRep() {
-
-    }
-
-    
-    public void viewGraph() {
-
     }
 
     @Override

@@ -28,10 +28,10 @@ public class Login {
         DAO dao = new DAO();
         int userId=dao.login(userInput.getText(), pwdInput.getText());
         System.out.println("USER="+userId);
-//        userId=6;
+        userId=6;
         if(userId>0){
             Stage stage = new Stage();
-            Parent container = new FXMLLoader().load(getClass().getResource("/grd/pfc/menu/admon/administracion.fxml"));
+            Parent container = new FXMLLoader().load(getClass().getResource("/grd/pfc//basicview/basicviewMenu.fxml"));
             Scene scene = new Scene(container, 900,550);
             stage.setTitle("Admon");
             stage.setScene(scene);

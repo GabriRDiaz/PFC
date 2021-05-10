@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  */
 public class BasicViewDAO {
     public BasicViewDAO(){}
-    String connectionUrl = "jdbc:sqlserver://GABRIRDIAZ\\SQLGRDV2;user=sa;password=abc123.";
+    String connectionUrl = "jdbc:sqlserver://GABRIRDIAZ\\GRDSQL;user=sa;password=abc123.";
     String getProductos =   "SELECT p.Id,p.Nombre,p.Descripcion,PrecioSinIVA,Descuento,m.Marca,Referencia,Modelo,Color,Stock,i.Tipo FROM [PFC].[dbo].[Productos] p\n" +
                             "JOIN [PFC].[dbo].[Marcas] m ON p.IdMarca=m.Id\n" +
                             "JOIN [PFC].[dbo].[IVAS] i ON p.IdTipoIVA=i.Id\n" +

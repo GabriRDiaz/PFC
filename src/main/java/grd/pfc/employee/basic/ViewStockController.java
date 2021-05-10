@@ -71,7 +71,7 @@ public class ViewStockController implements Initializable {
         comboSeccion.getSelectionModel().clearSelection();
         comboMarca.getSelectionModel().clearSelection();
         comboIVA.getSelectionModel().clearSelection();
-        refreshTable("3");
+        refreshTable("");
     }
     
     private void refreshTable(String filter) {

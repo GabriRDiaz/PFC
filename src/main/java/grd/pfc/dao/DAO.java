@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DAO {
-    String connectionUrl = "jdbc:sqlserver://GABRIRDIAZ\\SQLGRDV2;user=sa;password=abc123.";
+    String connectionUrl = "jdbc:sqlserver://GABRIRDIAZ\\GRDSQL;user=sa;password=abc123.";
     String checkLogin = "DECLARE @responseMessage NVARCHAR(250)\n" +
                         "EXEC PFC.pLogin\n" +
                         "	@pEmail=?,\n" +

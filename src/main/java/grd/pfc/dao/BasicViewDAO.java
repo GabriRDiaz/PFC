@@ -9,6 +9,7 @@ import grd.pfc.pojo.IVA;
 import grd.pfc.pojo.Marca;
 import grd.pfc.pojo.Producto;
 import grd.pfc.pojo.Seccion;
+import grd.pfc.singleton.InfoBundle;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -103,7 +104,7 @@ public ArrayList<IVA> getIvas(){
     public ArrayList<Producto> getProductos(String filter){
         ArrayList<Producto> productos = new ArrayList<Producto>();
         try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
-            PreparedStatement ps = connectDB.prepareStatement(getProductos.concat("3"+filter));
+            PreparedStatement ps = connectDB.prepareStatement(getProductos.concat(InfoBundle.getInfoBundle().getIdEmpleado()+filter));
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Producto producto = new Producto(

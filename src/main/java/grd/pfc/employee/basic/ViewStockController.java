@@ -13,6 +13,7 @@ import grd.pfc.pojo.IVA;
 import grd.pfc.pojo.Marca;
 import grd.pfc.pojo.Producto;
 import grd.pfc.pojo.Seccion;
+import grd.pfc.singleton.InfoBundle;
 import grd.pfc.utils.Utils;
 import java.net.URL;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ import javafx.scene.image.ImageView;
  * @author Gabriel
  */
 public class ViewStockController implements Initializable {
-    //TODO: Add ComboBox with sections to filter.
+   
     @FXML
     private TableView<Producto> tableProductos;
     
@@ -97,7 +98,7 @@ public class ViewStockController implements Initializable {
     }
     private void getCombos(){
         BasicViewDAO viewDao= new BasicViewDAO();
-        ArrayList<Seccion> secciones = viewDao.getSecciones(3); //Id Empleado
+        ArrayList<Seccion> secciones = viewDao.getSecciones(InfoBundle.getInfoBundle().getIdEmpleado()); 
         secciones.forEach(s->{
             comboSeccion.getItems().add(s.getNombre());
         });

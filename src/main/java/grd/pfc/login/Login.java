@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import grd.pfc.dao.DAO;
+import grd.pfc.singleton.InfoBundle;
 import grd.pfc.utils.Utils;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -28,8 +29,9 @@ public class Login {
         DAO dao = new DAO();
         int userId=dao.login(userInput.getText(), pwdInput.getText());
         System.out.println("USER="+userId);
-        userId=3;
+        userId=2;
         if(userId>0){
+            InfoBundle.getInfoBundle().setIdEmpleado(userId);
             Stage stage = new Stage();
             Parent container = new FXMLLoader().load(getClass().getResource("/grd/pfc//basicview/basicviewMenu.fxml"));
             Scene scene = new Scene(container, 900,550);

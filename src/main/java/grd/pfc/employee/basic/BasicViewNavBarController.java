@@ -39,7 +39,9 @@ public class BasicViewNavBarController implements Initializable {
         BasicViewMenuController.stPane.getChildren().setAll(pane);
     }
 
-    public void requestProd() {
+    public void requestProd() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/grd/pfc/basicview/requestStock.fxml"));    
+        BasicViewMenuController.stPane.getChildren().setAll(pane);
     }
     
     @Override

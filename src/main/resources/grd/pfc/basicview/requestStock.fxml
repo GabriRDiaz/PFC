@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="406.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grd.pfc.employee.basic.RequestStockController">
+   <children>
+      <Text fill="#4059a9" layoutX="224.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sugerencia Stock">
+         <font>
+            <Font name="Arial Bold" size="36.0" />
+         </font>
+      </Text>
+      <Separator layoutY="63.0" prefHeight="5.0" prefWidth="751.0" />
+      <JFXTextArea id="textFields" fx:id="txtRequest" layoutX="9.0" layoutY="75.0" prefHeight="246.0" prefWidth="733.0" stylesheets="@../generalCss/textField.css" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="9.0" />
+      <HBox layoutX="-9.0" layoutY="321.0" prefHeight="100.0" prefWidth="760.0">
+         <children>
+            <ImageView fx:id="clearBut" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#clear" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../multimedia/clean.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="610.0" top="20.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="sendBut" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#send" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets left="20.0" top="20.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@../multimedia/send.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

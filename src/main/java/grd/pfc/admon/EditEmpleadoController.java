@@ -76,7 +76,7 @@ public class EditEmpleadoController implements Initializable {
         });
         refreshTable();
     }
-    
+    //TODO UpdPwd
     public void save() {
         if(editOn){
             if(Utils.alertGenerator("Aviso", "Empleado: "+txtNombre.getText()+" "+txtApellidos.getText(), "¿Seguro que desea guardar los cambios?", 2)){

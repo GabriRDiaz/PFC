@@ -25,7 +25,7 @@ import javafx.scene.control.TableView;
  * @author Gabriel
  */
 public class ViewStockController implements Initializable {
-
+    //TODO: Add ComboBox with sections to filter.
     @FXML
     private TableView<Producto> tableProductos;
 
@@ -37,6 +37,8 @@ public class ViewStockController implements Initializable {
         productos.addAll(foundProductos);
         tableProductos.setItems(productos);
         
+        //TODO: Add prices alert in table
+
         tableProductos.setOnMouseClicked( event -> {
             if(event.getClickCount()==2) {
                 Producto producto = tableProductos.getSelectionModel().getSelectedItem();

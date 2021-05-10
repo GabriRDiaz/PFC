@@ -41,7 +41,7 @@ private int transitionRate=1;
 private HamburgerBasicCloseTransition transition;
     @FXML
     private AnchorPane rootPane;
-
+//TODO: Refactor barSwitch in Utils
     @FXML
     public void barSwitch() throws IOException{
         VBox box = FXMLLoader.load(getClass().getResource("/grd/pfc/basicview/basicToolbar.fxml"));

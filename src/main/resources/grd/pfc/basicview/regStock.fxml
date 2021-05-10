@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grd.pfc.employee.basic.RegStockController">
+   <children>
+      <Text fill="#4059a9" layoutX="223.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Regularizar Stock">
+         <font>
+            <Font name="Arial Bold" size="36.0" />
+         </font>
+      </Text>
+      <Separator layoutY="53.0" prefHeight="5.0" prefWidth="751.0" />
+      <VBox layoutY="69.0" prefHeight="337.0" prefWidth="374.0">
+         <children>
+            <TableView fx:id="tableProductos" prefHeight="347.0" prefWidth="372.0" styleClass="table-row-cell" stylesheets="@../generalCss/table.css">
+              <columns>
+                  
+                        <TableColumn prefWidth="75.0" text="Producto">
+                   <cellValueFactory>
+                        <PropertyValueFactory property="Nombre" />
+                    </cellValueFactory>
+                  </TableColumn>
+                  
+                        <TableColumn prefWidth="75.0" text="Modelo">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="Modelo" />
+                    </cellValueFactory>
+                  </TableColumn>
+                      
+                        <TableColumn prefWidth="103.0" text="Marca">
+                    <cellValueFactory>
+                          <PropertyValueFactory property="Marca" />
+                      </cellValueFactory>
+                    </TableColumn>
+                  
+                        <TableColumn prefWidth="67.0" text="Color">
+                      <cellValueFactory>
+                        <PropertyValueFactory property="Color" />
+                    </cellValueFactory>
+                  </TableColumn>
+                      
+                        <TableColumn prefWidth="52.0" text="Stock">
+                      <cellValueFactory>
+                        <PropertyValueFactory property="Stock" />
+                    </cellValueFactory>
+                  </TableColumn>
+                      
+                    </columns>
+            </TableView>
+         </children>
+      </VBox>
+      <VBox layoutX="376.0" layoutY="69.0" prefHeight="337.0" prefWidth="374.0">
+         <children>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Producto" textAlignment="CENTER" wrappingWidth="374.9921875">
+               <font>
+                  <Font name="Arial Bold" size="28.0" />
+               </font>
+            </Text>
+            <Separator prefWidth="200.0" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <JFXTextField id="textFields" fx:id="productName" editable="false" prefHeight="46.0" prefWidth="272.0" stylesheets="@../generalCss/textField.css">
+                     <HBox.margin>
+                        <Insets left="50.0" top="20.0" />
+                     </HBox.margin>
+                  </JFXTextField>
+               </children>
+            </HBox>
+            <HBox prefHeight="108.0" prefWidth="375.0">
+               <children>
+                  <ImageView fx:id="minus" disable="true" fitHeight="34.0" fitWidth="34.0" onMouseClicked="#substract" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets bottom="25.0" left="100.0" top="25.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../multimedia/minus.png" />
+                     </image>
+                  </ImageView>
+                  <JFXTextField id="textFields" fx:id="productStock" alignment="CENTER" editable="false" prefHeight="46.0" prefWidth="109.0" stylesheets="@../generalCss/textField.css">
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                  </JFXTextField>
+                  <ImageView fx:id="plus" disable="true" fitHeight="34.0" fitWidth="34.0" onMouseClicked="#addStock" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../multimedia/plus.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="25.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox minWidth="60.0" prefHeight="98.0" prefWidth="60.0">
+                     <children>
+                        <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Modelo: " wrappingWidth="86.9921875">
+                           <font>
+                              <Font name="Arial Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Marca:" wrappingWidth="86.9921875">
+                           <font>
+                              <Font name="Arial Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Color:" wrappingWidth="86.9921875">
+                           <font>
+                              <Font name="Arial Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="NºRef:" wrappingWidth="86.9921875">
+                           <font>
+                              <Font name="Arial Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Text>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="98.0" prefWidth="205.0">
+                     <children>
+                        <Text fx:id="txtModelo" fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="203.9921875">
+                           <font>
+                              <Font name="Arial Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="txtMarca" fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="204.9921875">
+                           <font>
+                              <Font name="Arial Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text fx:id="txtColor" fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="203.9921875">
+                           <font>
+                              <Font name="Arial Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Text fx:id="txtRef" fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="203.9921875">
+                           <font>
+                              <Font name="Arial Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Text>
+                     </children>
+                  </VBox>
+                  <ImageView fx:id="saveReg" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#saveReg" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="45.0" top="40.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../multimedia/saveEdit.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

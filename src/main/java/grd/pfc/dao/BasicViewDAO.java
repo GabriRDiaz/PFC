@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  */
 public class BasicViewDAO {
     public BasicViewDAO(){}
-    String connectionUrl = "jdbc:sqlserver://GABRIRDIAZ\\GRDSQL;user=sa;password=abc123.";
+    String connectionUrl = "jdbc:sqlserver://GABRIRDIAZ\\SQLGRDV2;user=sa;password=abc123.";
     String getProductos =   "SELECT p.Id,p.Nombre,p.Descripcion,PrecioSinIVA,Descuento,m.Marca,Referencia,Modelo,Color,Stock,i.Tipo FROM [PFC].[dbo].[Productos] p\n" +
                             "JOIN [PFC].[dbo].[Marcas] m ON p.IdMarca=m.Id\n" +
                             "JOIN [PFC].[dbo].[IVAS] i ON p.IdTipoIVA=i.Id\n" +
@@ -40,7 +40,7 @@ public class BasicViewDAO {
                           "WHERE e.Id=";
     String getMarcas = "SELECT m.Id,m.Marca FROM [PFC].[dbo].[Marcas] m";
     String getIva = "SELECT i.Id,i.iva,i.tipo FROM [PFC].[dbo].[IVAS] i";
-    
+    String updStock = "UPDATE [PFC].[dbo].[Productos] SET Stock=? WHERE Id=?";
     public ArrayList<Seccion> getSecciones(int idEmpleado){
         ArrayList<Seccion> secciones = new ArrayList<Seccion>();
         try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
@@ -73,7 +73,17 @@ public class BasicViewDAO {
     }catch (SQLException ex) {ex.printStackTrace();}
     return marcas;
 }
-    
+public int updStock(int stock,int id){
+    try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+        PreparedStatement ps = connectDB.prepareStatement(updStock);
+        ps.setInt(1,stock);
+        ps.setInt(2,id);
+        return ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(BasicViewDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    return -1;
+}
 public ArrayList<IVA> getIvas(){
     ArrayList<IVA> ivas = new ArrayList<IVA>();
     try(Connection connectDB = DriverManager.getConnection(connectionUrl)){

@@ -57,5 +57,14 @@ public class Utils {
             alert.showAndWait();
             if(alert.getResult()==yes){return true;}else{return false;}
     }
+    
+    public static boolean isNumeric(String str) { 
+        try {  
+          Integer.parseInt(str);  
+          return true;
+        } catch(NumberFormatException e){  
+          return false;  
+        }  
+    }
 }
 

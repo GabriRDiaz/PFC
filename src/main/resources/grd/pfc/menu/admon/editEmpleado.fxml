@@ -66,7 +66,7 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </Text>
-            <JFXTextField id="textFields" fx:id="txtNombre" prefHeight="35.0" prefWidth="231.0" stylesheets="@../../login/textField.css" VBox.vgrow="ALWAYS">
+            <JFXTextField id="textFields" fx:id="txtNombre" prefHeight="35.0" prefWidth="231.0" stylesheets="@../../generalCss/textField.css" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -92,7 +92,7 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </Text>
-            <JFXTextField id="textFields" fx:id="txtSalario" prefHeight="35.0" prefWidth="231.0" stylesheets="@../../login/textField.css">
+            <JFXTextField id="textFields" fx:id="txtSalario" prefHeight="35.0" prefWidth="231.0" stylesheets="@../../generalCss/textField.css">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -105,7 +105,7 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </Text>
-            <JFXTextField id="textFields" fx:id="txtUsuario" prefHeight="35.0" prefWidth="231.0" stylesheets="@../../login/textField.css" />
+            <JFXTextField id="textFields" fx:id="txtUsuario" prefHeight="35.0" prefWidth="231.0" stylesheets="@../../generalCss/textField.css" />
          </children>
       </VBox>
       <VBox layoutX="511.0" layoutY="54.0" prefHeight="287.0" prefWidth="231.0">
@@ -118,7 +118,7 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </Text>
-            <JFXTextField id="textFields" fx:id="txtApellidos" prefHeight="35.0" prefWidth="231.0" stylesheets="@../../login/textField.css">
+            <JFXTextField id="textFields" fx:id="txtApellidos" prefHeight="35.0" prefWidth="231.0" stylesheets="@../../generalCss/textField.css">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -144,7 +144,7 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </Text>
-            <JFXComboBox id="textFields" fx:id="comboContrato" prefHeight="35.0" prefWidth="231.0" stylesheets="@../../login/textField.css">
+            <JFXComboBox id="textFields" fx:id="comboContrato" prefHeight="35.0" prefWidth="231.0" stylesheets="@../../generalCss/textField.css">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -157,7 +157,7 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </Text>
-            <JFXPasswordField id="textFields" fx:id="txtPwd" prefHeight="35.0" stylesheets="@../../login/textField.css">
+            <JFXPasswordField id="textFields" fx:id="txtPwd" prefHeight="35.0" stylesheets="@../../generalCss/textField.css">
                <VBox.margin>
                   <Insets />
                </VBox.margin>

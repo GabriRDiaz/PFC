@@ -29,14 +29,16 @@ public class Utils {
     }
     
     public static boolean alertGenerator(String title,String header,String body,int type){
-        //Types: 0-NONE,1-CONFIRMATION,2-INFORMATION,3.WARNING, 4-ERROR
+        //Types: 0-NONE,1-CONFIRMATION,2-INFORMATION 3.WARNING, 4-ERROR
         ButtonType yes = new ButtonType("Sí", ButtonBar.ButtonData.OK_DONE);
         ButtonType no = new ButtonType("No", ButtonBar.ButtonData.OK_DONE);
         Alert alert;
         switch(type){
+           case 0: alert = new Alert(Alert.AlertType.NONE, "", yes); break;
            case 1: alert = new Alert(Alert.AlertType.CONFIRMATION, "", yes,no); break;
-           case 2: alert = new Alert(Alert.AlertType.WARNING, "", yes,no); break;
-           case 3: alert = new Alert(Alert.AlertType.ERROR); break;
+           case 2: alert = new Alert(Alert.AlertType.INFORMATION, "", yes); break;
+           case 3: alert = new Alert(Alert.AlertType.WARNING, "", yes,no); break;
+           case 4: alert = new Alert(Alert.AlertType.ERROR); break;
            default: alert = new Alert(Alert.AlertType.CONFIRMATION,"",yes); break;
            
         }

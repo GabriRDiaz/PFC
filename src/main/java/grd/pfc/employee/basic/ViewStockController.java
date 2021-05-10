@@ -5,12 +5,17 @@
  */
 package grd.pfc.employee.basic;
 
+import com.jfoenix.controls.JFXComboBox;
 import grd.pfc.dao.AdministracionDAO;
 import grd.pfc.dao.BasicViewDAO;
 import grd.pfc.pojo.Empleado;
+import grd.pfc.pojo.IVA;
+import grd.pfc.pojo.Marca;
 import grd.pfc.pojo.Producto;
+import grd.pfc.pojo.Seccion;
 import grd.pfc.utils.Utils;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -18,6 +23,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableView;
+import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
@@ -28,12 +34,50 @@ public class ViewStockController implements Initializable {
     //TODO: Add ComboBox with sections to filter.
     @FXML
     private TableView<Producto> tableProductos;
+    
+    @FXML
+    private JFXComboBox<String> comboSeccion;
 
+    @FXML
+    private JFXComboBox<String> comboMarca;
+
+    @FXML
+    private JFXComboBox<String> comboIVA;
+    
+    @FXML
+    private ImageView filter;
+    
+    @FXML
+    private ImageView clean;
+    
+    public void filter(){
+        if(!comboSeccion.getSelectionModel().isEmpty()||!comboMarca.getSelectionModel().isEmpty()||!comboIVA.getSelectionModel().isEmpty()){
+            String filter="";
+            if(!comboSeccion.getSelectionModel().isEmpty()){
+               filter = filter.concat(" AND s.Nombre='"+comboSeccion.getValue()+"'");
+            }
+            if(!comboMarca.getSelectionModel().isEmpty()){
+                filter = filter.concat(" AND m.Marca='"+comboMarca.getValue()+"'");
+            }
+            if(!comboIVA.getSelectionModel().isEmpty()){
+                filter = filter.concat(" AND i.iva='"+comboIVA.getValue()+"'");
+            }
+            refreshTable(filter);
+        }else{Utils.alertGenerator("ERROR", "", "Escoja alguna opción de filtrado", 4);}
         
-    private void refreshTable() {
+    }
+    
+    public void cleanCombos(){
+        comboSeccion.getSelectionModel().clearSelection();
+        comboMarca.getSelectionModel().clearSelection();
+        comboIVA.getSelectionModel().clearSelection();
+        refreshTable("3");
+    }
+    
+    private void refreshTable(String filter) {
         BasicViewDAO viewDao = new BasicViewDAO();
         ObservableList<Producto> productos = FXCollections.observableArrayList();
-        List<Producto> foundProductos = viewDao.getProductos(1);
+        List<Producto> foundProductos = viewDao.getProductos(filter);
         productos.addAll(foundProductos);
         tableProductos.setItems(productos);
         
@@ -51,10 +95,26 @@ public class ViewStockController implements Initializable {
         });
        
     }
+    private void getCombos(){
+        BasicViewDAO viewDao= new BasicViewDAO();
+        ArrayList<Seccion> secciones = viewDao.getSecciones(3); //Id Empleado
+        secciones.forEach(s->{
+            comboSeccion.getItems().add(s.getNombre());
+        });
+        ArrayList<Marca> marcas = viewDao.getMarcas();
+        marcas.forEach(m->{
+            comboMarca.getItems().add(m.getMarca());
+        });
+        ArrayList<IVA> ivas = viewDao.getIvas();
+            ivas.forEach(i->{
+              comboIVA.getItems().add(i.getIVA());
+            });
+        }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        refreshTable();
+        getCombos();
+        refreshTable("");
     }    
     
-    
+
 }

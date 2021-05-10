@@ -17,7 +17,7 @@
             <Font name="System Bold" size="28.0" />
          </font>
       </Text>
-      <JFXTextField id="textFields" fx:id="userInput" layoutX="314.0" layoutY="160.0" prefHeight="46.0" prefWidth="272.0" stylesheets="@textField.css" />
+      <JFXTextField id="textFields" fx:id="userInput" layoutX="314.0" layoutY="160.0" prefHeight="46.0" prefWidth="272.0" stylesheets="@../generalCss/textField.css" />
       <Text fill="#4059a9" layoutX="376.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña">
          <font>
             <Font name="System Bold" size="28.0" />
@@ -39,6 +39,6 @@
          </font>
       </Text>
       <Separator layoutY="66.0" prefHeight="23.0" prefWidth="900.0" />
-      <JFXPasswordField id="textFields" fx:id="pwdInput" layoutX="314.0" layoutY="280.0" prefHeight="46.0" prefWidth="272.0" stylesheets="@textField.css" />
+      <JFXPasswordField id="textFields" fx:id="pwdInput" layoutX="314.0" layoutY="280.0" prefHeight="46.0" prefWidth="272.0" stylesheets="@../generalCss/textField.css" />
    </children>
 </AnchorPane>

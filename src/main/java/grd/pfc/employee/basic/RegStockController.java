@@ -85,7 +85,9 @@ public class RegStockController implements Initializable{
             if(event.getClickCount()==2) {
                 plus.setDisable(false);
                 minus.setDisable(false);
-                producto = tableProductos.getSelectionModel().getSelectedItem();
+                if(tableProductos.getSelectionModel().getSelectedItem()!=null){
+                    producto = tableProductos.getSelectionModel().getSelectedItem();
+                }else{return;}
                 productName.textProperty().setValue(producto.getNombre());
                 stockValue=producto.getStock();
                 productStock.textProperty().setValue(""+stockValue);

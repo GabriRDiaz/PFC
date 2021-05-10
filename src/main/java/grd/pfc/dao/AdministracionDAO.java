@@ -25,7 +25,7 @@ import java.util.logging.Logger;
  * @author Gabriel
  */
 public class AdministracionDAO {
-    String connectionUrl = "jdbc:sqlserver://GABRIRDIAZ\\SQLGRDV2;user=sa;password=abc123.";
+    String connectionUrl = "jdbc:sqlserver://GABRIRDIAZ\\GRDSQL;user=sa;password=abc123.";
     String getContratos = "SELECT [TipoContrato] AS contrato from [PFC].[dbo].[TiposContrato] WHERE [TipoContrato] NOT LIKE 'Accionista'";
     String getContratoId = "SELECT [Id] AS id from [PFC].[dbo].[TiposContrato] WHERE [TipoContrato]=?";
     String getTipoContrato = "SELECT [TipoContrato] AS tipo from [PFC].[dbo].[TiposContrato] WHERE [Id]=?";

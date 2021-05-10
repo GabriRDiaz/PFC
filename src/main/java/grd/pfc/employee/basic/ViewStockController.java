@@ -86,12 +86,14 @@ public class ViewStockController implements Initializable {
 
         tableProductos.setOnMouseClicked( event -> {
             if(event.getClickCount()==2) {
-                Producto producto = tableProductos.getSelectionModel().getSelectedItem();
-                double precioIVA = producto.getPrecioSinIVA() + producto.getPrecioSinIVA()*producto.getIva()/100;
-                double precioDesc = precioIVA - (producto.getDescuento()*precioIVA)/100;
-                System.out.println("Producto sin IVA: "+producto.getPrecioSinIVA());
-                System.out.println("Producto con IVA: "+precioIVA);
-                System.out.println("Producto con descuento: "+precioDesc);
+                if(tableProductos.getSelectionModel().getSelectedItem()!=null){
+                    Producto producto = tableProductos.getSelectionModel().getSelectedItem();
+                    double precioIVA = producto.getPrecioSinIVA() + producto.getPrecioSinIVA()*producto.getIva()/100;
+                    double precioDesc = precioIVA - (producto.getDescuento()*precioIVA)/100;
+                    System.out.println("Producto sin IVA: "+producto.getPrecioSinIVA());
+                    System.out.println("Producto con IVA: "+precioIVA);
+                    System.out.println("Producto con descuento: "+precioDesc);
+                }else{return;}
             }
         });
        

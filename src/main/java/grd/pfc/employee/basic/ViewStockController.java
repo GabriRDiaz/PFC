@@ -36,24 +36,17 @@ public class ViewStockController implements Initializable {
         List<Producto> foundProductos = viewDao.getProductos();
         productos.addAll(foundProductos);
         tableProductos.setItems(productos);
-//        
-//        tableempleados.setOnMouseClicked( event -> {
-//            if(event.getClickCount()==2) {
-//               editOn=true;
-//               Empleado empleado = tableempleados.getSelectionModel().getSelectedItem();
-//               empleadoId.setText(""+empleado.getId());
-//               txtNombre.setText(empleado.getNombre());
-//               txtApellidos.setText(empleado.getApellidos());
-//               txtUsuario.setText(empleado.getMail());
-//               txtSalario.setText(""+empleado.getSalario());
-//               dateContrato.setValue(Utils.SqlToPicker(empleado.getContrato()));
-//               if(empleado.getSalida()!=null){
-//                    dateSalida.setValue(Utils.SqlToPicker(empleado.getSalida()));
-//               }
-//               comboContrato.setValue(adminDao.getTipoContrato(empleado.getIdTipoContrato()));
-//               txtPwd.setText("");
-//          }
-//   });
+        
+        tableProductos.setOnMouseClicked( event -> {
+            if(event.getClickCount()==2) {
+                Producto producto = tableProductos.getSelectionModel().getSelectedItem();
+                double precioIVA = producto.getPrecioSinIVA() + producto.getPrecioSinIVA()*producto.getIva()/100;
+                double precioDesc = precioIVA - (producto.getDescuento()*precioIVA)/100;
+                System.out.println("Producto sin IVA: "+producto.getPrecioSinIVA());
+                System.out.println("Producto con IVA: "+precioIVA);
+                System.out.println("Producto con descuento: "+precioDesc);
+            }
+        });
        
     }
     @Override

@@ -22,8 +22,9 @@ import java.util.logging.Logger;
 public class BasicViewDAO {
     public BasicViewDAO(){}
     String connectionUrl = "jdbc:sqlserver://GABRIRDIAZ\\GRDSQL;user=sa;password=abc123.";
-    String getProductos = "SELECT p.Id,Nombre,Descripcion,PrecioSinIVA,Descuento,m.Marca,Referencia,Modelo,Color,Stock FROM [PFC].[dbo].[Productos] p\n" +
-                     "JOIN [PFC].[dbo].[Marcas] m ON p.IdMarca=m.Id";
+    String getProductos = "SELECT p.Id,Nombre,Descripcion,PrecioSinIVA,Descuento,m.Marca,Referencia,Modelo,Color,Stock,i.Tipo FROM [PFC].[dbo].[Productos] p\n" +
+                           "JOIN [PFC].[dbo].[Marcas] m ON p.IdMarca=m.Id\n" +
+                           "JOIN [PFC].[dbo].[IVAS] i ON p.IdTipoIVA=i.Id";
 
     public ArrayList<Producto> getProductos(){
         ArrayList<Producto> productos = new ArrayList<Producto>();
@@ -41,7 +42,8 @@ public class BasicViewDAO {
                         rs.getString("Referencia"),
                         rs.getString("Modelo"),
                         rs.getString("Color"),
-                        rs.getInt("Stock")
+                        rs.getInt("Stock"),
+                        rs.getDouble("Tipo")
                 );
                 productos.add(producto);
             }

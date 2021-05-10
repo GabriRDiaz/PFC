@@ -20,8 +20,9 @@ public class Producto {
     private String modelo;
     private String color;
     private int stock;
+    private double iva;
 
-    public Producto(int id, String nombre, String descripcion, double precioSinIVA, double descuento, String marca, String referencia, String modelo, String color, int stock) {
+    public Producto(int id, String nombre, String descripcion, double precioSinIVA, double descuento, String marca, String referencia, String modelo, String color, int stock, double iva) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -32,6 +33,15 @@ public class Producto {
         this.modelo = modelo;
         this.color = color;
         this.stock = stock;
+        this.iva = iva;
+    }
+
+    public void setIva(double iva) {
+        this.iva = iva;
+    }
+
+    public double getIva() {
+        return iva;
     }
 
     public void setId(int id) {

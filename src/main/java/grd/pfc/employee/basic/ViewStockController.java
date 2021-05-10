@@ -33,7 +33,7 @@ public class ViewStockController implements Initializable {
     private void refreshTable() {
         BasicViewDAO viewDao = new BasicViewDAO();
         ObservableList<Producto> productos = FXCollections.observableArrayList();
-        List<Producto> foundProductos = viewDao.getProductos();
+        List<Producto> foundProductos = viewDao.getProductos(1);
         productos.addAll(foundProductos);
         tableProductos.setItems(productos);
         

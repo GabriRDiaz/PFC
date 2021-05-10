@@ -35,7 +35,7 @@
       </JFXButton>
       <VBox layoutY="54.0" prefHeight="354.0" prefWidth="259.0">
          <children>
-            <TableView fx:id="tableempleados" prefHeight="353.0" prefWidth="231.0" styleClass="table-row-cell" stylesheets="@table.css">
+            <TableView fx:id="tableempleados" prefHeight="353.0" prefWidth="231.0" styleClass="table-row-cell" stylesheets="@../../generalCss/table.css">
               <columns>
                 <TableColumn prefWidth="75.0" text="Nombre">
                     <cellValueFactory>

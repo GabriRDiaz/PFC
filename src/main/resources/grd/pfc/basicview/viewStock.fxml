@@ -19,15 +19,15 @@
       <Separator layoutY="53.0" prefHeight="5.0" prefWidth="751.0" />
       <HBox layoutY="68.0" prefHeight="339.0" prefWidth="751.0">
          <children>
-            <TableView fx:id="tableProductos" prefHeight="339.0" prefWidth="753.0">
+            <TableView fx:id="tableProductos" prefHeight="339.0" prefWidth="753.0" styleClass="table-row-cell" stylesheets="@../generalCss/table.css">
               <columns>
-                  <TableColumn prefWidth="82.0" text="Referencia">
+                  <TableColumn prefWidth="75.0" text="Referencia">
                     <cellValueFactory>
                         <PropertyValueFactory property="Referencia" />
                     </cellValueFactory>
                   </TableColumn>
                   
-                  <TableColumn prefWidth="68.0" text="Producto">
+                  <TableColumn prefWidth="75.0" text="Producto">
                    <cellValueFactory>
                         <PropertyValueFactory property="Nombre" />
                     </cellValueFactory>
@@ -39,25 +39,25 @@
                     </cellValueFactory>
                   </TableColumn>
                   
-                  <TableColumn prefWidth="135.0" text="Descripción">
+                  <TableColumn prefWidth="179.0" text="Descripción">
                     <cellValueFactory>
                         <PropertyValueFactory property="Descripcion" />
                     </cellValueFactory>
                   </TableColumn>
                       
-                <TableColumn prefWidth="69.0" text="Precio">
+                <TableColumn prefWidth="55.0" text="Precio">
                     <cellValueFactory>
                         <PropertyValueFactory property="PrecioSinIVA" />
                     </cellValueFactory>
                   </TableColumn>
                     
-                  <TableColumn prefWidth="71.0" text="Descuento">
+                  <TableColumn prefWidth="70.0" text="Descuento">
                       <cellValueFactory>
                         <PropertyValueFactory property="Descuento" />
                     </cellValueFactory>
                   </TableColumn>
                       
-                  <TableColumn prefWidth="101.0" text="Marca">
+                  <TableColumn prefWidth="103.0" text="Marca">
                     <cellValueFactory>
                           <PropertyValueFactory property="Marca" />
                       </cellValueFactory>
@@ -69,7 +69,7 @@
                     </cellValueFactory>
                   </TableColumn>
                       
-                  <TableColumn prefWidth="81.0" text="Stock">
+                  <TableColumn prefWidth="52.0" text="Stock">
                       <cellValueFactory>
                         <PropertyValueFactory property="Stock" />
                     </cellValueFactory>

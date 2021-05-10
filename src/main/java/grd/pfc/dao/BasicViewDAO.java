@@ -22,14 +22,17 @@ import java.util.logging.Logger;
 public class BasicViewDAO {
     public BasicViewDAO(){}
     String connectionUrl = "jdbc:sqlserver://GABRIRDIAZ\\GRDSQL;user=sa;password=abc123.";
-    String getProductos = "SELECT p.Id,Nombre,Descripcion,PrecioSinIVA,Descuento,m.Marca,Referencia,Modelo,Color,Stock,i.Tipo FROM [PFC].[dbo].[Productos] p\n" +
-                           "JOIN [PFC].[dbo].[Marcas] m ON p.IdMarca=m.Id\n" +
-                           "JOIN [PFC].[dbo].[IVAS] i ON p.IdTipoIVA=i.Id";
+    String getProductos = "SELECT p.Id,p.Nombre,p.Descripcion,PrecioSinIVA,Descuento,m.Marca,Referencia,Modelo,Color,Stock,i.Tipo FROM [PFC].[dbo].[Productos] p\n" +
+                          "JOIN [PFC].[dbo].[Marcas] m ON p.IdMarca=m.Id\n" +
+                          "JOIN [PFC].[dbo].[IVAS] i ON p.IdTipoIVA=i.Id\n" +
+                          "JOIN [PFC].[dbo].[SeccionesProductos] sp ON p.Id=sp.IdProducto\n" +
+                          "JOIN [PFC].[dbo].[Secciones] s ON sp.IdSeccion=s.Id\n" +
+                          "WHERE s.Id=";
 
-    public ArrayList<Producto> getProductos(){
+    public ArrayList<Producto> getProductos(int idProducto){
         ArrayList<Producto> productos = new ArrayList<Producto>();
         try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
-            PreparedStatement ps = connectDB.prepareStatement(getProductos);
+            PreparedStatement ps = connectDB.prepareStatement(getProductos.concat(""+idProducto));
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Producto producto = new Producto(

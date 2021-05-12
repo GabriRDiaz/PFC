@@ -1,8 +1,13 @@
 package grd.pfc.employee.basic;
 
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
+import grd.pfc.dao.BasicViewDAO;
+import grd.pfc.pojo.Seccion;
+import grd.pfc.singleton.InfoBundle;
 import grd.pfc.utils.Utils;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,10 +21,16 @@ public class RequestStockController implements Initializable {
     private ImageView clearBut;
     @FXML
     private ImageView sendBut;
-
+    @FXML
+    private JFXComboBox<String> comboResponsable;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    BasicViewDAO viewDao= new BasicViewDAO();
+        ArrayList<Seccion> secciones = viewDao.getSecciones(InfoBundle.getInfoBundle().getIdEmpleado()); 
+        secciones.forEach(s->{
+            comboResponsable.getItems().add("Resp. "+s.getNombre());
+        });
     }    
     
     public void clear() {

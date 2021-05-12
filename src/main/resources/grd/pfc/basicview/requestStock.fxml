@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Separator?>
@@ -7,6 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -21,12 +23,29 @@
       <JFXTextArea id="textFields" fx:id="txtRequest" layoutX="9.0" layoutY="75.0" prefHeight="246.0" prefWidth="733.0" stylesheets="@../generalCss/textField.css" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="9.0" />
       <HBox layoutX="-9.0" layoutY="321.0" prefHeight="100.0" prefWidth="760.0">
          <children>
+            <VBox prefHeight="60.0" prefWidth="180.0">
+               <children>
+                  <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Responsable" textAlignment="CENTER" wrappingWidth="180.2041015625">
+                     <font>
+                        <Font name="Arial Bold" size="23.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </Text>
+                  <JFXComboBox id="textFields" fx:id="comboResponsable" minHeight="25.0" prefHeight="46.0" prefWidth="141.0" stylesheets="@../generalCss/textField.css">
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+               </children>
+            </VBox>
             <ImageView fx:id="clearBut" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#clear" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../multimedia/clean.png" />
                </image>
                <HBox.margin>
-                  <Insets left="610.0" top="20.0" />
+                  <Insets left="430.0" top="20.0" />
                </HBox.margin>
             </ImageView>
             <ImageView fx:id="sendBut" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#send" pickOnBounds="true" preserveRatio="true">

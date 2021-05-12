@@ -29,7 +29,7 @@ public class Login {
         DAO dao = new DAO();
         int userId=dao.login(userInput.getText(), pwdInput.getText());
         System.out.println("USER="+userId);
-        userId=2;
+        userId=3; //3-> 2s 
         if(userId>0){
             InfoBundle.getInfoBundle().setIdEmpleado(userId);
             Stage stage = new Stage();

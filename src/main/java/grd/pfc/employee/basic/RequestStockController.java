@@ -39,6 +39,7 @@ public class RequestStockController implements Initializable {
     
     public void send() {
         if(Utils.alertGenerator("Pregunta", "Se enviará la sugerencia al responsables de sección", "¿Desea continuar?", 1)){
+            
             Utils.alertGenerator("Éxito", "", "¡Sugerencia enviada correctamente!", 2);
         }
     }

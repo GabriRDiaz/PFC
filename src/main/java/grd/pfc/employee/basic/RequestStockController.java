@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import grd.pfc.dao.BasicViewDAO;
 import grd.pfc.pojo.Seccion;
+import grd.pfc.pojo.Sugerencia;
 import grd.pfc.singleton.InfoBundle;
 import grd.pfc.utils.Utils;
 import java.net.URL;
@@ -39,8 +40,17 @@ public class RequestStockController implements Initializable {
     
     public void send() {
         if(Utils.alertGenerator("Pregunta", "Se enviará la sugerencia al responsables de sección", "¿Desea continuar?", 1)){
+            String responsable = comboResponsable.getValue();
+            BasicViewDAO viewDao= new BasicViewDAO();
+            int idSeccion = viewDao.getIdSeccion(responsable.substring(6,responsable.length()));
+            if(idSeccion != -1){
+                Sugerencia sugerencia = new Sugerencia(txtRequest.getText(),idSeccion,InfoBundle.getInfoBundle().getIdEmpleado());
+                System.out.println(sugerencia.getSugerencia()+"\n"+sugerencia.getIdSeccion()+"\n"+sugerencia.getIdEmpleado());
+                int result = viewDao.insertSugerencia(sugerencia);
+                System.out.println(result);
+                Utils.alertGenerator("Éxito", "", "¡Sugerencia enviada correctamente!", 2);
+            }
             
-            Utils.alertGenerator("Éxito", "", "¡Sugerencia enviada correctamente!", 2);
         }
     }
     

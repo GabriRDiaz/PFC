@@ -9,12 +9,15 @@ import grd.pfc.pojo.IVA;
 import grd.pfc.pojo.Marca;
 import grd.pfc.pojo.Producto;
 import grd.pfc.pojo.Seccion;
+import grd.pfc.pojo.Sugerencia;
 import grd.pfc.singleton.InfoBundle;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,9 +42,38 @@ public class BasicViewDAO {
                           "JOIN [PFC].[dbo].[EmpleadosSecciones] es ON s.Id=es.IdSeccion\n" +
                           "JOIN [PFC].[dbo].[Empleados] e ON es.IdEmpleado=e.Id\n" +
                           "WHERE e.Id=";
+    String getIdSeccion = "SELECT s.Id FROM [PFC].[dbo].[Secciones] s WHERE s.Nombre=?";
     String getMarcas = "SELECT m.Id,m.Marca FROM [PFC].[dbo].[Marcas] m";
     String getIva = "SELECT i.Id,i.iva,i.tipo FROM [PFC].[dbo].[IVAS] i";
     String updStock = "UPDATE [PFC].[dbo].[Productos] SET Stock=? WHERE Id=?";
+    String insertSugerencia =   "DECLARE @pResult SMALLINT\n" +
+                                "EXEC pAddSugerencia\n" +
+                                "@pSugerencia=?,\n" +
+                                "@pIdSeccion=?,\n" +
+                                "@pIdEmpleado=?,\n" +
+                                "@pResult = @pResult OUTPUT";
+    
+   public int insertSugerencia(Sugerencia sugerencia){
+    Connection conn=getConnetion();
+        if(conn!=null){
+            CallableStatement cstmt;
+            try {
+                cstmt = conn.prepareCall("{call [PFC].[dbo].[pAddSugerencia](?,?,?,?)}");
+                cstmt.setString(1, sugerencia.getSugerencia());
+                cstmt.setInt(2, sugerencia.getIdSeccion());
+                cstmt.setInt(3,sugerencia.getIdEmpleado());
+                cstmt.registerOutParameter(4, Types.INTEGER);
+                cstmt.execute();
+            return cstmt.getInt(4);
+            } catch (SQLException ex) {
+                Logger.getLogger(AdministracionDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+    }
+        return -1;
+   }
+    
+    
     public ArrayList<Seccion> getSecciones(int idEmpleado){
         ArrayList<Seccion> secciones = new ArrayList<Seccion>();
         try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
@@ -57,6 +89,19 @@ public class BasicViewDAO {
             }
         }catch (SQLException ex) {ex.printStackTrace();}
         return secciones;
+    }
+    
+    public int getIdSeccion(String seccion){ //No controlo que existan varios con mismo nombre porque ya se controla en el form de creación de secciones.
+        int idSeccion = -1;
+        try(Connection connectDB = DriverManager.getConnection(connectionUrl)){ 
+            PreparedStatement ps = connectDB.prepareStatement(getIdSeccion);
+            ps.setString(1, seccion);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                    idSeccion = rs.getInt(1);
+            }
+        }catch (SQLException ex) {ex.printStackTrace();}
+        return idSeccion;
     }
     
     public ArrayList<Marca> getMarcas(){

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="585.0" prefWidth="965.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutX="14.0" layoutY="66.0" prefHeight="515.0" prefWidth="374.0">
+         <children>
+            <TableView fx:id="tableProductos" prefHeight="515.0" prefWidth="374.0" styleClass="table-row-cell" stylesheets="@../generalCss/table.css">
+               <columns>
+                  <TableColumn prefWidth="75.0" text="Producto">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="Nombre" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn prefWidth="75.0" text="Modelo">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="Modelo" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn prefWidth="103.0" text="Marca">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="Marca" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn prefWidth="67.0" text="Color">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="Color" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn prefWidth="52.0" text="Stock">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="Stock" />
+                     </cellValueFactory>
+                  </TableColumn>
+               </columns>
+            </TableView>
+         </children>
+      </VBox>
+      <Text fill="#4059a9" layoutX="355.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Añadir Pedido ">
+         <font>
+            <Font name="Arial Bold" size="36.0" />
+         </font>
+      </Text>
+      <Separator layoutY="51.0" prefHeight="9.0" prefWidth="966.0" />
+      <VBox layoutX="791.0" layoutY="66.0" prefHeight="172.0" prefWidth="161.0">
+         <children>
+            <TableView fx:id="tableProductos1" prefHeight="174.0" prefWidth="254.0" styleClass="table-row-cell" stylesheets="@../generalCss/table.css">
+               <columns>
+                  <TableColumn prefWidth="108.0" text="Producto">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="Nombre" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn prefWidth="53.0" text="Cant.">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="Stock" />
+                     </cellValueFactory>
+                  </TableColumn>
+               </columns>
+            </TableView>
+         </children>
+      </VBox>
+      <VBox layoutX="781.0" layoutY="260.0" prefHeight="60.0" prefWidth="180.0">
+         <children>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Filtrar Cliente" textAlignment="CENTER" wrappingWidth="180.2041015625">
+               <font>
+                  <Font name="Arial Bold" size="23.0" />
+               </font>
+            </Text>
+            <JFXTextField id="textFields" fx:id="txtCliente" prefHeight="39.0" prefWidth="108.0" stylesheets="@../generalCss/textField.css" />
+         </children>
+      </VBox>
+      <ImageView fx:id="clean" fitHeight="56.0" fitWidth="66.0" layoutX="694.0" layoutY="497.0" onMouseClicked="#cleanFilter" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../multimedia/clean.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="filter" fitHeight="56.0" fitWidth="66.0" layoutX="593.0" layoutY="505.0" onMouseClicked="#filter" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../multimedia/filter.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="768.0" layoutY="366.0" prefHeight="205.0" prefWidth="182.0">
+         <children>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Info. Pedido" textAlignment="CENTER" wrappingWidth="173.2041015625">
+               <font>
+                  <Font name="Arial Bold" size="23.0" />
+               </font>
+            </Text>
+            <Separator prefWidth="200.0" />
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente" textAlignment="CENTER" wrappingWidth="173.2041015625">
+               <font>
+                  <Font name="Arial Bold" size="23.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Text>
+            <JFXComboBox id="textFields" fx:id="comboCliente" prefHeight="39.0" prefWidth="181.0" stylesheets="@../generalCss/textField.css" />
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha Entrada" textAlignment="CENTER" wrappingWidth="181.05078125">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </Text>
+            <DatePicker fx:id="dateEntrada" prefHeight="25.0" prefWidth="185.0">
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </DatePicker>
+         </children>
+      </VBox>
+      <VBox layoutX="420.0" layoutY="85.0" prefHeight="273.0" prefWidth="335.0">
+         <children>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Info. Envío" textAlignment="CENTER" wrappingWidth="329.2041015625">
+               <font>
+                  <Font name="Arial Bold" size="23.0" />
+               </font>
+            </Text>
+            <Separator prefWidth="200.0" />
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Destinatario" textAlignment="CENTER" wrappingWidth="331.2041015625">
+               <font>
+                  <Font name="Arial Bold" size="23.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Text>
+            <JFXTextField id="textFields" fx:id="txtDestinatario" prefHeight="39.0" prefWidth="108.0" stylesheets="@../generalCss/textField.css" />
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Dirección" textAlignment="CENTER" wrappingWidth="334.05078125">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </Text>
+            <JFXTextField id="textFields" fx:id="txtDireccion" prefHeight="39.0" prefWidth="108.0" stylesheets="@../generalCss/textField.css" />
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Teléfono Contacto" textAlignment="CENTER" wrappingWidth="334.05078125">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </Text>
+            <JFXTextField id="textFields" fx:id="txtTel" prefHeight="39.0" prefWidth="108.0" stylesheets="@../generalCss/textField.css" />
+         </children>
+      </VBox>
+      <HBox layoutX="420.0" layoutY="358.0" prefHeight="100.0" prefWidth="345.0" />
+   </children>
+</AnchorPane>

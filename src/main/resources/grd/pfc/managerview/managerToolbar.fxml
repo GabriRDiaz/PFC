@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="667.0" prefWidth="175.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grd.pfc.employee.manager.ManagerViewNavBarController">
+   <children>
+      <HBox prefHeight="42.0" prefWidth="166.0" style="-fx-background-color: #596EB3;">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Menú" textAlignment="CENTER" wrappingWidth="171.13671875">
+               <HBox.margin>
+                  <Insets top="8.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Liberation Sans Bold" size="28.0" />
+               </font>
+            </Text>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
+      <JFXButton fx:id="viewStock" minHeight="110.0" minWidth="175.0" onAction="#viewStock" prefHeight="123.0" prefWidth="175.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Visualizar Stock" textFill="#596eb3" wrapText="true">
+         <font>
+            <Font name="Liberation Sans Bold" size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../multimedia/view.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="regStock" onAction="#regStock" prefHeight="123.0" prefWidth="190.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Regulariz Stock" textFill="#596eb3" wrapText="true">
+         <font>
+            <Font name="Liberation Sans Bold" size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../multimedia/package.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="buyProduct" onAction="#buyProduct" prefHeight="124.0" prefWidth="190.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Añadir Pedido" textFill="#596eb3" wrapText="true">
+         <font>
+            <Font name="Liberation Sans Bold" size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../multimedia/sell.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="sellProduct" onAction="#sellProduct" prefHeight="124.0" prefWidth="190.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Modificar Pedido" textFill="#596eb3" wrapText="true">
+         <font>
+            <Font name="Liberation Sans Bold" size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../multimedia/editEmpleado.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="unlockResponsable" onAction="#unlockResponsable" prefHeight="132.0" prefWidth="175.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Panel Respons." textFill="#596eb3" wrapText="true">
+         <font>
+            <Font name="Liberation Sans Bold" size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../multimedia/lock.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+   </children>
+</VBox>

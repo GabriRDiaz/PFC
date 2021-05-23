@@ -29,7 +29,7 @@ public class NavBarController implements Initializable {
     @FXML
     private JFXButton editEmpleado;
     @FXML
-    private JFXButton addPerfil;
+    private JFXButton editSeccion;
     @FXML
     private JFXButton editPerfil;
     @FXML
@@ -50,26 +50,25 @@ public class NavBarController implements Initializable {
         AdministracionController.stPane.getChildren().setAll(pane);
     }
 
-    @FXML
-    private void editEmpleado(ActionEvent event) throws IOException {
+    public void editEmpleado() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/grd/pfc/menu/admon/editEmpleado.fxml"));    
         AdministracionController.stPane.getChildren().setAll(pane);
     }
 
-    @FXML
-    private void addPerfil(ActionEvent event) {
+    
+    public void editSeccion() {
     }
 
-    @FXML
-    private void editPerfil(ActionEvent event) {
+    
+    public void editPerfil() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/grd/pfc/menu/admon/editPerfil.fxml"));    
+        AdministracionController.stPane.getChildren().setAll(pane);
     }
-
-    @FXML
-    private void viewGraph(ActionEvent event) {
+    
+    public void viewGraph() {
     }
-
-    @FXML
-    private void genRep(ActionEvent event) {
+    
+    public void genRep() {
     }
     
 }

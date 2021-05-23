@@ -21,7 +21,8 @@ public class Empleado {
     int idTipoContrato;
     String mail;
     String pwd;
-
+    String perfil;
+    
     public Empleado(int id, String nombre, String apellidos, Date contrato, Date salida, double salario, int idTipoContrato, String mail, String pwd) {
         this.id = id;
         this.nombre = nombre;
@@ -44,7 +45,14 @@ public class Empleado {
         this.mail = mail;
         this.pwd = pwd;
     }
-
+    
+    public Empleado (int id, String nombre, String apellidos, String perfil){
+        this.id = id;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.perfil = perfil;
+    }
+    
     public int getId() {
         return id;
     }
@@ -115,6 +123,14 @@ public class Empleado {
 
     public void setPwd(String pwd) {
         this.pwd = pwd;
+    }
+
+    public String getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(String perfil) {
+        this.perfil = perfil;
     }
     
     

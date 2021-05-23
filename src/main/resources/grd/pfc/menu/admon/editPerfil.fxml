@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grd.pfc.admon.EditPerfilController">
+   <children>
+      <Text fill="#4059a9" layoutX="278.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Editar Perfil">
+         <font>
+            <Font name="Arial Bold" size="36.0" />
+         </font>
+      </Text>
+      <Separator layoutY="46.0" prefHeight="5.0" prefWidth="751.0" />
+      <JFXButton fx:id="butSave" layoutX="562.0" layoutY="351.0" minHeight="20.0" onAction="#save" prefHeight="51.0" prefWidth="139.0" ripplerFill="#668cff" style="-fx-border-color: #4059a9; -fx-border-radius: 8; -fx-border-width: 2;" text="Guardar" textFill="#4059a9">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="butClear" layoutX="379.0" layoutY="351.0" minHeight="20.0" onAction="#clear" prefHeight="51.0" prefWidth="139.0" ripplerFill="#668cff" style="-fx-border-color: #4059a9; -fx-border-radius: 8; -fx-border-width: 2;" text="Limpiar" textFill="#4059a9">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <VBox layoutY="54.0" prefHeight="354.0" prefWidth="331.0">
+         <children>
+            <TableView fx:id="tableempleados" prefHeight="353.0" prefWidth="231.0" styleClass="table-row-cell" stylesheets="@../../generalCss/table.css">
+              <columns>
+                <TableColumn prefWidth="75.0" text="Nombre">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="Nombre" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn prefWidth="135.0" text="Apellidos">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="Apellidos" />
+                    </cellValueFactory>
+                </TableColumn>
+                  <TableColumn prefWidth="121.0" text="Perfil">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="Perfil" />
+                    </cellValueFactory>
+                </TableColumn>
+              </columns>
+            </TableView>
+         </children>
+      </VBox>
+      <JFXTextField fx:id="empleadoId" disable="true" layoutX="48.0" layoutY="13.0" visible="false" />
+      <Text fill="#4059a9" layoutX="390.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Empleado">
+         <font>
+            <Font name="Arial Bold" size="28.0" />
+         </font>
+      </Text>
+      <Text fill="#4059a9" layoutX="632.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Perfil">
+         <font>
+            <Font name="Arial Bold" size="28.0" />
+         </font>
+      </Text>
+      <JFXTextField id="textFields" fx:id="txtNombre" alignment="CENTER" editable="false" layoutX="381.0" layoutY="124.0" prefHeight="39.0" prefWidth="151.0" stylesheets="@../../generalCss/textField.css" />
+      <JFXTextField id="textFields" fx:id="txtApellidos" alignment="CENTER" editable="false" layoutX="341.0" layoutY="184.0" prefHeight="39.0" prefWidth="231.0" stylesheets="@../../generalCss/textField.css" />
+      <JFXComboBox id="textFields" fx:id="comboPerfiles" layoutX="592.0" layoutY="160.0" prefHeight="39.0" prefWidth="151.0" stylesheets="@../../generalCss/textField.css" />
+   </children>
+</AnchorPane>

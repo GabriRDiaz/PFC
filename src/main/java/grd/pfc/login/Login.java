@@ -29,12 +29,13 @@ public class Login {
         DAO dao = new DAO();
         int userId=dao.login(userInput.getText(), pwdInput.getText());
         System.out.println("USER="+userId);
-        userId=3; //3-> 2s 
+        userId=1; //3-> 2s 
         if(userId>0){
             InfoBundle.getInfoBundle().setIdEmpleado(userId);
             Stage stage = new Stage();
-            Parent container = new FXMLLoader().load(getClass().getResource("/grd/pfc/managerview/managerviewMenu.fxml"));
-            Scene scene = new Scene(container, 1170,742);
+            Parent container = new FXMLLoader().load(getClass().getResource("/grd/pfc/menu/admon/administracion.fxml"));
+//            Scene scene = new Scene(container, 1170,742);
+            Scene scene = new Scene(container, 900,550);
             stage.setTitle("Vista Gerente");
             stage.setScene(scene);
             stage.show();

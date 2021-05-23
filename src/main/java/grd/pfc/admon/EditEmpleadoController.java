@@ -79,7 +79,7 @@ public class EditEmpleadoController implements Initializable {
     //TODO UpdPwd
     public void save() {
         if(editOn){
-            if(Utils.alertGenerator("Aviso", "Empleado: "+txtNombre.getText()+" "+txtApellidos.getText(), "¿Seguro que desea guardar los cambios?", 2)){
+            if(Utils.alertGenerator("Aviso", "Empleado: "+txtNombre.getText()+" "+txtApellidos.getText(), "¿Seguro que desea guardar los cambios?", 1)){
                 AdministracionDAO adminDao = new AdministracionDAO();
                 Empleado empleado = new Empleado(
                     Integer.parseInt(empleadoId.getText()),

@@ -44,6 +44,47 @@ public class AdministracionDAO {
     String editEmpleado = "UPDATE [PFC].[dbo].[Empleados] "
             + "SET Nombre=?,Apellidos=?,FechaContratacion=?,FechaSalida=?,Salario=?,IdTipoContrato=?,Email=? "
             + "WHERE Id=?";
+    String getEmpPerfil = "SELECT emp.Id,emp.Nombre,emp.Apellidos,p.Perfil from [PFC].[dbo].[Empleados] emp JOIN [PFC].[dbo].[Perfiles] p ON emp.IdPerfil=p.Id WHERE p.Perfil NOT LIKE 'Jefe'";
+    String getPerfiles = "SELECT [Perfil] AS perfil from [PFC].[dbo].[Perfiles] WHERE Perfil NOT LIKE 'Jefe'";
+    String getPerfilId = "SELECT [Id] AS id from [PFC].[dbo].[Perfiles] WHERE [Perfil] LIKE ?";
+    String editPerfilEmpleado = "UPDATE [PFC].[dbo].[Empleados] SET IdPerfil=? WHERE Id=?";
+    public ArrayList<Empleado> getEmpleadosPerfil(){
+        ArrayList<Empleado> empleados = new ArrayList<Empleado>();
+        try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+            PreparedStatement ps = connectDB.prepareStatement(getEmpPerfil);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                empleados.add(new Empleado(
+                rs.getInt(1),
+                rs.getString(2),
+                rs.getString(3),
+                rs.getString(4)
+                ));
+            }
+        }catch (SQLException ex) {ex.printStackTrace();}
+        return empleados;
+    }
+    
+    public void editPerfilEmpleado(int idPerfil, int idEmpleado){
+        try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+            PreparedStatement ps = connectDB.prepareStatement(editPerfilEmpleado);
+            ps.setInt(1,idPerfil);
+            ps.setInt(2,idEmpleado);
+            ps.executeUpdate();
+        }catch (SQLException ex) {ex.printStackTrace();}
+    }
+    
+    public ArrayList<String> getPerfiles(){
+        ArrayList<String> perfiles = new ArrayList<String>();
+        try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+            PreparedStatement ps = connectDB.prepareStatement(getPerfiles);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                perfiles.add(rs.getString(1));
+            }
+        }catch (SQLException ex) {ex.printStackTrace();}
+        return perfiles;
+        }
     
     public ArrayList<String> getContratos(){
         ArrayList<String> contratos = new ArrayList<String>();
@@ -112,6 +153,19 @@ public class AdministracionDAO {
         }catch (SQLException ex) {ex.printStackTrace();}
         return id;
     }
+    
+     public int getPerfilId(String selection){
+        int id=-1;
+        try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+            PreparedStatement ps = connectDB.prepareStatement(getPerfilId);
+            ps.setString(1,selection);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            id=rs.getInt("id");
+        }catch (SQLException ex) {ex.printStackTrace();}
+        return id;
+    }
+     
     public String getTipoContrato(int selection){
         String tipo="";
         try(Connection connectDB = DriverManager.getConnection(connectionUrl)){

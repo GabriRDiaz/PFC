@@ -66,6 +66,7 @@ public class AddEmpleadoController implements Initializable {
         }
     
     public void save(){
+    if(checkFields()){
         if(Utils.alertGenerator("Aviso","","¿Desea crear un nuevo empleado?",1)){
             int idContrato = adminDao.getContratoId(comboContrato.getValue());
             java.sql.Date sqlContrato = Utils.pickerToSql(dateContrato);
@@ -74,8 +75,10 @@ public class AddEmpleadoController implements Initializable {
                 sqlSalida = Utils.pickerToSql(dateSalida);
             }
             adminDao.addEmpleado(new Empleado(txtNombre.getText(), txtApellidos.getText(), sqlContrato, sqlSalida, Double.parseDouble(txtSalario.getText()), idContrato, txtUsuario.getText(), txtPwd.getText()));
+            Utils.alertGenerator("OK", "", "El empleado se ha añadido correctamente", 0);
             clean();
         }
+    }else{Utils.alertGenerator("ERROR", "", "Rellene todos los campos obligatorios", 4);}
     }
     public void clean(){
         txtNombre.setText("");
@@ -86,6 +89,11 @@ public class AddEmpleadoController implements Initializable {
         dateSalida.setValue(null);
         txtPwd.setText("");
         comboContrato.getSelectionModel().clearSelection();
+    }
+    private boolean checkFields(){
+        if(txtNombre.getText().equals("") || txtApellidos.getText().equals("") || dateContrato.getValue()==null || txtSalario.getText().equals("") || comboContrato.getValue()==null || txtUsuario.getText().equals("")){
+            return false;
+        }else{return true;}
     }
 }    
     

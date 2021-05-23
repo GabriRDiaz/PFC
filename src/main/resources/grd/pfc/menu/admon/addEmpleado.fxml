@@ -21,7 +21,7 @@
       </Text>
       <VBox layoutX="125.0" layoutY="54.0" prefHeight="287.0" prefWidth="231.0">
          <children>
-            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" textAlignment="CENTER" wrappingWidth="230.05078125">
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre*" textAlignment="CENTER" wrappingWidth="230.05078125">
                <font>
                   <Font name="Arial Bold" size="24.0" />
                </font>
@@ -34,7 +34,7 @@
                   <Insets />
                </VBox.margin>
             </JFXTextField>
-            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha contratación" textAlignment="CENTER" wrappingWidth="230.05078125">
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha contratación*" textAlignment="CENTER" wrappingWidth="230.05078125">
                <font>
                   <Font name="Arial Bold" size="24.0" />
                </font>
@@ -47,7 +47,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </DatePicker>
-            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Salario" textAlignment="CENTER" wrappingWidth="230.05078125">
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Salario*" textAlignment="CENTER" wrappingWidth="230.05078125">
                <font>
                   <Font name="Arial Bold" size="24.0" />
                </font>
@@ -59,7 +59,7 @@
                <VBox.margin>
                   <Insets />
                </VBox.margin></JFXTextField>
-            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" textAlignment="CENTER" wrappingWidth="230.05078125">
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario*" textAlignment="CENTER" wrappingWidth="230.05078125">
                <font>
                   <Font name="Arial Bold" size="24.0" />
                </font>
@@ -72,7 +72,7 @@
       </VBox>
       <VBox layoutX="395.0" layoutY="54.0" prefHeight="287.0" prefWidth="231.0">
          <children>
-            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos" textAlignment="CENTER" wrappingWidth="230.05078125">
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos*" textAlignment="CENTER" wrappingWidth="230.05078125">
                <font>
                   <Font name="Arial Bold" size="24.0" />
                </font>
@@ -98,7 +98,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </DatePicker>
-            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo Contrato" textAlignment="CENTER" wrappingWidth="230.05078125">
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo Contrato*" textAlignment="CENTER" wrappingWidth="230.05078125">
                <font>
                   <Font name="Arial Bold" size="24.0" />
                </font>

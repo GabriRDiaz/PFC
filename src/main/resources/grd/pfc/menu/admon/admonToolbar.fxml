@@ -86,7 +86,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="genRep" onAction="#genRep" prefHeight="72.0" prefWidth="150.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Generar Reporte" textFill="#596eb3" wrapText="true">
+      <JFXButton fx:id="genRep" onAction="#genRep" prefHeight="72.0" prefWidth="150.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Generar Factura" textFill="#596eb3" wrapText="true">
          <font>
             <Font name="Liberation Sans Bold" size="14.0" />
          </font>

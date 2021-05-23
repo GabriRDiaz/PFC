@@ -96,7 +96,7 @@ public class EditEmpleadoController implements Initializable {
             Utils.alertGenerator("OK", "", "El empleado se ha modificado correctamente", 0);
             }else{Utils.alertGenerator("AVISO", "", "El empleado no se ha modificado", 0);}
         }else{
-            Utils.alertGenerator("ERROR", "", "Seleccione un empleado de la tabla para editarlo", 3);
+            Utils.alertGenerator("ERROR", "", "Seleccione un empleado de la tabla para editarlo", 4);
         }
         refreshTable();
         clean();

@@ -52,7 +52,9 @@ public class AdministracionDAO {
     String getSecciones = "SELECT sec.Id,sec.Nombre,sec.Descripcion,emp.Nombre FROM [PFC].[dbo].[Secciones] sec " +
                            "JOIN [PFC].[dbo].[EmpleadosSecciones] es ON sec.IdResponsable=es.IdEmpleado " +
                            "JOIN [PFC].[dbo].[Empleados] emp ON es.IdEmpleado=emp.Id ORDER BY sec.Id ASC";
-    
+    String getEmpSecciones="SELECT sec.Nombre from [PFC].[dbo].[Secciones] sec " +
+                           "JOIN [PFC].[dbo].[EmpleadosSecciones] es ON sec.Id=es.IdSeccion " +
+                           "WHERE es.IdEmpleado=?";
     public ArrayList<Empleado> getEmpleadosPerfil(){
         ArrayList<Empleado> empleados = new ArrayList<Empleado>();
         try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
@@ -68,6 +70,40 @@ public class AdministracionDAO {
             }
         }catch (SQLException ex) {ex.printStackTrace();}
         return empleados;
+    }
+    
+    public ArrayList<Empleado> getEmpleadosSecciones(){
+        ArrayList<Empleado> empleados = new ArrayList<Empleado>();
+        ArrayList<Empleado> empleadosSecciones = new ArrayList<Empleado>();
+        try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+            PreparedStatement ps = connectDB.prepareStatement(getEmpPerfil); //Cogemos empleados que no sean el jefe
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                empleados.add(new Empleado(
+                    rs.getInt("Id"),
+                    rs.getString("Nombre"),
+                    rs.getString("Apellidos")
+                ));
+            }
+             //Array de objetos Empleado con las secciones
+            ps = connectDB.prepareStatement(getEmpSecciones);
+            for(int i=0;i<empleados.size();i++){
+                ps.setInt(1,empleados.get(i).getId()); 
+                rs=ps.executeQuery(); //Ejecutamos la consulta de seleccion de secciones para el empleado actual
+                ArrayList<String> secciones = new ArrayList<String>(); 
+                while(rs.next()){
+                    secciones.add(rs.getString(1)); //Cargamos las secciones del empleado actual
+                    System.out.println(rs.getString(1));
+                }
+                empleadosSecciones.add(new Empleado( //Añadimos al array de objetos Empleado con secciones el empleado con las secciones
+                    empleados.get(i).getId(),
+                    empleados.get(i).getNombre(),
+                    empleados.get(i).getApellidos(),
+                    secciones
+                ));
+            }
+        }catch (SQLException ex) {ex.printStackTrace();}
+        return empleadosSecciones;
     }
     
     public ArrayList<Seccion> getSecciones(){

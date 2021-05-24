@@ -6,6 +6,7 @@
 package grd.pfc.pojo;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,6 +23,7 @@ public class Empleado {
     String mail;
     String pwd;
     String perfil;
+    ArrayList<String> secciones;
     
     public Empleado(int id, String nombre, String apellidos, Date contrato, Date salida, double salario, int idTipoContrato, String mail, String pwd) {
         this.id = id;
@@ -46,11 +48,24 @@ public class Empleado {
         this.pwd = pwd;
     }
     
+     public Empleado (int id, String nombre, String apellidos){
+        this.id = id;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+    }
+     
     public Empleado (int id, String nombre, String apellidos, String perfil){
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.perfil = perfil;
+    }
+    
+    public Empleado (int id, String nombre, String apellidos, ArrayList<String> secciones){
+        this.id = id;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.secciones = secciones;
     }
     
     public int getId() {
@@ -131,6 +146,14 @@ public class Empleado {
 
     public void setPerfil(String perfil) {
         this.perfil = perfil;
+    }
+
+    public ArrayList<String> getSecciones() {
+        return secciones;
+    }
+
+    public void setSecciones(ArrayList<String> secciones) {
+        this.secciones = secciones;
     }
     
     

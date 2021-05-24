@@ -56,7 +56,9 @@ public class NavBarController implements Initializable {
     }
 
     
-    public void editSeccion() {
+    public void editSeccion() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/grd/pfc/menu/admon/setSecciones.fxml"));    
+        AdministracionController.stPane.getChildren().setAll(pane);
     }
 
     

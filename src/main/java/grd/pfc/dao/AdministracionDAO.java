@@ -6,6 +6,7 @@
 package grd.pfc.dao;
 
 import grd.pfc.pojo.Empleado;
+import grd.pfc.pojo.Seccion;
 import grd.pfc.utils.Utils;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -48,6 +49,10 @@ public class AdministracionDAO {
     String getPerfiles = "SELECT [Perfil] AS perfil from [PFC].[dbo].[Perfiles] WHERE Perfil NOT LIKE 'Jefe'";
     String getPerfilId = "SELECT [Id] AS id from [PFC].[dbo].[Perfiles] WHERE [Perfil] LIKE ?";
     String editPerfilEmpleado = "UPDATE [PFC].[dbo].[Empleados] SET IdPerfil=? WHERE Id=?";
+    String getSecciones = "SELECT sec.Id,sec.Nombre,sec.Descripcion,emp.Nombre FROM [PFC].[dbo].[Secciones] sec " +
+                           "JOIN [PFC].[dbo].[EmpleadosSecciones] es ON sec.IdResponsable=es.IdEmpleado " +
+                           "JOIN [PFC].[dbo].[Empleados] emp ON es.IdEmpleado=emp.Id ORDER BY sec.Id ASC";
+    
     public ArrayList<Empleado> getEmpleadosPerfil(){
         ArrayList<Empleado> empleados = new ArrayList<Empleado>();
         try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
@@ -63,6 +68,23 @@ public class AdministracionDAO {
             }
         }catch (SQLException ex) {ex.printStackTrace();}
         return empleados;
+    }
+    
+    public ArrayList<Seccion> getSecciones(){
+        ArrayList<Seccion> secciones = new ArrayList<Seccion>();
+        try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+            PreparedStatement ps = connectDB.prepareStatement(getSecciones);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                secciones.add(new Seccion(
+                rs.getInt(1),
+                rs.getString(2),
+                rs.getString(3),
+                rs.getString(4)
+                ));
+            }
+        }catch (SQLException ex) {ex.printStackTrace();}
+        return secciones;
     }
     
     public void editPerfilEmpleado(int idPerfil, int idEmpleado){

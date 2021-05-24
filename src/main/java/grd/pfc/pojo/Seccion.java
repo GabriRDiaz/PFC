@@ -13,13 +13,18 @@ public class Seccion {
     private int id;
     private String nombre;
     private String descripcion;
-
+    private String responsable; 
+    public Seccion(int id, String nombre, String descripcion, String responsable) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.responsable = responsable;
+    }
     public Seccion(int id, String nombre, String descripcion) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
-
     public int getId() {
         return id;
     }
@@ -42,6 +47,14 @@ public class Seccion {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getResponsable() {
+        return responsable;
+    }
+
+    public void setResponsable(String responsable) {
+        this.responsable = responsable;
     }
     
 }

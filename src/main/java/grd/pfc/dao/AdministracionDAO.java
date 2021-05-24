@@ -93,7 +93,6 @@ public class AdministracionDAO {
                 ArrayList<String> secciones = new ArrayList<String>(); 
                 while(rs.next()){
                     secciones.add(rs.getString(1)); //Cargamos las secciones del empleado actual
-                    System.out.println(rs.getString(1));
                 }
                 empleadosSecciones.add(new Empleado( //Añadimos al array de objetos Empleado con secciones el empleado con las secciones
                     empleados.get(i).getId(),

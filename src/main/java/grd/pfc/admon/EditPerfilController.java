@@ -58,7 +58,7 @@ public class EditPerfilController implements Initializable{
                 Utils.alertGenerator("OK", "", "El perfil del empleado se ha modificado correctamente", 0);
                 clear();
             } else{Utils.alertGenerator("OK", "", "El empleado no ha sido modificado", 0);}
-        }else{Utils.alertGenerator("ERROR", "", "Seleccione un empleado de la tabla y un perfil", 3);}
+        }else{Utils.alertGenerator("ERROR", "", "Seleccione un empleado de la tabla y un perfil", 4);}
     }
         
     private void refreshTable() {

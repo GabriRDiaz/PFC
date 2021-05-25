@@ -23,14 +23,14 @@ public class RequestStockController implements Initializable {
     @FXML
     private ImageView sendBut;
     @FXML
-    private JFXComboBox<String> comboResponsable;
+    private JFXComboBox<String> comboSeccion;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     BasicViewDAO viewDao= new BasicViewDAO();
         ArrayList<Seccion> secciones = viewDao.getSecciones(InfoBundle.getInfoBundle().getIdEmpleado()); 
         secciones.forEach(s->{
-            comboResponsable.getItems().add("Resp. "+s.getNombre());
+            comboSeccion.getItems().add(s.getNombre());
         });
     }    
     
@@ -39,17 +39,17 @@ public class RequestStockController implements Initializable {
     }
     
     public void send() {
-        if(Utils.alertGenerator("Pregunta", "Se enviará la sugerencia al responsables de sección", "¿Desea continuar?", 1)){
-            String responsable = comboResponsable.getValue();
+        if(Utils.alertGenerator("Pregunta", "Se enviará la sugerencia a los gerentes de la sección seleccionada", "¿Desea continuar?", 1)){
             BasicViewDAO viewDao= new BasicViewDAO();
-            int idSeccion = viewDao.getIdSeccion(responsable.substring(6,responsable.length()));
+            int idSeccion = viewDao.getIdSeccion(comboSeccion.getValue());
+            System.out.println(idSeccion);
             if(idSeccion != -1){
                 Sugerencia sugerencia = new Sugerencia(txtRequest.getText(),idSeccion,InfoBundle.getInfoBundle().getIdEmpleado());
                 System.out.println(sugerencia.getSugerencia()+"\n"+sugerencia.getIdSeccion()+"\n"+sugerencia.getIdEmpleado());
                 int result = viewDao.insertSugerencia(sugerencia);
                 System.out.println(result);
                 Utils.alertGenerator("Éxito", "", "¡Sugerencia enviada correctamente!", 2);
-            }
+            }else{Utils.alertGenerator("Error", "", "Seleccione una sección para enviar la sugerencia", 4);}
             
         }
     }

@@ -25,7 +25,7 @@
          <children>
             <VBox prefHeight="60.0" prefWidth="180.0">
                <children>
-                  <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Responsable" textAlignment="CENTER" wrappingWidth="180.2041015625">
+                  <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Sección" textAlignment="CENTER" wrappingWidth="180.2041015625">
                      <font>
                         <Font name="Arial Bold" size="23.0" />
                      </font>
@@ -33,7 +33,7 @@
                         <Insets top="15.0" />
                      </VBox.margin>
                   </Text>
-                  <JFXComboBox id="textFields" fx:id="comboResponsable" minHeight="25.0" prefHeight="46.0" prefWidth="141.0" stylesheets="@../generalCss/textField.css">
+                  <JFXComboBox id="textFields" fx:id="comboSeccion" minHeight="25.0" prefHeight="46.0" prefWidth="141.0" stylesheets="@../generalCss/textField.css">
                      <VBox.margin>
                         <Insets left="20.0" />
                      </VBox.margin>

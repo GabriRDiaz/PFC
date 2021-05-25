@@ -26,19 +26,7 @@
             <Insets />
          </VBox.margin>
       </HBox>
-      <JFXButton fx:id="viewStock" minHeight="110.0" minWidth="175.0" onAction="#viewStock" prefHeight="123.0" prefWidth="175.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Visualizar Stock" textFill="#596eb3" wrapText="true">
-         <font>
-            <Font name="Liberation Sans Bold" size="18.0" />
-         </font>
-         <graphic>
-            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../multimedia/view.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </JFXButton>
-      <JFXButton fx:id="regStock" onAction="#regStock" prefHeight="123.0" prefWidth="190.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Regulariz Stock" textFill="#596eb3" wrapText="true">
+      <JFXButton fx:id="regStock" minHeight="88.0" minWidth="175.0" onAction="#regStock" prefHeight="88.0" prefWidth="175.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Regulariz Stock" textFill="#596eb3" wrapText="true">
          <font>
             <Font name="Liberation Sans Bold" size="18.0" />
          </font>
@@ -50,9 +38,21 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="buyProduct" onAction="#buyProduct" prefHeight="124.0" prefWidth="190.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Añadir Pedido" textFill="#596eb3" wrapText="true">
+      <JFXButton fx:id="addProduct" minHeight="88.0" onAction="#addProduct" prefHeight="88.0" prefWidth="190.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Añadir Producto" textFill="#596eb3" wrapText="true">
          <font>
             <Font name="Liberation Sans Bold" size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../multimedia/addProductos.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="manageProduct" minHeight="88.0" onAction="#manageProduct" prefHeight="88.0" prefWidth="190.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Gestionar Productos" textFill="#596eb3" wrapText="true">
+         <font>
+            <Font name="Liberation Sans Bold" size="17.0" />
          </font>
          <graphic>
             <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
@@ -62,26 +62,50 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="sellProduct" onAction="#sellProduct" prefHeight="124.0" prefWidth="190.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Modificar Pedido" textFill="#596eb3" wrapText="true">
+      <JFXButton fx:id="addOrder" minHeight="88.0" onAction="#addOrder" prefHeight="88.0" prefWidth="190.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Añadir Pedidos" textFill="#596eb3" wrapText="true">
          <font>
             <Font name="Liberation Sans Bold" size="18.0" />
          </font>
          <graphic>
             <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../multimedia/editEmpleado.png" />
+                  <Image url="@../multimedia/addOrder.png" />
                </image>
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="unlockResponsable" onAction="#unlockResponsable" prefHeight="132.0" prefWidth="175.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Panel Respons." textFill="#596eb3" wrapText="true">
+      <JFXButton fx:id="manangeOrder" minHeight="88.0" onAction="#unlockResponsablmanangeOrdere" prefHeight="88.0" prefWidth="175.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Gestionar Pedidos" textFill="#596eb3" wrapText="true">
          <font>
             <Font name="Liberation Sans Bold" size="18.0" />
          </font>
          <graphic>
             <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../multimedia/lock.png" />
+                  <Image url="@../multimedia/manageOrders.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="genInvoice" minHeight="88.0" onAction="#genInvoice" prefHeight="88.0" prefWidth="175.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Generar Factura" textFill="#596eb3" wrapText="true">
+         <font>
+            <Font name="Liberation Sans Bold" size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../multimedia/genInvoice.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="viewRequests" minHeight="88.0" onAction="#viewRequests" prefHeight="99.0" prefWidth="175.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Sugerencias" textFill="#596eb3" wrapText="true">
+         <font>
+            <Font name="Liberation Sans Bold" size="16.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="52.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../multimedia/request.png" />
                </image>
             </ImageView>
          </graphic>

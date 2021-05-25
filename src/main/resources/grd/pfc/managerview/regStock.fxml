@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="585.0" prefWidth="965.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grd.pfc.employee.manager.ManagerRegStockController">
+   <children>
+      <Text fill="#4059a9" layoutX="331.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Regularizar Stock">
+         <font>
+            <Font name="Arial Bold" size="36.0" />
+         </font>
+      </Text>
+      <Separator layoutY="51.0" prefHeight="9.0" prefWidth="966.0" />
+      <JFXButton fx:id="butSave" layoutX="794.0" layoutY="432.0" minHeight="20.0" onAction="#save" prefHeight="51.0" prefWidth="139.0" ripplerFill="#668cff" style="-fx-border-color: #4059a9; -fx-border-radius: 8; -fx-border-width: 2;" text="Guardar" textFill="#4059a9">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="butClean" layoutX="794.0" layoutY="514.0" minHeight="20.0" onAction="#clean" prefHeight="51.0" prefWidth="139.0" ripplerFill="#668cff" style="-fx-border-color: #4059a9; -fx-border-radius: 8; -fx-border-width: 2;" text="Limpiar" textFill="#4059a9">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <VBox layoutX="10.0" layoutY="60.0" prefHeight="60.0" prefWidth="180.0">
+         <children>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Sección" textAlignment="CENTER" wrappingWidth="180.2041015625">
+               <font>
+                  <Font name="Arial Bold" size="23.0" />
+               </font>
+            </Text>
+            <JFXComboBox id="textFields" fx:id="comboSeccion" minHeight="25.0" prefHeight="33.0" prefWidth="161.0" stylesheets="@../generalCss/textField.css">
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+            </JFXComboBox>
+         </children>
+      </VBox>
+      <VBox layoutX="305.0" layoutY="60.0" prefHeight="60.0" prefWidth="180.0">
+         <children>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Marca" textAlignment="CENTER" wrappingWidth="178.15478515625">
+               <font>
+                  <Font name="Arial Bold" size="23.0" />
+               </font>
+            </Text>
+            <JFXComboBox id="textFields" fx:id="comboMarca" minHeight="25.0" prefHeight="33.0" prefWidth="161.0" stylesheets="@../generalCss/textField.css">
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+            </JFXComboBox>
+         </children>
+      </VBox>
+      <VBox layoutX="600.0" layoutY="60.0" prefHeight="60.0" prefWidth="180.0">
+         <children>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo IVA" textAlignment="CENTER" wrappingWidth="179.26904296875">
+               <font>
+                  <Font name="Arial Bold" size="23.0" />
+               </font>
+            </Text>
+            <JFXComboBox id="textFields" fx:id="comboIVA" minHeight="25.0" prefHeight="33.0" prefWidth="161.0" stylesheets="@../generalCss/textField.css">
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+            </JFXComboBox>
+         </children>
+      </VBox>
+      <ImageView fx:id="clean" fitHeight="56.0" fitWidth="66.0" layoutX="813.0" layoutY="60.0" onMouseClicked="#cleanCombos" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../multimedia/clean.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="filter" fitHeight="56.0" fitWidth="66.0" layoutX="896.0" layoutY="60.0" onMouseClicked="#filter" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../multimedia/filter.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="3.0" layoutY="130.0" prefHeight="455.0" prefWidth="764.0">
+          <TableView fx:id="tableProductos" prefHeight="455.0" prefWidth="772.0" styleClass="table-row-cell" stylesheets="@../generalCss/table.css">
+              <columns>
+                  <TableColumn prefWidth="104.0" text="Referencia">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="Referencia" />
+                    </cellValueFactory>
+                  </TableColumn>
+                  
+                  <TableColumn prefWidth="74.0" text="Producto">
+                   <cellValueFactory>
+                        <PropertyValueFactory property="Nombre" />
+                    </cellValueFactory>
+                  </TableColumn>
+                  
+                  <TableColumn prefWidth="72.0" text="Modelo">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="Modelo" />
+                    </cellValueFactory>
+                  </TableColumn>
+                  
+                  <TableColumn prefWidth="168.0" text="Descripción">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="Descripcion" />
+                    </cellValueFactory>
+                  </TableColumn>
+                      
+                <TableColumn prefWidth="82.0" text="Precio">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="PrecioSinIVA" />
+                    </cellValueFactory>
+                  </TableColumn>
+                    
+                  <TableColumn prefWidth="67.0" text="Descuento">
+                      <cellValueFactory>
+                        <PropertyValueFactory property="Descuento" />
+                    </cellValueFactory>
+                  </TableColumn>
+                      
+                  <TableColumn prefWidth="74.0" text="Marca">
+                    <cellValueFactory>
+                          <PropertyValueFactory property="Marca" />
+                      </cellValueFactory>
+                    </TableColumn>
+                  
+                  <TableColumn prefWidth="66.0" text="Color">
+                      <cellValueFactory>
+                        <PropertyValueFactory property="Color" />
+                    </cellValueFactory>
+                  </TableColumn>
+                      
+                  <TableColumn prefWidth="57.0" text="Stock">
+                      <cellValueFactory>
+                        <PropertyValueFactory property="Stock" />
+                    </cellValueFactory>
+                  </TableColumn>
+              </columns>
+            </TableView>
+      </VBox>
+      <Text fill="#4059a9" layoutX="790.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Producto" textAlignment="CENTER" wrappingWidth="146.9921875">
+         <font>
+            <Font name="Arial Bold" size="28.0" />
+         </font>
+      </Text>
+      <JFXTextField id="textFields" fx:id="productName" editable="false" layoutX="774.0" layoutY="237.0" prefHeight="46.0" prefWidth="178.0" stylesheets="@../generalCss/textField.css" />
+      <ImageView fx:id="minus" disable="true" fitHeight="34.0" fitWidth="34.0" layoutX="780.0" layoutY="339.0" onMouseClicked="#substract" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../multimedia/minus.png" />
+         </image>
+      </ImageView>
+      <JFXTextField id="textFields" fx:id="productStock" alignment="CENTER" editable="false" layoutX="818.0" layoutY="327.0" prefHeight="46.0" prefWidth="96.0" stylesheets="@../generalCss/textField.css" />
+      <ImageView fx:id="plus" disable="true" fitHeight="34.0" fitWidth="34.0" layoutX="919.0" layoutY="339.0" onMouseClicked="#addStock" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../multimedia/plus.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

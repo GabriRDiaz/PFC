@@ -7,9 +7,13 @@ package grd.pfc.employee.manager;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBasicCloseTransition;
+import static grd.pfc.employee.basic.BasicViewMenuController.stPane;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -18,7 +22,7 @@ import javafx.scene.layout.VBox;
  *
  * @author Gabriel
  */
-public class ManagerViewMenuController {
+public class ManagerViewMenuController implements Initializable{
     @FXML
     private AnchorPane rootPane;
 
@@ -33,6 +37,8 @@ public class ManagerViewMenuController {
 
     @FXML
     private AnchorPane subPane;
+    public static AnchorPane stPane;
+    
     private boolean isOpened;
     private int transitionRate=1;
     private HamburgerBasicCloseTransition transition;
@@ -59,5 +65,10 @@ public class ManagerViewMenuController {
     
     public void logout() {
 
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        stPane=subPane;
     }
 }

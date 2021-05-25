@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="585.0" prefWidth="965.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="585.0" prefWidth="965.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grd.pfc.employee.manager.ManagerAddPedidoController">
    <children>
       <VBox layoutX="14.0" layoutY="66.0" prefHeight="515.0" prefWidth="374.0">
          <children>
@@ -75,20 +75,20 @@
             </TableView>
          </children>
       </VBox>
-      <ImageView fx:id="filter" fitHeight="40.0" fitWidth="35.0" layoutX="930.0" layoutY="293.0" onMouseClicked="#filter" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="clienteFilter" fitHeight="40.0" fitWidth="35.0" layoutX="930.0" layoutY="293.0" onMouseClicked="#clienteFilter" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../multimedia/filter.png" />
          </image>
       </ImageView>
-      <VBox layoutX="780.0" layoutY="347.0" prefHeight="205.0" prefWidth="182.0">
+      <VBox layoutX="768.0" layoutY="347.0" prefHeight="205.0" prefWidth="194.0">
          <children>
-            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Info. Pedido" textAlignment="CENTER" wrappingWidth="173.2041015625">
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Info. Pedido" textAlignment="CENTER" wrappingWidth="193.2041015625">
                <font>
                   <Font name="Arial Bold" size="23.0" />
                </font>
             </Text>
             <Separator prefWidth="200.0" />
-            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente" textAlignment="CENTER" wrappingWidth="173.2041015625">
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente*" textAlignment="CENTER" wrappingWidth="191.2041015625">
                <font>
                   <Font name="Arial Bold" size="23.0" />
                </font>
@@ -96,8 +96,8 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </Text>
-            <JFXComboBox id="textFields" fx:id="comboCliente" prefHeight="39.0" prefWidth="181.0" stylesheets="@../generalCss/textField.css" />
-            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha Entrada" textAlignment="CENTER" wrappingWidth="181.05078125">
+            <JFXComboBox id="textFields" fx:id="comboCliente" prefHeight="39.0" prefWidth="194.0" stylesheets="@../generalCss/textField.css" />
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha Salida" textAlignment="CENTER" wrappingWidth="192.05078125">
                <font>
                   <Font name="Arial Bold" size="24.0" />
                </font>
@@ -105,14 +105,14 @@
                   <Insets top="15.0" />
                </VBox.margin>
             </Text>
-            <DatePicker fx:id="dateEntrada" prefHeight="25.0" prefWidth="185.0">
+            <DatePicker fx:id="dateSalida" prefHeight="25.0" prefWidth="174.0">
                <VBox.margin>
-                  <Insets top="15.0" />
+                  <Insets left="10.0" top="15.0" />
                </VBox.margin>
             </DatePicker>
          </children>
       </VBox>
-      <VBox layoutX="420.0" layoutY="64.0" prefHeight="327.0" prefWidth="335.0">
+      <VBox layoutX="420.0" layoutY="64.0" prefHeight="179.0" prefWidth="335.0">
          <children>
             <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Info. Envío" textAlignment="CENTER" wrappingWidth="329.2041015625">
                <font>
@@ -120,7 +120,7 @@
                </font>
             </Text>
             <Separator prefWidth="200.0" />
-            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Destinatario" textAlignment="CENTER" wrappingWidth="331.2041015625">
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Destinatario*" textAlignment="CENTER" wrappingWidth="331.2041015625">
                <font>
                   <Font name="Arial Bold" size="23.0" />
                </font>
@@ -129,7 +129,7 @@
                </VBox.margin>
             </Text>
             <JFXTextField id="textFields" fx:id="txtDestinatario" alignment="CENTER" prefHeight="39.0" prefWidth="108.0" stylesheets="@../generalCss/textField.css" />
-            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Dirección" textAlignment="CENTER" wrappingWidth="334.05078125">
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Dirección*" textAlignment="CENTER" wrappingWidth="334.05078125">
                <font>
                   <Font name="Arial Bold" size="24.0" />
                </font>
@@ -138,31 +138,9 @@
                </VBox.margin>
             </Text>
             <JFXTextField id="textFields" fx:id="txtDireccion" alignment="CENTER" prefHeight="39.0" prefWidth="108.0" stylesheets="@../generalCss/textField.css" />
-            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Teléfono Contacto" textAlignment="CENTER" wrappingWidth="334.05078125">
-               <font>
-                  <Font name="Arial Bold" size="24.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </Text>
-            <JFXTextField id="textFields" fx:id="txtTel" alignment="CENTER" prefHeight="39.0" prefWidth="335.0" stylesheets="@../generalCss/textField.css" />
-            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Estado" textAlignment="CENTER" wrappingWidth="334.05078125">
-               <font>
-                  <Font name="Arial Bold" size="24.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </Text>
-            <JFXComboBox id="textFields" fx:id="comboEstado" prefHeight="39.0" prefWidth="236.0" stylesheets="@../generalCss/textField.css">
-               <VBox.margin>
-                  <Insets left="55.0" top="5.0" />
-               </VBox.margin>
-            </JFXComboBox>
          </children>
       </VBox>
-      <ImageView fx:id="clean" fitHeight="40.0" fitWidth="35.0" layoutX="780.0" layoutY="293.0" onMouseClicked="#cleanFilter" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="clienteClean" fitHeight="40.0" fitWidth="35.0" layoutX="780.0" layoutY="293.0" onMouseClicked="#clienteClien" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../multimedia/clean.png" />
          </image>
@@ -175,32 +153,44 @@
       </Text>
       <Separator layoutX="766.0" layoutY="242.0" orientation="VERTICAL" prefHeight="342.0" prefWidth="1.0" />
       <Separator layoutX="769.0" layoutY="241.0" prefHeight="3.0" prefWidth="194.0" />
-      <Text fill="#4059a9" layoutX="538.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="País" textAlignment="CENTER" wrappingWidth="98.05078125">
+      <Text fill="#4059a9" layoutX="534.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="País" textAlignment="CENTER" wrappingWidth="98.05078125" AnchorPane.topAnchor="243.0">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Text>
-      <JFXTextField id="textFields" fx:id="txtPais" alignment="CENTER" layoutX="532.0" layoutY="419.0" maxWidth="111.0" minWidth="50.0" prefHeight="39.0" prefWidth="111.0" stylesheets="@../generalCss/textField.css" />
-      <ImageView fx:id="filter1" fitHeight="40.0" fitWidth="35.0" layoutX="646.0" layoutY="425.0" onMouseClicked="#filter" pickOnBounds="true" preserveRatio="true">
+      <JFXTextField id="textFields" fx:id="txtPais" alignment="CENTER" layoutX="527.0" layoutY="272.0" maxWidth="111.0" minWidth="50.0" prefHeight="39.0" prefWidth="111.0" stylesheets="@../generalCss/textField.css" />
+      <ImageView fx:id="paisFilter" fitHeight="40.0" fitWidth="35.0" layoutX="641.0" layoutY="278.0" onMouseClicked="#paisFilter" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../multimedia/filter.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="clean1" fitHeight="40.0" fitWidth="35.0" layoutX="496.0" layoutY="425.0" onMouseClicked="#cleanFilter" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="paisClean" fitHeight="40.0" fitWidth="35.0" layoutX="491.0" layoutY="278.0" onMouseClicked="#paisClean" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../multimedia/clean.png" />
          </image>
       </ImageView>
-      <JFXComboBox id="textFields" fx:id="comboPais" layoutX="474.0" layoutY="469.0" prefHeight="39.0" prefWidth="236.0" stylesheets="@../generalCss/textField.css" />
-      <JFXButton fx:id="butSave" layoutX="602.0" layoutY="520.0" minHeight="20.0" onAction="#save" prefHeight="51.0" prefWidth="139.0" ripplerFill="#668cff" style="-fx-border-color: #4059a9; -fx-border-radius: 8; -fx-border-width: 2;" text="Guardar" textFill="#4059a9">
+      <JFXComboBox id="textFields" fx:id="comboPais" layoutX="470.0" layoutY="324.0" prefHeight="39.0" prefWidth="236.0" stylesheets="@../generalCss/textField.css" />
+      <JFXButton fx:id="butSave" layoutX="607.0" layoutY="530.0" minHeight="20.0" onAction="#save" prefHeight="51.0" prefWidth="139.0" ripplerFill="#668cff" style="-fx-border-color: #4059a9; -fx-border-radius: 8; -fx-border-width: 2;" text="Guardar" textFill="#4059a9">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="butSave1" layoutX="453.0" layoutY="520.0" minHeight="20.0" onAction="#save" prefHeight="51.0" prefWidth="139.0" ripplerFill="#668cff" style="-fx-border-color: #4059a9; -fx-border-radius: 8; -fx-border-width: 2;" text="Limpiar" textFill="#4059a9">
+      <JFXButton fx:id="butClean" layoutX="439.0" layoutY="530.0" minHeight="20.0" onAction="#clean" prefHeight="51.0" prefWidth="139.0" ripplerFill="#668cff" style="-fx-border-color: #4059a9; -fx-border-radius: 8; -fx-border-width: 2;" text="Limpiar" textFill="#4059a9">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </JFXButton>
+      <Text fill="#4059a9" layoutX="470.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Teléfono Contacto*" textAlignment="CENTER" wrappingWidth="236.0">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+      </Text>
+      <JFXTextField id="textFields" fx:id="txtTel" alignment="CENTER" layoutX="420.0" layoutY="404.0" prefHeight="39.0" prefWidth="335.0" stylesheets="@../generalCss/textField.css" />
+      <Text fill="#4059a9" layoutX="421.0" layoutY="472.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estado*" textAlignment="CENTER" wrappingWidth="334.05078125">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+      </Text>
+      <JFXComboBox id="textFields" fx:id="comboEstado" layoutX="460.0" layoutY="477.0" prefHeight="39.0" prefWidth="236.0" stylesheets="@../generalCss/textField.css" />
    </children>
 </AnchorPane>

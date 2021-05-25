@@ -33,8 +33,9 @@ public class ManagerViewNavBarController implements Initializable{
     @FXML
     private JFXButton viewRequests;
     
-    public void addOrder() {
-
+    public void addOrder() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/grd/pfc/managerview/addOrder.fxml"));      
+        ManagerViewMenuController.stPane.getChildren().setAll(pane);
     }
 
     public void addProduct() {
@@ -64,7 +65,7 @@ public class ManagerViewNavBarController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
     }
+
 
 }

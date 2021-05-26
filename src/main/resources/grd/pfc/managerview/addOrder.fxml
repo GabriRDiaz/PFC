@@ -61,6 +61,11 @@
          <children>
             <TableView fx:id="tableProductosIn" prefHeight="174.0" prefWidth="254.0" styleClass="table-row-cell" stylesheets="@../generalCss/table.css">
                <columns>
+                  <TableColumn prefWidth="75.0" text="Id" visible="false">
+                      <cellValueFactory>
+                        <PropertyValueFactory property="Id"/>
+                     </cellValueFactory>
+                  </TableColumn>
                   <TableColumn prefWidth="108.0" text="Producto">
                      <cellValueFactory>
                         <PropertyValueFactory property="Nombre" />
@@ -68,7 +73,7 @@
                   </TableColumn>
                   <TableColumn prefWidth="53.0" text="Cant.">
                      <cellValueFactory>
-                        <PropertyValueFactory property="Stock" />
+                        <PropertyValueFactory property="Cantidad" />
                      </cellValueFactory>
                   </TableColumn>
                </columns>
@@ -140,7 +145,7 @@
             <JFXTextField id="textFields" fx:id="txtDireccion" alignment="CENTER" prefHeight="39.0" prefWidth="108.0" stylesheets="@../generalCss/textField.css" />
          </children>
       </VBox>
-      <ImageView fx:id="clienteClean" fitHeight="40.0" fitWidth="35.0" layoutX="780.0" layoutY="293.0" onMouseClicked="#clienteClien" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="clienteClean" fitHeight="40.0" fitWidth="35.0" layoutX="780.0" layoutY="293.0" onMouseClicked="#clienteClean" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../multimedia/clean.png" />
          </image>

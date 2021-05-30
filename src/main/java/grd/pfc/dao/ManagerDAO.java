@@ -37,7 +37,19 @@ public class ManagerDAO {
                                 "INNER JOIN [PFC].[dbo].[Empleados] e ON es.IdEmpleado=e.Id \n" +
                                 "WHERE e.Id=?";
     String getRequests = "SELECT Id,Sugerencia,Fecha,Nombre,Revisada FROM [PFC].[dbo].[SugerenciasEmpleado] WHERE Id=?";
+    String updRevisada = "UPDATE [PFC].[dbo].[Sugerencias] SET Revisada=? WHERE Id=?";
     public ManagerDAO(){}
+    
+    public int updRevisada(int isRevisada, int idSug){
+        try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+            PreparedStatement ps = connectDB.prepareStatement(updRevisada);
+            ps.setInt(1,isRevisada);
+            ps.setInt(2,idSug);
+            ps.executeUpdate();
+            return 1;
+        }catch (SQLException ex) {ex.printStackTrace();}
+        return -1;
+    }
     
     public ArrayList<Sugerencia> getRequests(ArrayList<Integer> requests){
         ArrayList<Sugerencia> sugerencias = new ArrayList<Sugerencia>();

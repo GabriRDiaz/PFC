@@ -3,9 +3,11 @@ package grd.pfc.employee.manager;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import grd.pfc.dao.ManagerDAO;
+import grd.pfc.pojo.Empleado;
 import grd.pfc.pojo.Producto;
 import grd.pfc.pojo.Sugerencia;
 import grd.pfc.singleton.InfoBundle;
+import grd.pfc.utils.Utils;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,29 +37,54 @@ public class ManagerRequestController implements Initializable{
     private JFXTextField idSug;
     
     public void markRead() {
-        System.out.println("leida");
+        if(checkSelected()) {
+            ManagerDAO dao = new ManagerDAO();
+            if(dao.updRevisada(1, Integer.parseInt(idSug.getText()))==1){
+                Utils.alertGenerator("OK", "", "La sugerencia ha sido marcada como revisada", 2);
+                refreshTable();
+            }
+        }
     }
     
     public void markUnread() {
-        System.out.println("no leida");
+        if(checkSelected()) {
+            ManagerDAO dao = new ManagerDAO();
+            if(dao.updRevisada(0, Integer.parseInt(idSug.getText()))==1){
+                Utils.alertGenerator("OK", "", "La sugerencia ha sido marcada como no revisada", 2);
+                refreshTable();
+            }
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         refreshTable();
+        tableSugerencias.setOnMouseClicked(event -> {
+            if(event.getClickCount()==2) {
+               Sugerencia sugerencia = tableSugerencias.getSelectionModel().getSelectedItem();
+               idSug.setText(""+sugerencia.getId());
+               txtSugerencia.setText(sugerencia.getSugerencia());
+            }
+          });
     }
 
     private void refreshTable() {
         ManagerDAO dao = new ManagerDAO();
         ArrayList<Integer> requests = new ArrayList<Integer>();
         requests = dao.getRequestSections(InfoBundle.getInfoBundle().getIdEmpleado());
-        requests.forEach(r->{System.out.println(r);});
         ArrayList<Sugerencia> sugerencias = new ArrayList<Sugerencia>();
         sugerencias = dao.getRequests(requests);
         ObservableList<Sugerencia> listSugerencias = FXCollections.observableArrayList();
-        sugerencias.forEach(s->{System.out.println(s.getId());});
         listSugerencias.addAll(sugerencias);
         tableSugerencias.setItems(listSugerencias);
+    }
+
+    private boolean checkSelected() {
+        if(idSug.getText().equals("") || txtSugerencia.equals("")){
+            Utils.alertGenerator("ERROR", "", "Seleccione alguna sugerencia", 4);
+            return false;
+        }
+        return true;
     }
 
 }

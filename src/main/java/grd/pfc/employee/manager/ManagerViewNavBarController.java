@@ -47,8 +47,8 @@ public class ManagerViewNavBarController implements Initializable{
 
     }
 
-    public void manageProduct() {
-
+    public void manageProduct() throws IOException {
+        
     }
 
     public void regStock() throws IOException {
@@ -60,8 +60,9 @@ public class ManagerViewNavBarController implements Initializable{
 
     }
 
-    public void viewRequests() {
-
+    public void manageRequests() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/grd/pfc/managerview/manageRequests.fxml"));      
+        ManagerViewMenuController.stPane.getChildren().setAll(pane);
     }
 
     @Override

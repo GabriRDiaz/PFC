@@ -7,6 +7,7 @@ package grd.pfc.dao;
 
 import grd.pfc.pojo.Empleado;
 import grd.pfc.pojo.Producto;
+import grd.pfc.pojo.Sugerencia;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -30,8 +31,58 @@ public class ManagerDAO {
     String getMarcaId= "SELECT Id FROM [PFC].[dbo].[Marcas] WHERE Marca LIKE ?";
     String getIvaId= "SELECT Id FROM [PFC].[dbo].[IVAs] WHERE IVA LIKE ?";
     String getSectionId = "SELECT Id FROM [PFC].[dbo].[Secciones] WHERE Nombre LIKE ?";
+    String getRequestSections = "SELECT sg.Id FROM [PFC].[dbo].[Sugerencias] sg\n" +
+                                "INNER JOIN [PFC].[dbo].[Secciones] s ON sg.IdSeccion=s.Id \n" +
+                                "INNER JOIN [PFC].[dbo].[EmpleadosSecciones] es ON s.Id=es.IdSeccion \n" +
+                                "INNER JOIN [PFC].[dbo].[Empleados] e ON es.IdEmpleado=e.Id \n" +
+                                "WHERE e.Id=?";
+    String getRequests = "SELECT Id,Sugerencia,Fecha,Nombre,Revisada FROM [PFC].[dbo].[SugerenciasEmpleado] WHERE Id=?";
     public ManagerDAO(){}
     
+    public ArrayList<Sugerencia> getRequests(ArrayList<Integer> requests){
+        ArrayList<Sugerencia> sugerencias = new ArrayList<Sugerencia>();
+        try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+            requests.forEach(r->{
+                try {
+                    PreparedStatement ps = connectDB.prepareStatement(getRequests);
+                    ps.setInt(1,r);
+                    ps.executeQuery();
+                    ResultSet rs = ps.getResultSet();
+                    while(rs.next()){
+                       sugerencias.add(new Sugerencia(
+                               rs.getInt(1),
+                               rs.getString(2),
+                               rs.getDate(3),
+                               rs.getString(4),
+                               rs.getInt(5)
+                       ));
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(ManagerDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            });return sugerencias;
+        }catch (SQLException ex) {ex.printStackTrace();}
+        return null;
+    }
+    
+    public ArrayList<Integer> getRequestSections(int idUser){
+        ArrayList<Integer> sections = new ArrayList<Integer>();
+        try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+            PreparedStatement ps = connectDB.prepareStatement(getRequestSections);
+            ps.setInt(1,idUser);
+            ps.executeQuery();
+            ResultSet rs = ps.getResultSet();
+            while(rs.next()){
+                sections.add(rs.getInt(1));
+            }
+            return sections;
+        }catch (SQLException ex) {ex.printStackTrace();}
+        return null;
+    }
+    public ArrayList<Sugerencia> getSugerencias(){
+        return null;
+    }
     public int getMarcaId(String marca){
         try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
             PreparedStatement ps = connectDB.prepareStatement(getMarcaId);

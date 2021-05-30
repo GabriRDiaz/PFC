@@ -4,3 +4,9 @@
     -fx-font-size: 18px;
     -jfx-disable-animation: false;
 }
+#textAreas{
+    -fx-text-inner-color: #4059a9;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -jfx-disable-animation: false;
+}

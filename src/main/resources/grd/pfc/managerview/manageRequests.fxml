@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="585.0" prefWidth="965.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grd.pfc.employee.manager.ManagerRequestController">
+   <children>
+      <Text fill="#4059a9" layoutX="298.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestionar sugerencias">
+         <font>
+            <Font name="Arial Bold" size="36.0" />
+         </font>
+      </Text>
+      <Separator layoutY="51.0" prefHeight="9.0" prefWidth="966.0" />
+      <VBox layoutX="3.0" layoutY="56.0" prefHeight="529.0" prefWidth="489.0">
+          <TableView fx:id="tableSugerencias" prefHeight="528.0" prefWidth="489.0" styleClass="table-row-cell" stylesheets="@../generalCss/table.css">
+              <columns>
+                  <TableColumn prefWidth="60.0" text="Id">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="Id" />
+                    </cellValueFactory>
+                  </TableColumn>
+                  
+                  <TableColumn prefWidth="227.0" text="Fecha">
+                   <cellValueFactory>
+                        <PropertyValueFactory property="Fecha" />
+                    </cellValueFactory>
+                  </TableColumn>
+                  
+                  <TableColumn prefWidth="140.0" text="Sugerente">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="Sugerente" />
+                    </cellValueFactory>
+                  </TableColumn>
+                  
+                  <TableColumn prefWidth="61.0" text="Revisada">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="Revisada" />
+                    </cellValueFactory>
+                  </TableColumn>
+               <TableColumn editable="false" prefWidth="75.0" text="Sugerencia" visible="false">
+                   <cellValueFactory>
+                        <PropertyValueFactory property="Sugerencia" />
+                    </cellValueFactory>
+                </TableColumn>
+              </columns>
+            </TableView>
+      </VBox>
+      <ImageView fx:id="markRead" fitHeight="76.0" fitWidth="108.0" layoutX="866.0" layoutY="486.0" onMouseClicked="#markRead" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../multimedia/markRead.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="markUnread" fitHeight="76.0" fitWidth="76.0" layoutX="774.0" layoutY="495.0" onMouseClicked="#markUnread" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../multimedia/markUnread.png" />
+         </image>
+      </ImageView>
+      <JFXTextArea id="textAreas" fx:id="txtSugerencia" editable="false" layoutX="503.0" layoutY="60.0" prefHeight="401.0" prefWidth="453.0" stylesheets="@../generalCss/textField.css" />
+      <JFXTextField fx:id="idSug" disable="true" editable="false" layoutX="53.0" layoutY="18.0" opacity="0.0" />
+   </children>
+</AnchorPane>

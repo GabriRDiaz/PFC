@@ -17,8 +17,26 @@ public class Sugerencia {
     private java.sql.Date fecha;
     private int idSeccion;
     private int idEmpleado;
+    private String sugerente;
+    private String seccion;
+    private String revisada;
+    public Sugerencia(int id, String sugerencia, Date fecha, String sugerente, String seccion) {
+        this.id = id;
+        this.sugerencia = sugerencia;
+        this.fecha = fecha;
+        this.sugerente = sugerente;
+        this.seccion = seccion;
+    }
     
+    public Sugerencia(int id, String sugerencia, Date fecha, String sugerente, int revisada) {
+        this.id = id;
+        this.sugerencia = sugerencia;
+        this.fecha = fecha;
+        this.sugerente = sugerente;
+        if(revisada==0){this.revisada="No";}else{this.revisada="Sí";}
+    }
 
+    
     public Sugerencia(String sugerencia, int idSeccion, int idEmpleado) {
         this.sugerencia = sugerencia;
         this.idSeccion = idSeccion;
@@ -31,6 +49,30 @@ public class Sugerencia {
         this.fecha = fecha;
         this.idSeccion = idSeccion;
         this.idEmpleado = idEmpleado;
+    }
+
+    public String getRevisada() {
+        return revisada;
+    }
+
+    public void setRevisada(String revisada) {
+        this.revisada = revisada;
+    }
+
+    public String getSugerente() {
+        return sugerente;
+    }
+
+    public void setSugerente(String sugerente) {
+        this.sugerente = sugerente;
+    }
+
+    public String getSeccion() {
+        return seccion;
+    }
+
+    public void setSeccion(String seccion) {
+        this.seccion = seccion;
     }
 
     public int getIdEmpleado() {

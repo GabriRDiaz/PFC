@@ -77,7 +77,7 @@ public class ManagerAddPedidoController implements Initializable{
 
     }
 
-    public void clienteClien() {
+    public void clienteClean() {
 
     }
 
@@ -109,6 +109,7 @@ public class ManagerAddPedidoController implements Initializable{
             if(event.getClickCount()==2) {
                 if(tableProductos.getSelectionModel().getSelectedItem()!=null){
                     producto = tableProductos.getSelectionModel().getSelectedItem();
+                    tableProductos.getSelectionModel().getSelectedItem().setStock(tableProductos.getSelectionModel().getSelectedItem().getStock()-1);
                     productoPedido = new PedidoProducto(producto,1);
                     data.add(productoPedido);
                     tableProductosIn.setItems(data);

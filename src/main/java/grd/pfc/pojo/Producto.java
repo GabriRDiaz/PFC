@@ -5,6 +5,8 @@
  */
 package grd.pfc.pojo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Gabriel
@@ -21,6 +23,25 @@ public class Producto {
     private String color;
     private int stock;
     private double iva;
+    private double coste;
+    private int idMarca;
+    private int idIva;
+    private ArrayList<Integer> secciones;
+
+    public Producto(String nombre, String descripcion, double precioSinIVA,int idIva, double descuento, String referencia, String modelo, String color, int stock, double coste, int idMarca, ArrayList<Integer> secciones) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precioSinIVA = precioSinIVA;
+        this.idIva= idIva;
+        this.descuento = descuento;
+        this.referencia = referencia;
+        this.modelo = modelo;
+        this.color = color;
+        this.stock = stock;
+        this.coste = coste;
+        this.idMarca = idMarca;
+        this.secciones = secciones;
+    }
 
     public Producto(int id, String nombre, String descripcion, double precioSinIVA, double descuento, String marca, String referencia, String modelo, String color, int stock, double iva) {
         this.id = id;
@@ -35,7 +56,36 @@ public class Producto {
         this.stock = stock;
         this.iva = iva;
     }
+    public int getIdMarca() {
+        return idMarca;
+    }
 
+    public void setIdMarca(int idMarca) {
+        this.idMarca = idMarca;
+    }
+
+    public int getIdIVA() {
+        return idIva;
+    }
+
+    public void setIdIVA(int idIVA) {
+        this.idIva = idIVA;
+    }
+
+    public ArrayList<Integer> getSecciones() {
+        return secciones;
+    }
+
+    public void setSecciones(ArrayList<Integer> secciones) {
+        this.secciones = secciones;
+    }
+    public double getCoste() {
+        return coste;
+    }
+
+    public void setCoste(double coste) {
+        this.coste = coste;
+    }
     public void setIva(double iva) {
         this.iva = iva;
     }

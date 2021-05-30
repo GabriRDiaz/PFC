@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 public class Login {
@@ -24,7 +25,7 @@ public class Login {
 
     @FXML
     private JFXButton butLogin;
-
+    
     public void login() throws ClassNotFoundException, SQLException, IOException{
         DAO dao = new DAO();
         int userId=dao.login(userInput.getText(), pwdInput.getText());

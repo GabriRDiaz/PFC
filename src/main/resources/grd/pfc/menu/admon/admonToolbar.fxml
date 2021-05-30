@@ -33,7 +33,7 @@
          <graphic>
             <ImageView fitHeight="55.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../multimedia/addEmpleado.png" />
+                  <Image url="@../../multimedia/addEmployee.png" />
                </image>
             </ImageView>
          </graphic>
@@ -45,7 +45,7 @@
          <graphic>
             <ImageView fitHeight="55.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../multimedia/editEmpleado.png" />
+                  <Image url="@../../multimedia/editEmployee.png" />
                </image>
             </ImageView>
          </graphic>

@@ -93,7 +93,7 @@ public class SetSeccionesController implements Initializable{
             JFXCheckBox ch = new JFXCheckBox(s.getNombre());
             ch.setId(s.getNombre());
             ch.setDisable(true);
-            ch.setStyle("-jfx-checked-color: #4059a9; -jfx-unchecked-color: #4059a9; -fx-font: Arial; -fx-font-size: 16px;");
+            ch.setStyle("-jfx-checked-color: #4059a9; -jfx-unchecked-color: #4059a9; -fx-font-size: 16px;");
             checkList.add(ch);
         });
         checkList.forEach(c->{checkListBox.getChildren().add(c);});

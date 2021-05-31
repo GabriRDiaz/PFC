@@ -48,7 +48,8 @@ public class ManagerViewNavBarController implements Initializable{
     }
 
     public void manageProduct() throws IOException {
-        
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/grd/pfc/managerview/editProducts.fxml"));      
+        ManagerViewMenuController.stPane.getChildren().setAll(pane);
     }
 
     public void regStock() throws IOException {

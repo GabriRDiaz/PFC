@@ -27,7 +27,38 @@ public class Producto {
     private int idMarca;
     private int idIva;
     private ArrayList<Integer> secciones;
-
+    private String ivaStr;
+    
+    //Constructor EditProduct
+    public Producto(int id, String nombre, String descripcion, double precioSinIVA, double descuento, String marca, String referencia, String modelo, String color, String ivaStr, double coste) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precioSinIVA = precioSinIVA;
+        this.descuento = descuento;
+        this.marca = marca;
+        this.referencia = referencia;
+        this.modelo = modelo;
+        this.color = color;
+        this.ivaStr = ivaStr;
+        this.coste = coste;
+    }   
+    //Constructor updProduct query
+    public Producto(int id, String nombre, String descripcion, double precioSinIVA, double descuento, int idMarca, String referencia, String modelo, String color, int idIva, double coste, ArrayList<Integer> secciones) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precioSinIVA = precioSinIVA;
+        this.descuento = descuento;
+        this.idMarca = idMarca;
+        this.referencia = referencia;
+        this.modelo = modelo;
+        this.color = color;
+        this.idIva = idIva;
+        this.coste = coste;
+        this.secciones = secciones;
+    }
+    
     public Producto(String nombre, String descripcion, double precioSinIVA,int idIva, double descuento, String referencia, String modelo, String color, int stock, double coste, int idMarca, ArrayList<Integer> secciones) {
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -56,6 +87,23 @@ public class Producto {
         this.stock = stock;
         this.iva = iva;
     }
+
+    public int getIdIva() {
+        return idIva;
+    }
+
+    public void setIdIva(int idIva) {
+        this.idIva = idIva;
+    }
+
+    public String getIvaStr() {
+        return ivaStr;
+    }
+
+    public void setIvaStr(String ivaStr) {
+        this.ivaStr = ivaStr;
+    }
+    
     public int getIdMarca() {
         return idMarca;
     }

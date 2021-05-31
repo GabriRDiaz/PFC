@@ -7,7 +7,9 @@ package grd.pfc.dao;
 
 import grd.pfc.pojo.Empleado;
 import grd.pfc.pojo.Producto;
+import grd.pfc.pojo.Seccion;
 import grd.pfc.pojo.Sugerencia;
+import grd.pfc.singleton.InfoBundle;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -28,8 +30,10 @@ public class ManagerDAO {
     String deleteSeccionesProductos = "DELETE FROM [PFC].[dbo].[SeccionesProductos] WHERE IdProducto LIKE (select id from Productos where Referencia=?)";
     String insertSeccionesProductos = "INSERT INTO [PFC].[dbo].[SeccionesProductos](IdProducto,IdSeccion) VALUES(?,?)";
     String getIdProd = "SELECT Id FROM [PFC].[dbo].[Productos] WHERE Referencia LIKE ?";
+    String getIdProdEdit = "SELECT Id FROM [PFC].[dbo].[Productos] WHERE Referencia LIKE ? AND Id<>?";
     String getMarcaId= "SELECT Id FROM [PFC].[dbo].[Marcas] WHERE Marca LIKE ?";
-    String getIvaId= "SELECT Id FROM [PFC].[dbo].[IVAs] WHERE IVA LIKE ?";
+    String getIvaId= "SELECT Id FROM [PFC].[dbo].[IVAs] WHERE Tipo LIKE ?";
+    String getIvaIdTipo= "SELECT Id FROM [PFC].[dbo].[IVAs] WHERE IVA LIKE ?";
     String getSectionId = "SELECT Id FROM [PFC].[dbo].[Secciones] WHERE Nombre LIKE ?";
     String getRequestSections = "SELECT sg.Id FROM [PFC].[dbo].[Sugerencias] sg\n" +
                                 "INNER JOIN [PFC].[dbo].[Secciones] s ON sg.IdSeccion=s.Id \n" +
@@ -38,7 +42,110 @@ public class ManagerDAO {
                                 "WHERE e.Id=?";
     String getRequests = "SELECT Id,Sugerencia,Fecha,Nombre,Revisada FROM [PFC].[dbo].[SugerenciasEmpleado] WHERE Id=?";
     String updRevisada = "UPDATE [PFC].[dbo].[Sugerencias] SET Revisada=? WHERE Id=?";
+    //Get productos for EditProduct
+    String getProductos = "SELECT p.Id,p.Nombre,p.Descripcion,PrecioSinIVA,Descuento,m.Marca,Referencia,Modelo,Color,Coste,i.IVA FROM [PFC].[dbo].[Productos] p " +
+                          "JOIN [PFC].[dbo].[Marcas] m ON p.IdMarca=m.Id " +
+                          "JOIN [PFC].[dbo].[IVAS] i ON p.IdTipoIVA=i.Id " +
+                          "JOIN [PFC].[dbo].[SeccionesProductos] sp ON p.Id=sp.IdProducto " +
+                          "JOIN [PFC].[dbo].[Secciones] s ON sp.IdSeccion=s.Id " +
+                          "JOIN [PFC].[dbo].[EmpleadosSecciones] es ON s.Id=es.IdSeccion " +
+                          "JOIN [PFC].[dbo].[Empleados] e ON es.IdEmpleado=e.Id " +
+                          "WHERE e.Id=";
+    //Get sections for each product in EditProduct
+    String getProductSections ="SELECT s.Id,s.Nombre from [PFC].[dbo].[Secciones] s " +
+                               "INNER JOIN [PFC].[dbo].[SeccionesProductos] sp ON s.Id=sp.IdSeccion " +
+                               "INNER JOIN [PFC].[dbo].[Productos] p ON sp.IdProducto=p.Id " +
+                               "WHERE p.Id=?";
+    String updProducto = "UPDATE [PFC].[dbo].[Productos] " +
+                         "SET Nombre=?, " +
+                         "Descripcion=?, " +
+                         "PrecioSinIVA=?, " +
+                         "Descuento=?, " +
+                         "IdTipoIVA=?, " +
+                         "IdMarca=?, " +
+                         "Referencia=?, " +
+                         "Modelo=?, " +
+                         "Color=?, " +
+                         "Coste=? " +
+                         "WHERE Id=?";
+    String delSeccionesProductos = "DELETE FROM [PFC].[dbo].[SeccionesProductos] WHERE IdProducto=?";
     public ManagerDAO(){}
+    public int updProducto(Producto producto){
+        try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+            PreparedStatement ps = connectDB.prepareStatement(updProducto);
+            ps.setString(1,producto.getNombre());
+            ps.setString(2,producto.getDescripcion());
+            ps.setDouble(3,producto.getPrecioSinIVA());
+            ps.setDouble(4,producto.getDescuento());
+            ps.setInt(5,producto.getIdIVA());
+            ps.setInt(6,producto.getIdMarca());
+            ps.setString(7,producto.getReferencia());
+            ps.setString(8,producto.getModelo());
+            ps.setString(9,producto.getColor());
+            ps.setDouble(10,producto.getCoste());
+            ps.setInt(11,producto.getId());
+            ps.executeUpdate();
+            
+            ps = connectDB.prepareStatement(delSeccionesProductos);
+            ps.setInt(1,producto.getId());
+            ps.executeUpdate();
+            
+            ps = connectDB.prepareStatement(insertSeccionesProductos);
+            
+            for(int i=0;i<producto.getSecciones().size();i++){
+                System.out.println("UPD: "+getIdProductByRef(producto.getReferencia()));
+                System.out.println("UPD: "+producto.getSecciones().get(i));
+                ps.setInt(1,getIdProductByRef(producto.getReferencia()));
+                ps.setInt(2,producto.getSecciones().get(i));
+                ps.executeUpdate();
+            }
+            
+        }catch (SQLException ex) {ex.printStackTrace();}
+        
+        return 1;
+    }
+    
+    //Get secciones producto for EditProduct
+        public ArrayList<Seccion> getSeccionesProducto(int idProd){
+               ArrayList<Seccion> secciones = new ArrayList<Seccion>();
+               try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+                   PreparedStatement ps = connectDB.prepareStatement(getProductSections);
+                   ps.setInt(1,idProd);
+                   ResultSet rs = ps.executeQuery();
+                   while(rs.next()){
+                       secciones.add(new Seccion(
+                       rs.getInt(1),
+                       rs.getString(2)
+                       ));
+                   }
+               }catch (SQLException ex) {ex.printStackTrace();}
+               return secciones;
+           }
+    //Get productos for EditProduct
+    public ArrayList<Producto> getProductos(){
+        ArrayList<Producto> productos = new ArrayList<Producto>();
+        try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+            PreparedStatement ps = connectDB.prepareStatement(getProductos.concat(""+InfoBundle.getInfoBundle().getIdEmpleado()));
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Producto producto = new Producto(
+                        rs.getInt("Id"),
+                        rs.getString("Nombre"),
+                        rs.getString("Descripcion"),
+                        rs.getDouble("PrecioSinIVA"),
+                        rs.getDouble("Descuento"),
+                        rs.getString("Marca"),
+                        rs.getString("Referencia"),
+                        rs.getString("Modelo"),
+                        rs.getString("Color"),
+                        rs.getString("IVA"),
+                        rs.getDouble("Coste")
+                );
+                productos.add(producto);
+            }
+        }catch (SQLException ex) {ex.printStackTrace();}
+        return productos;
+    }
     
     public int updRevisada(int isRevisada, int idSug){
         try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
@@ -130,6 +237,17 @@ public class ManagerDAO {
         }catch (SQLException ex) {ex.printStackTrace();}
         return -1;
     }
+    public int getIvaIdTipo(String iva){
+        try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+            PreparedStatement ps = connectDB.prepareStatement(getIvaIdTipo);
+            ps.setString(1,iva);
+            ps.executeQuery();
+            ResultSet rs = ps.getResultSet();
+            rs.next();
+            return rs.getInt(1);
+        }catch (SQLException ex) {ex.printStackTrace();}
+        return -1;
+    }
     
     public int getIdProductByRef(String referencia){
     try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
@@ -144,6 +262,19 @@ public class ManagerDAO {
     return -1;
     }
     
+    public int getIdProductByRefEdit(String referencia, int idProd){
+    try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+        
+        PreparedStatement ps = connectDB.prepareStatement(getIdProdEdit);
+            ps.setString(1,referencia);
+            ps.setInt(2,idProd);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                return rs.getInt(1);
+            }else{return -1;}
+        }catch (SQLException ex) {ex.printStackTrace();}
+    return -1;
+    }
     public int insertProducto(Producto producto){
         try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
             PreparedStatement ps = connectDB.prepareStatement(insertProducto);

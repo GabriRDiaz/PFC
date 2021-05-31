@@ -14,6 +14,12 @@ public class Seccion {
     private String nombre;
     private String descripcion;
     private String responsable; 
+    
+    //Pojo EditProduct
+    public Seccion(int id,String nombre){
+        this.id=id;
+        this.nombre = nombre;
+    }
     public Seccion(int id, String nombre, String descripcion, String responsable) {
         this.id = id;
         this.nombre = nombre;

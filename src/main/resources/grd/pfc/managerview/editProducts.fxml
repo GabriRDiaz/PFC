@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="585.0" prefWidth="965.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grd.pfc.employee.manager.ManagerEditProductController">
+   <children>
+      <Text fill="#4059a9" layoutX="348.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Editar Producto">
+         <font>
+            <Font name="Arial Bold" size="36.0" />
+         </font>
+      </Text>
+      <Separator layoutY="51.0" prefHeight="9.0" prefWidth="966.0" />
+      <JFXButton fx:id="butSave" layoutX="544.0" layoutY="468.0" minHeight="20.0" onAction="#save" prefHeight="79.0" prefWidth="176.0" ripplerFill="#668cff" style="-fx-border-color: #4059a9; -fx-border-radius: 8; -fx-border-width: 2;" text="Guardar" textFill="#4059a9">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="butClean" layoutX="322.0" layoutY="468.0" minHeight="20.0" onAction="#clean" prefHeight="79.0" prefWidth="176.0" ripplerFill="#668cff" style="-fx-border-color: #4059a9; -fx-border-radius: 8; -fx-border-width: 2;" text="Limpiar" textFill="#4059a9">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <VBox layoutX="307.0" layoutY="83.0" maxHeight="350.0" maxWidth="205.0" minHeight="350.0" minWidth="205.0" prefHeight="350.0" prefWidth="205.0">
+         <children>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Referencia*" textAlignment="CENTER" wrappingWidth="200.0">
+               <font>
+                  <Font name="Arial Bold" size="23.0" />
+               </font>
+            </Text>
+            <JFXTextField id="textFields" fx:id="txtReferencia" alignment="CENTER" maxWidth="200.0" minWidth="200.0" prefHeight="39.0" prefWidth="200.0" stylesheets="@../generalCss/textField.css">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Producto*" textAlignment="CENTER" wrappingWidth="200.0">
+               <font>
+                  <Font name="Arial Bold" size="23.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Text>
+            <JFXTextField id="textFields" fx:id="txtProducto" alignment="CENTER" maxWidth="200.0" minWidth="200.0" prefHeight="39.0" prefWidth="200.0" stylesheets="@../generalCss/textField.css">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción" textAlignment="CENTER" wrappingWidth="200.0">
+               <font>
+                  <Font name="Arial Bold" size="23.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Text>
+            <JFXTextField id="textFields" fx:id="txtDescripcion" alignment="CENTER" maxWidth="200.0" minWidth="200.0" prefHeight="39.0" prefWidth="200.0" stylesheets="@../generalCss/textField.css">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Marca*" textAlignment="CENTER" wrappingWidth="200.0">
+               <font>
+                  <Font name="Arial Bold" size="23.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Text>
+            <JFXComboBox id="textFields" fx:id="comboMarca" maxWidth="200.0" minWidth="200.0" prefHeight="39.0" prefWidth="200.0" stylesheets="@../generalCss/textField.css">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </JFXComboBox>
+         </children>
+      </VBox>
+      <VBox layoutX="529.0" layoutY="83.0" maxHeight="350.0" maxWidth="205.0" minHeight="350.0" minWidth="205.0" prefHeight="350.0" prefWidth="205.0">
+         <children>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Coste*" textAlignment="CENTER" wrappingWidth="200.0">
+               <font>
+                  <Font name="Arial Bold" size="23.0" />
+               </font>
+            </Text>
+            <JFXTextField id="textFields" fx:id="txtCoste" alignment="CENTER" maxWidth="200.0" minWidth="200.0" prefHeight="39.0" prefWidth="200.0" stylesheets="@../generalCss/textField.css">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio Sin IVA*" textAlignment="CENTER" wrappingWidth="200.0">
+               <font>
+                  <Font name="Arial Bold" size="23.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Text>
+            <JFXTextField id="textFields" fx:id="txtPrecio" alignment="CENTER" maxWidth="200.0" minWidth="200.0" prefHeight="39.0" prefWidth="200.0" stylesheets="@../generalCss/textField.css">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo IVA*" textAlignment="CENTER" wrappingWidth="200.0">
+               <font>
+                  <Font name="Arial Bold" size="23.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Text>
+            <JFXComboBox id="textFields" fx:id="comboIVA" minWidth="200.0" prefHeight="39.0" prefWidth="200.0" stylesheets="@../generalCss/textField.css">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </JFXComboBox>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Descuento (€)" textAlignment="CENTER" wrappingWidth="200.0">
+               <font>
+                  <Font name="Arial Bold" size="23.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Text>
+            <JFXTextField id="textFields" fx:id="txtDescuento" alignment="CENTER" maxWidth="200.0" minWidth="200.0" prefHeight="39.0" prefWidth="200.0" stylesheets="@../generalCss/textField.css">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </JFXTextField>
+         </children>
+      </VBox>
+      <VBox layoutX="747.0" layoutY="83.0" maxHeight="467.0" maxWidth="205.0" minHeight="350.0" minWidth="205.0" prefHeight="464.0" prefWidth="205.0">
+         <children>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Modelo*" textAlignment="CENTER" wrappingWidth="200.0">
+               <font>
+                  <Font name="Arial Bold" size="23.0" />
+               </font>
+            </Text>
+            <JFXTextField id="textFields" fx:id="txtModelo" alignment="CENTER" maxWidth="200.0" minWidth="200.0" prefHeight="39.0" prefWidth="200.0" stylesheets="@../generalCss/textField.css">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Color" textAlignment="CENTER" wrappingWidth="200.0">
+               <font>
+                  <Font name="Arial Bold" size="23.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Text>
+            <JFXTextField id="textFields" fx:id="txtColor" alignment="CENTER" maxWidth="200.0" minWidth="200.0" prefHeight="39.0" prefWidth="200.0" stylesheets="@../generalCss/textField.css">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Secciones" textAlignment="CENTER" wrappingWidth="200.0">
+               <font>
+                  <Font name="Arial Bold" size="23.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Text>
+            <ScrollPane fx:id="scrollSecciones" prefHeight="272.0" prefWidth="205.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="28.0" prefWidth="268.0" />
+              </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+      <VBox layoutX="14.0" layoutY="60.0" prefHeight="507.0" prefWidth="278.0">
+            <TableView fx:id="tableProductos" prefHeight="515.0" prefWidth="374.0" styleClass="table-row-cell" stylesheets="@../generalCss/table.css">
+               <columns>
+                   
+                  <TableColumn prefWidth="95.0" text="Referencia">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="Referencia" />
+                     </cellValueFactory>
+                   </TableColumn>
+                   
+                   <TableColumn prefWidth="183.0" text="Producto">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="Nombre" />
+                     </cellValueFactory>
+                  </TableColumn>
+               </columns>
+            </TableView>
+      </VBox>
+      <JFXTextField id="textFields" fx:id="idProd" alignment="CENTER" editable="false" layoutX="56.0" layoutY="14.0" maxWidth="200.0" minWidth="155.0" opacity="0.0" prefHeight="39.0" prefWidth="155.0" stylesheets="@../generalCss/textField.css" />
+   </children>
+</AnchorPane>

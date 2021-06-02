@@ -93,6 +93,7 @@ public class ManagerAddPedidoController implements Initializable{
     private int maxQ=-1; //Product stock
     
     public void addQ() {
+        if(productQ.getText().equals("")){Utils.alertGenerator("Error", "", "Seleccione algún pedido", 4); return;}
         if((Integer.parseInt(productQ.getText())+1)>maxQ){Utils.alertGenerator("Error", "", "El pedido no puede tener más cantidad que el stock del disponible", 4);}else{
             productQ.setText(""+(Integer.parseInt(productQ.getText())+1));
         }
@@ -115,6 +116,7 @@ public class ManagerAddPedidoController implements Initializable{
     }
     
     public void substractQ() {
+        if(productQ.getText().equals("")){Utils.alertGenerator("Error", "", "Seleccione algún pedido", 4); return;}
         if(Integer.parseInt(productQ.getText())==0){
             Utils.alertGenerator("Error", "", "El pedido ha de tener al menos una unidad del producto", 4);
             productQ.setText(""+(Integer.parseInt(productQ.getText())));
@@ -137,7 +139,7 @@ public class ManagerAddPedidoController implements Initializable{
                     tp.set(i,p);
                 }
             }
-            
+    
             ObservableList<LineaPedido> tbLp = tablePedido.getItems();
             if(tbLp.isEmpty()){
                 tablePedido.getItems().add(lp);
@@ -152,17 +154,12 @@ public class ManagerAddPedidoController implements Initializable{
             }if(!exists){tablePedido.getItems().add(lp);}
             }
             
-            
-            
             idProd.setText("");
             txtProducto.setText("");
             productQ.setText("");
         }else{Utils.alertGenerator("Error", "", "Seleccione algún producto para añadir al pedido", 4);}
     }
-
-    public void removeProduct(){
-        
-    }
+    public void removeProduct(){}
         private void refreshTable() {
         BasicViewDAO viewDao = new BasicViewDAO();
         ObservableList<Producto> productos = FXCollections.observableArrayList();
@@ -194,5 +191,27 @@ public class ManagerAddPedidoController implements Initializable{
         refreshTable();
         plus.setDisable(true);
         minus.setDisable(true);
+        
+        //Eliminar Linea Pedido
+        tablePedido.setOnMouseClicked(event -> {
+                if(event.getClickCount()==2) {
+                    if(tablePedido.getSelectionModel().getSelectedItem()!=null){
+                        LineaPedido lp = tablePedido.getSelectionModel().getSelectedItem();
+                        ObservableList<LineaPedido> tbLp = tablePedido.getItems();
+                        ObservableList<Producto> tbPr = tableProductos.getItems();
+                        
+                        for(int i=0;i<tbPr.size();i++){
+                            if(tbPr.get(i).getId()==lp.getId()){
+                                Producto p = tbPr.get(i);
+                                p.setStock(p.getStock()+lp.getCantidad());
+                                tbPr.set(i, p);
+                                maxQ=p.getStock()+lp.getCantidad();
+                            }
+                        }
+                        tbLp.remove(lp);
+                    }else{return;}                  
+                }
+        });
     }
+
 }

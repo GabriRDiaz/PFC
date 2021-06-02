@@ -81,9 +81,6 @@ public class ManagerAddPedidoController implements Initializable{
     private JFXButton butAdd;
 
     @FXML
-    private JFXButton butRemove;
-
-    @FXML
     private JFXTextField idProd;
     
     @FXML
@@ -93,7 +90,7 @@ public class ManagerAddPedidoController implements Initializable{
     private int maxQ=-1; //Product stock
     
     public void addQ() {
-        if(productQ.getText().equals("")){Utils.alertGenerator("Error", "", "Seleccione algún pedido", 4); return;}
+        if(productQ.getText().equals("")){Utils.alertGenerator("Error", "", "Seleccione algún producto", 4); return;}
         if((Integer.parseInt(productQ.getText())+1)>maxQ){Utils.alertGenerator("Error", "", "El pedido no puede tener más cantidad que el stock del disponible", 4);}else{
             productQ.setText(""+(Integer.parseInt(productQ.getText())+1));
         }
@@ -116,7 +113,7 @@ public class ManagerAddPedidoController implements Initializable{
     }
     
     public void substractQ() {
-        if(productQ.getText().equals("")){Utils.alertGenerator("Error", "", "Seleccione algún pedido", 4); return;}
+        if(productQ.getText().equals("")){Utils.alertGenerator("Error", "", "Seleccione algún producto", 4); return;}
         if(Integer.parseInt(productQ.getText())==0){
             Utils.alertGenerator("Error", "", "El pedido ha de tener al menos una unidad del producto", 4);
             productQ.setText(""+(Integer.parseInt(productQ.getText())));
@@ -127,7 +124,7 @@ public class ManagerAddPedidoController implements Initializable{
     }
     
     public void addProduct(){
-        if(!idProd.equals("")){
+        if(!idProd.getText().equals("")){
             
             LineaPedido lp = new LineaPedido(Integer.parseInt(idProd.getText()),txtProducto.getText(),Integer.parseInt(productQ.getText()));
             
@@ -159,7 +156,7 @@ public class ManagerAddPedidoController implements Initializable{
             productQ.setText("");
         }else{Utils.alertGenerator("Error", "", "Seleccione algún producto para añadir al pedido", 4);}
     }
-    public void removeProduct(){}
+
         private void refreshTable() {
         BasicViewDAO viewDao = new BasicViewDAO();
         ObservableList<Producto> productos = FXCollections.observableArrayList();
@@ -178,8 +175,7 @@ public class ManagerAddPedidoController implements Initializable{
                         txtProducto.setText(producto.getNombre());
                         productQ.setText(""+producto.getStock());
                         maxQ = producto.getStock();
-                        plus.setDisable(false);
-                        minus.setDisable(false);
+                        
                     }
                 }else{return;}                  
             }
@@ -189,9 +185,8 @@ public class ManagerAddPedidoController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         refreshTable();
-        plus.setDisable(true);
-        minus.setDisable(true);
-        
+        plus.setDisable(false);
+        minus.setDisable(false);
         //Eliminar Linea Pedido
         tablePedido.setOnMouseClicked(event -> {
                 if(event.getClickCount()==2) {
@@ -212,6 +207,10 @@ public class ManagerAddPedidoController implements Initializable{
                     }else{return;}                  
                 }
         });
+        
+        getCombos();
     }
-
+    private void getCombos(){
+        
+    }
 }

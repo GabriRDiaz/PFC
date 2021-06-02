@@ -143,12 +143,7 @@
             <Font name="Arial Bold" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="butRemove" layoutX="336.0" layoutY="513.0" minHeight="20.0" onAction="#removeProduct" prefHeight="51.0" prefWidth="139.0" ripplerFill="#668cff" style="-fx-border-color: #4059a9; -fx-border-radius: 8; -fx-border-width: 2;" text="Quitar" textFill="#4059a9">
-         <font>
-            <Font name="Arial Bold" size="18.0" />
-         </font>
-      </JFXButton>
-      <JFXTextField id="textFields" fx:id="idProd" alignment="CENTER" editable="false" layoutX="63.0" layoutY="12.0" prefHeight="39.0" prefWidth="113.0" stylesheets="@../generalCss/textField.css" />
+      <JFXTextField id="textFields" fx:id="idProd" alignment="CENTER" editable="false" layoutX="63.0" layoutY="12.0" prefHeight="39.0" prefWidth="113.0" stylesheets="@../generalCss/textField.css" visible="false" />
    <TableView fx:id="tablePedido" layoutX="523.0" layoutY="256.0" prefHeight="312.0" prefWidth="202.0" styleClass="table-row-cell" stylesheets="@../generalCss/table.css">
                <columns>
             <TableColumn prefWidth="75.0" text="Id" visible="false">

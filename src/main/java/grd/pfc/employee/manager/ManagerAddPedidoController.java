@@ -126,9 +126,9 @@ public class ManagerAddPedidoController implements Initializable{
     
     public void addProduct(){
         if(!idProd.equals("")){
+            
             LineaPedido lp = new LineaPedido(Integer.parseInt(idProd.getText()),txtProducto.getText(),Integer.parseInt(productQ.getText()));
             
-            tablePedido.getItems().add(lp);
             ObservableList<Producto> tp = tableProductos.getItems();
             for(int i=0;i<tp.size();i++){
                 if(tp.get(i).getId()==lp.getId()){
@@ -137,6 +137,23 @@ public class ManagerAddPedidoController implements Initializable{
                     tp.set(i,p);
                 }
             }
+            
+            ObservableList<LineaPedido> tbLp = tablePedido.getItems();
+            if(tbLp.isEmpty()){
+                tablePedido.getItems().add(lp);
+            }else{
+                boolean exists=false;
+            for(int i=0;i<tbLp.size();i++){
+                if(tbLp.get(i).getId()==lp.getId()){
+                    lp.setCantidad(tbLp.get(i).getCantidad()+lp.getCantidad());
+                    tbLp.set(i,lp);
+                    exists=true;
+                }
+            }if(!exists){tablePedido.getItems().add(lp);}
+            }
+            
+            
+            
             idProd.setText("");
             txtProducto.setText("");
             productQ.setText("");

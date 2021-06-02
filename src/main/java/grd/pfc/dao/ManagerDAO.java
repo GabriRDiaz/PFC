@@ -5,7 +5,10 @@
  */
 package grd.pfc.dao;
 
+import grd.pfc.pojo.Cliente;
 import grd.pfc.pojo.Empleado;
+import grd.pfc.pojo.Estado;
+import grd.pfc.pojo.Pais;
 import grd.pfc.pojo.Producto;
 import grd.pfc.pojo.Seccion;
 import grd.pfc.pojo.Sugerencia;
@@ -69,7 +72,62 @@ public class ManagerDAO {
                          "Coste=? " +
                          "WHERE Id=?";
     String delSeccionesProductos = "DELETE FROM [PFC].[dbo].[SeccionesProductos] WHERE IdProducto=?";
+    
+    String getFilteredPaises = "SELECT id,nombre FROM [PFC].[dbo].[Paises] WHERE nombre LIKE ?";
+    String getClientes = "SELECT Id,CONCAT(Nombre,' ',Apellidos) AS 'Nombre' FROM [PFC].[dbo].[Clientes]";
+    String getEstados = "SELECT Id,Estado FROM [PFC].[dbo].[EstadosPedidos]";
     public ManagerDAO(){}
+    
+    public ArrayList<Estado> getEstados(){
+        ArrayList<Estado> estados = new ArrayList<Estado>();
+        try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+            PreparedStatement ps = connectDB.prepareStatement(getEstados);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Estado estado = new Estado(
+                        rs.getInt("id"),
+                        rs.getString("Estado")
+                );
+                estados.add(estado);
+            }
+        }catch (SQLException ex) {ex.printStackTrace();}
+        return estados;
+    }
+    
+    public ArrayList<Pais> getFilteredPaises(String filter){
+        ArrayList<Pais> paises = new ArrayList<Pais>();
+        try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+            PreparedStatement ps = connectDB.prepareStatement(getFilteredPaises);
+            ps.setString(1, filter+"%");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Pais pais = new Pais(
+                        rs.getInt("id"),
+                        rs.getString("nombre")
+                );
+                paises.add(pais);
+            }
+        }catch (SQLException ex) {ex.printStackTrace();}
+        return paises;
+    }
+        
+    
+    public ArrayList<Cliente> getClientes(){
+        ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+        try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+            PreparedStatement ps = connectDB.prepareStatement(getClientes);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Cliente cliente = new Cliente(
+                        rs.getInt("id"),
+                        rs.getString("nombre")
+                );
+                clientes.add(cliente);
+            }
+        }catch (SQLException ex) {ex.printStackTrace();}
+        return clientes;
+    }
+    
     public int updProducto(Producto producto){
         try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
             PreparedStatement ps = connectDB.prepareStatement(updProducto);

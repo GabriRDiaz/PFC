@@ -51,23 +51,13 @@
          </font>
       </Text>
       <Separator layoutY="51.0" prefHeight="9.0" prefWidth="966.0" />
-      <Text fill="#4059a9" layoutX="791.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="País*" textAlignment="CENTER" wrappingWidth="98.05078125" AnchorPane.topAnchor="249.0">
+      <Text fill="#4059a9" layoutX="800.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="País*" textAlignment="CENTER" wrappingWidth="98.05078125" AnchorPane.topAnchor="249.2734375">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Text>
-      <JFXTextField id="textFields" fx:id="txtPais" alignment="CENTER" layoutX="786.0" layoutY="273.0" maxWidth="124.0" minWidth="50.0" prefHeight="39.0" prefWidth="124.0" stylesheets="@../generalCss/textField.css" />
-      <ImageView fx:id="paisFilter" fitHeight="40.0" fitWidth="35.0" layoutX="914.0" layoutY="275.0" onMouseClicked="#paisFilter" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../multimedia/filter.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="paisClean" fitHeight="40.0" fitWidth="35.0" layoutX="744.0" layoutY="278.0" onMouseClicked="#paisClean" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../multimedia/clean.png" />
-         </image>
-      </ImageView>
-      <JFXComboBox id="textFields" fx:id="comboPais" layoutX="765.0" layoutY="326.0" prefHeight="39.0" prefWidth="166.0" stylesheets="@../generalCss/textField.css" />
+      <JFXTextField id="textFields" fx:id="txtPais" alignment="CENTER" layoutX="787.0" layoutY="273.0" maxWidth="124.0" minWidth="50.0" prefHeight="39.0" prefWidth="124.0" stylesheets="@../generalCss/textField.css" />
+      <JFXComboBox id="textFields" fx:id="comboPais" layoutX="753.0" layoutY="327.0" prefHeight="39.0" prefWidth="192.0" stylesheets="@../generalCss/textField.css" />
       <JFXButton fx:id="butSave" layoutX="779.0" layoutY="404.0" minHeight="20.0" onAction="#save" prefHeight="51.0" prefWidth="139.0" ripplerFill="#668cff" style="-fx-border-color: #4059a9; -fx-border-radius: 8; -fx-border-width: 2;" text="Guardar" textFill="#4059a9">
          <font>
             <Font name="Arial Bold" size="18.0" />

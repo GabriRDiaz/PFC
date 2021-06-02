@@ -3,8 +3,13 @@ package grd.pfc.employee.manager;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import grd.pfc.dao.AdministracionDAO;
 import grd.pfc.dao.BasicViewDAO;
+import grd.pfc.dao.ManagerDAO;
+import grd.pfc.pojo.Cliente;
+import grd.pfc.pojo.Estado;
 import grd.pfc.pojo.LineaPedido;
+import grd.pfc.pojo.Pais;
 import grd.pfc.pojo.Producto;
 import grd.pfc.utils.Utils;
 import java.net.URL;
@@ -19,6 +24,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 
 public class ManagerAddPedidoController implements Initializable{
@@ -28,12 +34,6 @@ public class ManagerAddPedidoController implements Initializable{
 
     @FXML
     private JFXTextField txtPais;
-
-    @FXML
-    private ImageView paisFilter;
-
-    @FXML
-    private ImageView paisClean;
 
     @FXML
     private JFXComboBox<String> comboPais;
@@ -88,7 +88,7 @@ public class ManagerAddPedidoController implements Initializable{
     
     private ArrayList<Text> productosPedido;
     private int maxQ=-1; //Product stock
-    
+    private ManagerDAO dao;
     public void addQ() {
         if(productQ.getText().equals("")){Utils.alertGenerator("Error", "", "Seleccione algún producto", 4); return;}
         if((Integer.parseInt(productQ.getText())+1)>maxQ){Utils.alertGenerator("Error", "", "El pedido no puede tener más cantidad que el stock del disponible", 4);}else{
@@ -100,12 +100,15 @@ public class ManagerAddPedidoController implements Initializable{
 
     }
 
-    public void paisClean() {
-
-    }
-
     public void paisFilter() {
-
+        System.out.println(txtPais.getText());
+        ArrayList<Pais> paises = dao.getFilteredPaises(txtPais.getText().toUpperCase());
+        System.out.println(paises);
+        if(paises.isEmpty()){return;}
+        comboPais.getItems().clear();
+        paises.forEach(p->{
+            comboPais.getItems().add(p.getPais());
+        });
     }
     
     public void save() {
@@ -184,6 +187,7 @@ public class ManagerAddPedidoController implements Initializable{
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        dao = new ManagerDAO();
         refreshTable();
         plus.setDisable(false);
         minus.setDisable(false);
@@ -208,9 +212,24 @@ public class ManagerAddPedidoController implements Initializable{
                 }
         });
         
+        txtPais.addEventHandler(KeyEvent.KEY_TYPED, event -> {
+                paisFilter();
+        });
+        
         getCombos();
     }
     private void getCombos(){
-        
+        ArrayList<Cliente> clientes = dao.getClientes();
+        clientes.forEach(c->{
+            comboCliente.getItems().add(c.getNombre());
+        });
+        ArrayList<Pais> paises = dao.getFilteredPaises("");
+        paises.forEach(p->{
+            comboPais.getItems().add(p.getPais());
+        });
+        ArrayList<Estado> estados = dao.getEstados();
+         estados.forEach(e->{
+            comboEstado.getItems().add(e.getEstado());
+        });
     }
 }

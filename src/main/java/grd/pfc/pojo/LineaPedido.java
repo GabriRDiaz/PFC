@@ -9,14 +9,14 @@ package grd.pfc.pojo;
  *
  * @author Gabriel
  */
-public class PedidoProducto {
-        private int id;
+public class LineaPedido {
+    private int id;
     private String nombre;
     private int cantidad;
-    
-    public PedidoProducto(Producto producto, int cantidad){
-        this.id = producto.getId();
-        this.nombre = producto.getNombre();
+
+    public LineaPedido(int id, String nombre, int cantidad) {
+        this.id = id;
+        this.nombre = nombre;
         this.cantidad = cantidad;
     }
 
@@ -43,5 +43,7 @@ public class PedidoProducto {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
+    
+   
     
 }

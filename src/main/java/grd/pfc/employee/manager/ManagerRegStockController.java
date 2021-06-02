@@ -108,7 +108,10 @@ public class ManagerRegStockController implements Initializable{
             System.out.println(producto.getId());
             regDao.updStock(Integer.parseInt(productStock.textProperty().getValue()), producto.getId());
             Utils.alertGenerator("Información", "", "Stock actualizado correctamente", 2);
-            refreshTable(filterQuery);
+            refreshTable("");
+            comboIVA.getSelectionModel().clearSelection();
+            comboMarca.getSelectionModel().clearSelection();
+            comboSeccion.getSelectionModel().clearSelection();
         }else{Utils.alertGenerator("ERROR", "", "¡Valor de stock incorrecto!", 4);}
     }
 

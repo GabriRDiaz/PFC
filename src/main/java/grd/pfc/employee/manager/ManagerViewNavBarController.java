@@ -1,7 +1,9 @@
 package grd.pfc.employee.manager;
 
 import com.jfoenix.controls.JFXButton;
+import grd.pfc.dao.ManagerDAO;
 import grd.pfc.employee.basic.BasicViewMenuController;
+import grd.pfc.singleton.InfoBundle;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -68,9 +70,7 @@ public class ManagerViewNavBarController implements Initializable{
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        
-    }
+    public void initialize(URL url, ResourceBundle rb) {}
 
 
 }

@@ -113,8 +113,9 @@ public class ManagerEditProductController implements Initializable{
                 Double.parseDouble(txtCoste.textProperty().getValue()),
                 secciones
             );
-            dao.updProducto(producto);
+             dao.updProducto(producto);
              Utils.alertGenerator("Éxito", "", "Producto actualizado con éxito", 2);
+             clean();
             refreshTable();
         }
     }

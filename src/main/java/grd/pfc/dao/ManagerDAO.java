@@ -47,6 +47,7 @@ public class ManagerDAO {
                                 "INNER JOIN [PFC].[dbo].[Empleados] e ON es.IdEmpleado=e.Id \n" +
                                 "WHERE e.Id=?";
     String getRequests = "SELECT Id,Sugerencia,Fecha,Nombre,Revisada FROM [PFC].[dbo].[SugerenciasEmpleado] WHERE Id=?";
+
     String updRevisada = "UPDATE [PFC].[dbo].[Sugerencias] SET Revisada=? WHERE Id=?";
     //Get productos for EditProduct
     String getProductos = "SELECT DISTINCT p.Id,p.Nombre,p.Descripcion,PrecioSinIVA,Descuento,m.Marca,Referencia,Modelo,Color,Coste,i.IVA,Stock FROM [PFC].[dbo].[Productos] p " +

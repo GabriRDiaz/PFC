@@ -35,7 +35,7 @@ public class RequestStockController implements Initializable {
     }    
     
     public void clear() {
-        if(Utils.alertGenerator("Aviso", "Se vaciará el campo de texto", "¿Desea continuar?", 3)){txtRequest.clear();}
+        if(Utils.alertGenerator("Aviso", "Se vaciará el campo de texto", "¿Desea continuar?", 3)){txtRequest.clear(); comboSeccion.setValue("");}
     }
     
     public void send() {
@@ -43,13 +43,15 @@ public class RequestStockController implements Initializable {
             BasicViewDAO viewDao= new BasicViewDAO();
             int idSeccion = viewDao.getIdSeccion(comboSeccion.getValue());
             System.out.println(idSeccion);
-            if(idSeccion != -1){
+            if(idSeccion != -1 && !txtRequest.getText().trim().equals("")){
                 Sugerencia sugerencia = new Sugerencia(txtRequest.getText(),idSeccion,InfoBundle.getInfoBundle().getIdEmpleado());
                 System.out.println(sugerencia.getSugerencia()+"\n"+sugerencia.getIdSeccion()+"\n"+sugerencia.getIdEmpleado());
                 int result = viewDao.insertSugerencia(sugerencia);
                 System.out.println(result);
                 Utils.alertGenerator("Éxito", "", "¡Sugerencia enviada correctamente!", 2);
-            }else{Utils.alertGenerator("Error", "", "Seleccione una sección para enviar la sugerencia", 4);}
+                txtRequest.clear();
+                comboSeccion.setValue("");
+            }else{Utils.alertGenerator("Error", "", "Seleccione una sección y escriba una sugerencia", 4);}
             
         }
     }

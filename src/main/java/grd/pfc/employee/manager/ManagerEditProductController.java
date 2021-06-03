@@ -92,8 +92,6 @@ public class ManagerEditProductController implements Initializable{
     public void save() {
         if(checkFields()){
             ManagerDAO dao = new ManagerDAO();
-            int idIva = dao.getIvaId(comboIVA.getValue());
-            int idMarca = dao.getMarcaId(comboMarca.getValue());
             ArrayList<Integer> secciones = new ArrayList<Integer>();
             checkList.forEach(c->{
                 if(c.isSelected()){
@@ -106,11 +104,12 @@ public class ManagerEditProductController implements Initializable{
                 txtDescripcion.textProperty().getValue(),
                 Double.parseDouble(txtPrecio.textProperty().getValue()),
                 Double.parseDouble(txtDescuento.textProperty().getValue()),
-                idMarca,
+                comboMarca.getValue(),
                 txtReferencia.textProperty().getValue(),
                 txtModelo.textProperty().getValue(),
                 txtColor.textProperty().getValue(),
-                idIva,
+                -1,
+                comboIVA.getValue(),
                 Double.parseDouble(txtCoste.textProperty().getValue()),
                 secciones
             );

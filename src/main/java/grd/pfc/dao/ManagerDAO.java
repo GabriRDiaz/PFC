@@ -49,7 +49,7 @@ public class ManagerDAO {
     String getRequests = "SELECT Id,Sugerencia,Fecha,Nombre,Revisada FROM [PFC].[dbo].[SugerenciasEmpleado] WHERE Id=?";
     String updRevisada = "UPDATE [PFC].[dbo].[Sugerencias] SET Revisada=? WHERE Id=?";
     //Get productos for EditProduct
-    String getProductos = "SELECT p.Id,p.Nombre,p.Descripcion,PrecioSinIVA,Descuento,m.Marca,Referencia,Modelo,Color,Coste,i.IVA FROM [PFC].[dbo].[Productos] p " +
+    String getProductos = "SELECT DISTINCT p.Id,p.Nombre,p.Descripcion,PrecioSinIVA,Descuento,m.Marca,Referencia,Modelo,Color,Coste,i.IVA FROM [PFC].[dbo].[Productos] p " +
                           "JOIN [PFC].[dbo].[Marcas] m ON p.IdMarca=m.Id " +
                           "JOIN [PFC].[dbo].[IVAS] i ON p.IdTipoIVA=i.Id " +
                           "JOIN [PFC].[dbo].[SeccionesProductos] sp ON p.Id=sp.IdProducto " +
@@ -227,39 +227,42 @@ public class ManagerDAO {
         return clientes;
     }
     
-    public int updProducto(Producto producto){
-        try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
-            PreparedStatement ps = connectDB.prepareStatement(updProducto);
-            ps.setString(1,producto.getNombre());
-            ps.setString(2,producto.getDescripcion());
-            ps.setDouble(3,producto.getPrecioSinIVA());
-            ps.setDouble(4,producto.getDescuento());
-            ps.setInt(5,producto.getIdIVA());
-            ps.setInt(6,producto.getIdMarca());
-            ps.setString(7,producto.getReferencia());
-            ps.setString(8,producto.getModelo());
-            ps.setString(9,producto.getColor());
-            ps.setDouble(10,producto.getCoste());
-            ps.setInt(11,producto.getId());
-            ps.executeUpdate();
-            
-            ps = connectDB.prepareStatement(delSeccionesProductos);
-            ps.setInt(1,producto.getId());
-            ps.executeUpdate();
-            
-            ps = connectDB.prepareStatement(insertSeccionesProductos);
-            
-            for(int i=0;i<producto.getSecciones().size();i++){
-                System.out.println("UPD: "+getIdProductByRef(producto.getReferencia()));
-                System.out.println("UPD: "+producto.getSecciones().get(i));
-                ps.setInt(1,getIdProductByRef(producto.getReferencia()));
-                ps.setInt(2,producto.getSecciones().get(i));
-                ps.executeUpdate();
-            }
-            
-        }catch (SQLException ex) {ex.printStackTrace();}
-        
-        return 1;
+    public int updProducto(Producto producto){ //El procedure EditProducto ya elimina las secciones asociadas al producto
+        Connection conn=getConnection();
+            if(conn!=null){
+                CallableStatement cstmt;
+                try {
+                    cstmt = conn.prepareCall("{call [PFC].[dbo].[pEditProducto](?,?,?,?,?,?,?,?,?,?,?,?)}");
+                    cstmt.setInt(1,producto.getId());
+                    cstmt.setString(2,producto.getNombre());
+                    cstmt.setString(3,producto.getDescripcion());
+                    cstmt.setDouble(4,producto.getPrecioSinIVA());
+                    cstmt.setDouble(5,producto.getDescuento());
+                    cstmt.setString(6,producto.getIvaStr());
+                    cstmt.setString(7,producto.getMarca());
+                    cstmt.setString(8,producto.getReferencia());
+                    cstmt.setString(9,producto.getModelo());
+                    cstmt.setString(10,producto.getColor());
+                    cstmt.setDouble(11,producto.getCoste());
+                    cstmt.registerOutParameter(12, Types.INTEGER);
+                    cstmt.execute();
+                
+                for(int i=0;i<producto.getSecciones().size();i++){
+                    try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+                            PreparedStatement ps = connectDB.prepareStatement(insertSeccionesProductos);
+                            ps.setInt(1,producto.getId());
+                            ps.setInt(2,producto.getSecciones().get(i));
+                            ps.executeUpdate();
+                    }catch (SQLException ex) {ex.printStackTrace();}
+                }
+
+                
+                return cstmt.getInt(12);
+                } catch (SQLException ex) {
+                    Logger.getLogger(AdministracionDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }
+            return -1;
     }
     
     //Get secciones producto for EditProduct

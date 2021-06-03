@@ -6,6 +6,7 @@
 package grd.pfc.dao;
 
 import grd.pfc.pojo.Empleado;
+import grd.pfc.pojo.Producto;
 import grd.pfc.pojo.Seccion;
 import grd.pfc.utils.Utils;
 import java.sql.CallableStatement;
@@ -55,6 +56,33 @@ public class AdministracionDAO {
     String getEmpSecciones="SELECT sec.Nombre from [PFC].[dbo].[Secciones] sec " +
                            "JOIN [PFC].[dbo].[EmpleadosSecciones] es ON sec.Id=es.IdSeccion " +
                            "WHERE es.IdEmpleado=?";
+    String updSeccionesEmp = "INSERT INTO [PFC].[dbo].[EmpleadoSecciones](IdSeccion,IdEmpleado) VALUES(?,?)";
+    String delSeccionesEmp = "DELETE FROM [PFC].[dbo].[EmpleadosSecciones] WHERE IdEmpleado=?";
+    
+    public void delSeccionesEmpleados(int idEmpleado){
+         try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+            PreparedStatement ps = connectDB.prepareStatement(delSeccionesEmp);
+            ps.setInt(1, idEmpleado);
+            ps.executeUpdate();
+        }catch (SQLException ex) {ex.printStackTrace();}
+    }
+    public int updSeccionesEmpleados(String seccion,int idEmpleado){
+        Connection conn=getConnetion();
+        if(conn!=null){
+            CallableStatement cstmt;
+            try {
+                cstmt = conn.prepareCall("{call [PFC].[dbo].[pInsertEmpleadosSecciones](?,?,?)}");
+                cstmt.setString(1,seccion);
+                cstmt.setInt(2,idEmpleado);
+            cstmt.registerOutParameter(3, Types.INTEGER);
+            cstmt.execute();
+            return cstmt.getInt(3);
+            } catch (SQLException ex) {
+                Logger.getLogger(AdministracionDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+        return -1;
+    }
     public ArrayList<Empleado> getEmpleadosPerfil(){
         ArrayList<Empleado> empleados = new ArrayList<Empleado>();
         try(Connection connectDB = DriverManager.getConnection(connectionUrl)){

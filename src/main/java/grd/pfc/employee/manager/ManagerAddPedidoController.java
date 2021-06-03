@@ -128,7 +128,11 @@ public class ManagerAddPedidoController implements Initializable{
             );
             ManagerDAO dao = new ManagerDAO();
             dao.addPedido(pedido);
+            tablePedido.getItems().forEach(l->{
+                dao.addLineaPedido(l.getId(), l.getCantidad());
+            });
             Utils.alertGenerator("Éxito", "", "Producto añadido con éxito", 2);
+            clearFields();
         }
        
     }
@@ -261,5 +265,23 @@ public class ManagerAddPedidoController implements Initializable{
             return false;
        }
         return true;
+    }
+    private void clearFields(){
+        comboCliente.setValue("");
+        comboEstado.setValue("");
+        comboPais.setValue("");
+        idProd.setText("");
+        txtTel.setText("");
+        txtProducto.setText("");
+        txtDestinatario.setText("");
+        txtPais.setText("");
+        txtDireccion.setText("");
+        maxQ=-1;
+        plus.setDisable(false);
+        minus.setDisable(false);
+        refreshTable();
+        tablePedido.getItems().clear();
+        dateSalida.setValue(null);
+        paisFilter();
     }
 }

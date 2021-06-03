@@ -54,7 +54,12 @@ public class SetSeccionesController implements Initializable{
         if(!empleadoId.getText().equals("")){
             if(Utils.alertGenerator("Aviso", "Empleado: "+txtNombre.getText()+" "+txtApellidos.getText(), "¿Seguro que desea guardar los cambios?", 1)){
                 AdministracionDAO adminDao = new AdministracionDAO();
-                System.out.println("UPDATE");
+                adminDao.delSeccionesEmpleados(Integer.parseInt(empleadoId.getText()));
+                checkList.forEach(c->{
+                    if(c.isSelected()){
+                        adminDao.updSeccionesEmpleados(c.getId(),Integer.parseInt(empleadoId.getText()));
+                    }
+                });
                 refreshTable();
                 Utils.alertGenerator("OK", "", "Las secciones del empleado se han modificado correctamente", 0);
                 clear();

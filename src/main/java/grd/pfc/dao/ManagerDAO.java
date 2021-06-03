@@ -90,7 +90,31 @@ public class ManagerDAO {
                             "@pTelefonoContacto=?," +
                             "@pPais=?," +
                             "@pResult = @pResult OUTPUT";
+    
+    String pInsertLineasPedido = "DECLARE @pResult SMALLINT " +
+                                 "EXEC pAddLineaPedido " +
+                                 "@pIdProducto=?," +
+                                 "@pCantidad=?," +
+                                 "@pResult = @pResult OUTPUT";
     public ManagerDAO(){}
+    
+    public int addLineaPedido(int idProducto,int cantidad){
+        Connection conn=getConnetion();
+        if(conn!=null){
+            CallableStatement cstmt;
+            try {
+                cstmt = conn.prepareCall("{call [PFC].[dbo].[pAddLineaPedido](?,?,?)}");
+                cstmt.setInt(1,idProducto);
+                cstmt.setInt(2,cantidad);
+            cstmt.registerOutParameter(3, Types.INTEGER);
+            cstmt.execute();
+            return cstmt.getInt(3);
+            } catch (SQLException ex) {
+                Logger.getLogger(AdministracionDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+        return -1;
+    }
     
     public int addPedido(Pedido pedido){
         Connection conn=getConnetion();

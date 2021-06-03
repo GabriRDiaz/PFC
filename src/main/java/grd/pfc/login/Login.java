@@ -34,11 +34,11 @@ public class Login {
         if(userId>0){
             InfoBundle.getInfoBundle().setIdEmpleado(userId);
             Stage stage = new Stage();
-            Parent container = new FXMLLoader().load(getClass().getResource("/grd/pfc/managerview/managerviewMenu.fxml"));
-//            Parent container = new FXMLLoader().load(getClass().getResource("/grd/pfc/menu/admon/administracion.fxml"));
+//            Parent container = new FXMLLoader().load(getClass().getResource("/grd/pfc/managerview/managerviewMenu.fxml"));
+            Parent container = new FXMLLoader().load(getClass().getResource("/grd/pfc/menu/admon/administracion.fxml"));
 //            Parent container = new FXMLLoader().load(getClass().getResource("/grd/pfc/basicview/basicviewMenu.fxml"));
-            Scene scene = new Scene(container, 1170,742);
-//            Scene scene = new Scene(container, 900,550);
+//            Scene scene = new Scene(container, 1170,742);
+            Scene scene = new Scene(container, 900,550);
             stage.setTitle("Vista Gerente");
             stage.setScene(scene);
             stage.show();

@@ -49,7 +49,7 @@ public class ManagerDAO {
     String getRequests = "SELECT Id,Sugerencia,Fecha,Nombre,Revisada FROM [PFC].[dbo].[SugerenciasEmpleado] WHERE Id=?";
     String updRevisada = "UPDATE [PFC].[dbo].[Sugerencias] SET Revisada=? WHERE Id=?";
     //Get productos for EditProduct
-    String getProductos = "SELECT DISTINCT p.Id,p.Nombre,p.Descripcion,PrecioSinIVA,Descuento,m.Marca,Referencia,Modelo,Color,Coste,i.IVA FROM [PFC].[dbo].[Productos] p " +
+    String getProductos = "SELECT DISTINCT p.Id,p.Nombre,p.Descripcion,PrecioSinIVA,Descuento,m.Marca,Referencia,Modelo,Color,Coste,i.IVA,Stock FROM [PFC].[dbo].[Productos] p " +
                           "JOIN [PFC].[dbo].[Marcas] m ON p.IdMarca=m.Id " +
                           "JOIN [PFC].[dbo].[IVAS] i ON p.IdTipoIVA=i.Id " +
                           "JOIN [PFC].[dbo].[SeccionesProductos] sp ON p.Id=sp.IdProducto " +
@@ -298,8 +298,10 @@ public class ManagerDAO {
                         rs.getString("Referencia"),
                         rs.getString("Modelo"),
                         rs.getString("Color"),
+                        rs.getInt("Stock"),
                         rs.getString("IVA"),
-                        rs.getDouble("Coste")
+                        rs.getDouble("Coste"),
+                        null
                 );
                 productos.add(producto);
             }

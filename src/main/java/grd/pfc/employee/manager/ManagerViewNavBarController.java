@@ -63,12 +63,13 @@ public class ManagerViewNavBarController implements Initializable{
     }
 
     public void manageRequests() throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/grd/pfc/managerview/manageOrder.fxml"));      
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/grd/pfc/managerview/manageRequests.fxml"));      
         ManagerViewMenuController.stPane.getChildren().setAll(pane);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
     }
 
 

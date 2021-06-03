@@ -114,6 +114,7 @@ public class ManagerEditProductController implements Initializable{
                 secciones
             );
             dao.updProducto(producto);
+             Utils.alertGenerator("Éxito", "", "Producto actualizado con éxito", 2);
             refreshTable();
         }
     }
@@ -199,6 +200,7 @@ public class ManagerEditProductController implements Initializable{
                     txtDescripcion.setText(producto.getDescripcion());
                     txtCoste.setText(""+producto.getCoste());
                     txtPrecio.setText(""+producto.getPrecioSinIVA());
+                    System.out.println(producto.getIvaStr());
                     comboIVA.getSelectionModel().select(producto.getIvaStr());
                     comboMarca.getSelectionModel().select(producto.getMarca());
                     txtDescuento.setText(""+producto.getDescuento());

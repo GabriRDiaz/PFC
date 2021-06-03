@@ -139,6 +139,7 @@ public class ManagerAddProductController implements Initializable{
                     secciones);
             dao.insertProducto(prod);
             Utils.alertGenerator("OK", "", "El producto '"+txtProducto.getText()+"' se ha guardado correctamente", 2);
+            clean();
         }
     }
 

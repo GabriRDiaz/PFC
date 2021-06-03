@@ -59,6 +59,25 @@ public class AdministracionDAO {
     String updSeccionesEmp = "INSERT INTO [PFC].[dbo].[EmpleadoSecciones](IdSeccion,IdEmpleado) VALUES(?,?)";
     String delSeccionesEmp = "DELETE FROM [PFC].[dbo].[EmpleadosSecciones] WHERE IdEmpleado=?";
     
+    public int editPwd(int idEmpleado, String pwd){
+        Connection conn=getConnetion();
+        if(conn!=null){
+            CallableStatement cstmt;
+            try {
+                cstmt = conn.prepareCall("{call [PFC].[dbo].[pEditPwd](?,?,?)}");
+                cstmt.setInt(1,1);
+                cstmt.setString(2,pwd);
+            cstmt.registerOutParameter(3, Types.INTEGER);
+            cstmt.execute();
+            return cstmt.getInt(3);
+            } catch (SQLException ex) {
+                Logger.getLogger(AdministracionDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+    }
+        return -1;
+    }
+    
     public void delSeccionesEmpleados(int idEmpleado){
          try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
             PreparedStatement ps = connectDB.prepareStatement(delSeccionesEmp);

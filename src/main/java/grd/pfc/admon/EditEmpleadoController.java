@@ -93,6 +93,9 @@ public class EditEmpleadoController implements Initializable {
                     txtPwd.getText()
                 );
             adminDao.editEmpleado(empleado);
+            if(!txtPwd.getText().equals("")){
+                adminDao.editPwd(empleado.getId(),txtPwd.getText());
+            }
             Utils.alertGenerator("OK", "", "El empleado se ha modificado correctamente", 0);
             }else{Utils.alertGenerator("AVISO", "", "El empleado no se ha modificado", 0);}
         }else{

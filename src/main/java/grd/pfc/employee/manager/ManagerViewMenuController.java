@@ -14,9 +14,12 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  *
@@ -63,8 +66,15 @@ public class ManagerViewMenuController implements Initializable{
         transitionRate*=-1;
     }
     
-    public void logout() {
-
+    public void logout() throws IOException {
+        Stage stage = new Stage();
+        Parent container = new FXMLLoader().load(getClass().getResource("/grd/pfc/login/login.fxml"));
+        Scene scene = new Scene(container, 900,550);
+        stage.setTitle("Login");
+        stage.setScene(scene);
+        stage.show();
+        stage = (Stage) butLogout.getScene().getWindow();
+        stage.close();
     }
 
     @Override

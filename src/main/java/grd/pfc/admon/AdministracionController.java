@@ -68,7 +68,7 @@ private HamburgerBasicCloseTransition transition;
         Stage stage = new Stage();
         Parent container = new FXMLLoader().load(getClass().getResource("/grd/pfc/login/login.fxml"));
         Scene scene = new Scene(container, 900,550);
-        stage.setTitle("Admon");
+        stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();
         stage = (Stage) butLogout.getScene().getWindow();

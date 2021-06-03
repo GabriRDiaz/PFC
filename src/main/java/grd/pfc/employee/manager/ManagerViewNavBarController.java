@@ -25,7 +25,7 @@ public class ManagerViewNavBarController implements Initializable{
     private JFXButton addOrder;
 
     @FXML
-    private JFXButton manangeOrder;
+    private JFXButton manageOrder;
 
     @FXML
     private JFXButton genInvoice;
@@ -57,12 +57,13 @@ public class ManagerViewNavBarController implements Initializable{
         ManagerViewMenuController.stPane.getChildren().setAll(pane);
     }
 
-    public void unlockResponsablmanangeOrdere() {
-
+    public void manageOrders() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/grd/pfc/managerview/editOrder.fxml"));      
+        ManagerViewMenuController.stPane.getChildren().setAll(pane);
     }
 
     public void manageRequests() throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/grd/pfc/managerview/manageRequests.fxml"));      
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/grd/pfc/managerview/manageOrder.fxml"));      
         ManagerViewMenuController.stPane.getChildren().setAll(pane);
     }
 

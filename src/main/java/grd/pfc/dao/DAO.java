@@ -18,7 +18,20 @@ public class DAO {
                         "	@pPwd=?,\n" +
                         "	@responseMessage=@responseMessage OUTPUT\n" +
                         "SELECT @responseMessage as 'Msg'";
+    String getProfileId = "SELECT IdPerfil FROM [PFC].[dbo].[Empleados] WHERE Id=?";
     public DAO(){}
+    
+    public int getProfileId(int idUsr){
+        int id=-1;
+        try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+            PreparedStatement ps = connectDB.prepareStatement(getProfileId);
+            ps.setInt(1,idUsr);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            id=rs.getInt("IdPerfil");
+        }catch (SQLException ex) {ex.printStackTrace();}
+        return id;
+    }
     
     public void testDb() throws ClassNotFoundException, SQLException{
         Connection conn=getConnetion();

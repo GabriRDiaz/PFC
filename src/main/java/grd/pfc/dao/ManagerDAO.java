@@ -96,7 +96,72 @@ public class ManagerDAO {
                                  "@pIdProducto=?," +
                                  "@pCantidad=?," +
                                  "@pResult = @pResult OUTPUT";
+    
+    String getPedidos = "SELECT ped.Id,CONCAT(c.Nombre,' ',c.Apellidos) AS Cliente,FechaExp,FechaEnvio,e.Estado,Destinatario,Direccion,TelefonoContacto,p.Nombre AS 'Pais' FROM [PFC].[dbo].[Pedidos] ped " +
+                        "INNER JOIN [PFC].[dbo].[Clientes] c ON ped.IdCliente=c.Id " +
+                        "INNER JOIN [PFC].[dbo].[Paises] p ON ped.IdPais=p.Id " +
+                        "INNER JOIN [PFC].[dbo].[EstadosPedidos] e ON ped.IdEstado=e.Id "+
+                        "WHERE e.Id<>5";
+    
+    String pUpdPedido =  "DECLARE @pResult SMALLINT " +
+                            "EXEC pEditPedido " +
+                            "@pId=?"+
+                            "@pCliente=?," +
+                            "@pFechaEnvio=?," +
+                            "@pEstado=?," +
+                            "@pDestinatario=?," +
+                            "@pDireccion=?," +
+                            "@pTelefonoContacto=?," +
+                            "@pPais=?," +
+                            "@pResult = @pResult OUTPUT";
+    
     public ManagerDAO(){}
+    
+    public int editPedido(Pedido pedido){
+        Connection conn=getConnetion();
+        if(conn!=null){
+            CallableStatement cstmt;
+            try {
+                cstmt = conn.prepareCall("{call [PFC].[dbo].[pEditPedido](?,?,?,?,?,?,?,?,?)}");
+                cstmt.setInt(1,pedido.getId());
+                cstmt.setString(2,pedido.getCliente());
+                cstmt.setDate(3,pedido.getFechaEnvio());
+                cstmt.setString(4,pedido.getEstado());
+                cstmt.setString(5,pedido.getDestinatario());
+                cstmt.setString(6,pedido.getDireccion());
+                cstmt.setString(7,pedido.getTelefono());
+                cstmt.setString(8,pedido.getPais());
+            cstmt.registerOutParameter(9, Types.INTEGER);
+            cstmt.execute();
+            return cstmt.getInt(9);
+            } catch (SQLException ex) {
+                Logger.getLogger(AdministracionDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+        return -1;
+    }
+    
+    public ArrayList<Pedido> getPedidos(){
+        ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+        try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+            PreparedStatement ps = connectDB.prepareStatement(getPedidos);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                pedidos.add(new Pedido(
+                        rs.getInt("Id"),
+                        rs.getString("Cliente"),
+                        rs.getDate("FechaExp"),
+                        rs.getDate("FechaEnvio"),
+                        rs.getString("Estado"),
+                        rs.getString("Destinatario"),
+                        rs.getString("Direccion"),
+                        rs.getString("TelefonoContacto"),
+                        rs.getString("Pais")
+                ));
+            }
+        }catch (SQLException ex) {ex.printStackTrace();}
+        return pedidos;
+    }
     
     public int addLineaPedido(int idProducto,int cantidad){
         Connection conn=getConnetion();

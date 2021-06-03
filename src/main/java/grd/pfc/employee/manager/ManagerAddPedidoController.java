@@ -99,7 +99,22 @@ public class ManagerAddPedidoController implements Initializable{
     }
 
     public void clean() {
-
+        comboCliente.setValue("");
+        comboEstado.setValue("");
+        comboPais.setValue("");
+        idProd.setText("");
+        txtTel.setText("");
+        txtProducto.setText("");
+        txtDestinatario.setText("");
+        txtPais.setText("");
+        txtDireccion.setText("");
+        maxQ=-1;
+        plus.setDisable(false);
+        minus.setDisable(false);
+        refreshTable();
+        tablePedido.getItems().clear();
+        dateSalida.setValue(null);
+        paisFilter();
     }
 
     public void paisFilter() {
@@ -132,7 +147,7 @@ public class ManagerAddPedidoController implements Initializable{
                 dao.addLineaPedido(l.getId(), l.getCantidad());
             });
             Utils.alertGenerator("Éxito", "", "Producto añadido con éxito", 2);
-            clearFields();
+            clean();
         }
        
     }
@@ -266,22 +281,5 @@ public class ManagerAddPedidoController implements Initializable{
        }
         return true;
     }
-    private void clearFields(){
-        comboCliente.setValue("");
-        comboEstado.setValue("");
-        comboPais.setValue("");
-        idProd.setText("");
-        txtTel.setText("");
-        txtProducto.setText("");
-        txtDestinatario.setText("");
-        txtPais.setText("");
-        txtDireccion.setText("");
-        maxQ=-1;
-        plus.setDisable(false);
-        minus.setDisable(false);
-        refreshTable();
-        tablePedido.getItems().clear();
-        dateSalida.setValue(null);
-        paisFilter();
-    }
+
 }

@@ -21,7 +21,7 @@ public class Pedido {
     String direccion;
     String telefono;
     String pais;
-
+    
     public Pedido(int id, String cliente, Date fechaExp, Date fechaEnvio, String estado, String destinatario, String direccion, String telefono, String pais) {
         this.id = id;
         this.cliente = cliente;

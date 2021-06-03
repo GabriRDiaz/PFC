@@ -117,27 +117,28 @@ public class ManagerAddProductController implements Initializable{
     public void save() {
         if(checkFields()){
             ManagerDAO dao =new ManagerDAO();
-            int idMarca=dao.getMarcaId(comboMarca.getSelectionModel().getSelectedItem());
-            int idIva= dao.getIvaId(comboIVA.getSelectionModel().getSelectedItem());
             ArrayList<Integer> secciones = new ArrayList<Integer>();
             checkList.forEach(c->{
                 if(c.isSelected()){
                     secciones.add(dao.getSectionId(c.getId()));
                 }
             });
-            Producto prod = new Producto(txtProducto.textProperty().getValue(),
+            Producto prod = new Producto(
+                    -1,
+                    txtProducto.textProperty().getValue(),
                     txtDescripcion.textProperty().getValue(),
                     Double.parseDouble(txtPrecio.textProperty().getValue()),
-                    idIva,
                     Double.parseDouble(txtDescuento.textProperty().getValue()),
+                    comboMarca.getValue(),
                     txtReferencia.textProperty().getValue(),
                     txtModelo.textProperty().getValue(),
                     txtColor.textProperty().getValue(),
                     Integer.parseInt(txtStock.textProperty().getValue()),
+                    comboIVA.getValue(),
                     Double.parseDouble(txtCoste.textProperty().getValue()),
-                    idMarca,
                     secciones);
             dao.insertProducto(prod);
+            Utils.alertGenerator("OK", "", "El producto '"+txtProducto.getText()+"' se ha guardado correctamente", 2);
         }
     }
 

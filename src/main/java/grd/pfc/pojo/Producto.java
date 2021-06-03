@@ -43,6 +43,23 @@ public class Producto {
         this.ivaStr = ivaStr;
         this.coste = coste;
     }   
+    //Constructor Insert Product
+    public Producto(int id, String nombre, String descripcion, double precioSinIVA, double descuento, String marca, String referencia, String modelo, String color,int stock, String ivaStr, double coste, ArrayList<Integer> secciones) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precioSinIVA = precioSinIVA;
+        this.descuento = descuento;
+        this.marca = marca;
+        this.referencia = referencia;
+        this.modelo = modelo;
+        this.color = color;
+        this.stock= stock;
+        this.ivaStr = ivaStr;
+        this.coste = coste;
+        this.secciones = secciones;
+    }   
+        
     //Constructor updProduct query
     public Producto(int id, String nombre, String descripcion, double precioSinIVA, double descuento, int idMarca, String referencia, String modelo, String color, int idIva, double coste, ArrayList<Integer> secciones) {
         this.id = id;

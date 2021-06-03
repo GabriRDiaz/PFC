@@ -92,7 +92,7 @@ public class ManagerEditProductController implements Initializable{
     public void save() {
         if(checkFields()){
             ManagerDAO dao = new ManagerDAO();
-            int idIva = dao.getIvaIdTipo(comboIVA.getValue());
+            int idIva = dao.getIvaId(comboIVA.getValue());
             int idMarca = dao.getMarcaId(comboMarca.getValue());
             ArrayList<Integer> secciones = new ArrayList<Integer>();
             checkList.forEach(c->{

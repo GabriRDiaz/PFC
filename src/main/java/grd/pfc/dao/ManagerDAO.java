@@ -79,23 +79,7 @@ public class ManagerDAO {
     String getFilteredPaises = "SELECT id,nombre FROM [PFC].[dbo].[Paises] WHERE nombre LIKE ?";
     String getClientes = "SELECT Id,CONCAT(Nombre,' ',Apellidos) AS 'Nombre' FROM [PFC].[dbo].[Clientes]";
     String getEstados = "SELECT Id,Estado FROM [PFC].[dbo].[EstadosPedidos]";
-    
-    String pInsertPedido =  "DECLARE @pResult SMALLINT " +
-                            "EXEC pAddPedido " +
-                            "@pCliente=?," +
-                            "@pFechaEnvio=?," +
-                            "@pEstado=?," +
-                            "@pDestinatario=?," +
-                            "@pDireccion=?," +
-                            "@pTelefonoContacto=?," +
-                            "@pPais=?," +
-                            "@pResult = @pResult OUTPUT";
-    
-    String pInsertLineasPedido = "DECLARE @pResult SMALLINT " +
-                                 "EXEC pAddLineaPedido " +
-                                 "@pIdProducto=?," +
-                                 "@pCantidad=?," +
-                                 "@pResult = @pResult OUTPUT";
+   
     
     String getPedidos = "SELECT ped.Id,CONCAT(c.Nombre,' ',c.Apellidos) AS Cliente,FechaExp,FechaEnvio,e.Estado,Destinatario,Direccion,TelefonoContacto,p.Nombre AS 'Pais' FROM [PFC].[dbo].[Pedidos] ped " +
                         "INNER JOIN [PFC].[dbo].[Clientes] c ON ped.IdCliente=c.Id " +
@@ -103,22 +87,10 @@ public class ManagerDAO {
                         "INNER JOIN [PFC].[dbo].[EstadosPedidos] e ON ped.IdEstado=e.Id "+
                         "WHERE e.Id<>5";
     
-    String pUpdPedido =  "DECLARE @pResult SMALLINT " +
-                            "EXEC pEditPedido " +
-                            "@pId=?"+
-                            "@pCliente=?," +
-                            "@pFechaEnvio=?," +
-                            "@pEstado=?," +
-                            "@pDestinatario=?," +
-                            "@pDireccion=?," +
-                            "@pTelefonoContacto=?," +
-                            "@pPais=?," +
-                            "@pResult = @pResult OUTPUT";
-    
     public ManagerDAO(){}
     
     public int editPedido(Pedido pedido){
-        Connection conn=getConnetion();
+        Connection conn=getConnection();
         if(conn!=null){
             CallableStatement cstmt;
             try {
@@ -164,7 +136,7 @@ public class ManagerDAO {
     }
     
     public int addLineaPedido(int idProducto,int cantidad){
-        Connection conn=getConnetion();
+        Connection conn=getConnection();
         if(conn!=null){
             CallableStatement cstmt;
             try {
@@ -182,7 +154,7 @@ public class ManagerDAO {
     }
     
     public int addPedido(Pedido pedido){
-        Connection conn=getConnetion();
+        Connection conn=getConnection();
         if(conn!=null){
             CallableStatement cstmt;
             try {
@@ -413,7 +385,7 @@ public class ManagerDAO {
     
     public int getIvaId(String iva){
         try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
-            PreparedStatement ps = connectDB.prepareStatement(getIvaId);
+            PreparedStatement ps = connectDB.prepareStatement(getIvaIdTipo);
             ps.setString(1,iva);
             ps.executeQuery();
             ResultSet rs = ps.getResultSet();
@@ -424,7 +396,7 @@ public class ManagerDAO {
     }
     public int getIvaIdTipo(String iva){
         try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
-            PreparedStatement ps = connectDB.prepareStatement(getIvaIdTipo);
+            PreparedStatement ps = connectDB.prepareStatement(getIvaId);
             ps.setString(1,iva);
             ps.executeQuery();
             ResultSet rs = ps.getResultSet();
@@ -461,37 +433,53 @@ public class ManagerDAO {
     return -1;
     }
     public int insertProducto(Producto producto){
-        try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
-            PreparedStatement ps = connectDB.prepareStatement(insertProducto);
-            ps.setString(1,producto.getNombre());
-            ps.setString(2,producto.getDescripcion());
-            ps.setDouble(3,producto.getPrecioSinIVA());
-            ps.setDouble(4,producto.getDescuento());
-            ps.setInt(5,producto.getIdIVA());
-            ps.setInt(6,producto.getIdMarca());
-            ps.setString(7,producto.getReferencia());
-            ps.setString(8,producto.getModelo());
-            ps.setString(9,producto.getColor());
-            ps.setInt(10,producto.getStock());
-            ps.setDouble(11,producto.getCoste());
-            ps.executeUpdate();
-            
-            ps = connectDB.prepareStatement(insertSeccionesProductos);
-            
-            for(int i=0;i<producto.getSecciones().size();i++){
-                System.out.println("UPD: "+getIdProductByRef(producto.getReferencia()));
-                System.out.println("UPD: "+producto.getSecciones().get(i));
-                ps.setInt(1,getIdProductByRef(producto.getReferencia()));
-                ps.setInt(2,producto.getSecciones().get(i));
-                ps.executeUpdate();
-            }
-            
-        }catch (SQLException ex) {ex.printStackTrace();}
-        
-        return 1;
+            Connection conn=getConnection();
+            if(conn!=null){
+                CallableStatement cstmt;
+                try {
+                    cstmt = conn.prepareCall("{call [PFC].[dbo].[pAddProducto](?,?,?,?,?,?,?,?,?,?,?,?)}");
+                    cstmt.setString(1,producto.getNombre());
+                    cstmt.setString(2,producto.getDescripcion());
+                    cstmt.setDouble(3,producto.getPrecioSinIVA());
+                    cstmt.setDouble(4,producto.getDescuento());
+                    cstmt.setString(5,producto.getIvaStr());
+                    cstmt.setString(6,producto.getMarca());
+                    cstmt.setString(7,producto.getReferencia());
+                    cstmt.setString(8,producto.getModelo());
+                    cstmt.setString(9,producto.getColor());
+                    cstmt.setInt(10,producto.getStock());
+                    cstmt.setDouble(11,producto.getCoste());
+                cstmt.registerOutParameter(12, Types.INTEGER);
+                cstmt.execute();
+                
+                int idProd=-1;
+                
+                try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+                    PreparedStatement ps = connectDB.prepareStatement("SELECT MAX(Id) FROM [PFC].[dbo].[Productos]");
+                    ResultSet rs = ps.executeQuery();
+                    rs.next();
+                    idProd=rs.getInt(1);
+                }catch (SQLException ex) {ex.printStackTrace();}
+                
+                for(int i=0;i<producto.getSecciones().size();i++){
+                    try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+                            PreparedStatement ps = connectDB.prepareStatement(insertSeccionesProductos);
+                            ps.setInt(1,idProd);
+                            ps.setInt(2,producto.getSecciones().get(i));
+                            ps.executeUpdate();
+                    }catch (SQLException ex) {ex.printStackTrace();}
+                }
+
+                
+                return cstmt.getInt(12);
+                } catch (SQLException ex) {
+                    Logger.getLogger(AdministracionDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }
+            return -1;
     }
     
-    private Connection getConnetion() {
+    private Connection getConnection() {
         Connection conn=null;
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");

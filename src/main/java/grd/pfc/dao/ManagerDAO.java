@@ -9,15 +9,18 @@ import grd.pfc.pojo.Cliente;
 import grd.pfc.pojo.Empleado;
 import grd.pfc.pojo.Estado;
 import grd.pfc.pojo.Pais;
+import grd.pfc.pojo.Pedido;
 import grd.pfc.pojo.Producto;
 import grd.pfc.pojo.Seccion;
 import grd.pfc.pojo.Sugerencia;
 import grd.pfc.singleton.InfoBundle;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -76,7 +79,42 @@ public class ManagerDAO {
     String getFilteredPaises = "SELECT id,nombre FROM [PFC].[dbo].[Paises] WHERE nombre LIKE ?";
     String getClientes = "SELECT Id,CONCAT(Nombre,' ',Apellidos) AS 'Nombre' FROM [PFC].[dbo].[Clientes]";
     String getEstados = "SELECT Id,Estado FROM [PFC].[dbo].[EstadosPedidos]";
+    
+    String pInsertPedido =  "DECLARE @pResult SMALLINT " +
+                            "EXEC pAddPedido " +
+                            "@pCliente=?," +
+                            "@pFechaEnvio=?," +
+                            "@pEstado=?," +
+                            "@pDestinatario=?," +
+                            "@pDireccion=?," +
+                            "@pTelefonoContacto=?," +
+                            "@pPais=?," +
+                            "@pResult = @pResult OUTPUT";
     public ManagerDAO(){}
+    
+    public int addPedido(Pedido pedido){
+        Connection conn=getConnetion();
+        if(conn!=null){
+            CallableStatement cstmt;
+            try {
+                cstmt = conn.prepareCall("{call [PFC].[dbo].[pAddPedido](?,?,?,?,?,?,?,?)}");
+                cstmt.setString(1,pedido.getCliente());
+                cstmt.setDate(2,pedido.getFechaEnvio());
+                cstmt.setString(3,pedido.getEstado());
+                cstmt.setString(4,pedido.getDestinatario());
+                cstmt.setString(5,pedido.getDireccion());
+                cstmt.setString(6,pedido.getTelefono());
+                cstmt.setString(7,pedido.getPais());
+            cstmt.registerOutParameter(8, Types.INTEGER);
+            cstmt.execute();
+            return cstmt.getInt(8);
+            } catch (SQLException ex) {
+                Logger.getLogger(AdministracionDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+        return -1;
+    }
+    
     
     public ArrayList<Estado> getEstados(){
         ArrayList<Estado> estados = new ArrayList<Estado>();

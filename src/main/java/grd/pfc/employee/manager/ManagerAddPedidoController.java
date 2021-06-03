@@ -10,9 +10,11 @@ import grd.pfc.pojo.Cliente;
 import grd.pfc.pojo.Estado;
 import grd.pfc.pojo.LineaPedido;
 import grd.pfc.pojo.Pais;
+import grd.pfc.pojo.Pedido;
 import grd.pfc.pojo.Producto;
 import grd.pfc.utils.Utils;
 import java.net.URL;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -112,7 +114,23 @@ public class ManagerAddPedidoController implements Initializable{
     }
     
     public void save() {
-
+        if(checkFields()){
+            Pedido pedido = new Pedido(
+                -1,
+                comboCliente.getValue(),
+                null,
+                Utils.pickerToSql(dateSalida),
+                comboEstado.getValue(),
+                txtDestinatario.getText(),
+                txtDireccion.getText(),
+                txtTel.getText(),
+                comboPais.getValue()
+            );
+            ManagerDAO dao = new ManagerDAO();
+            dao.addPedido(pedido);
+            Utils.alertGenerator("Éxito", "", "Producto añadido con éxito", 2);
+        }
+       
     }
     
     public void substractQ() {
@@ -231,5 +249,17 @@ public class ManagerAddPedidoController implements Initializable{
          estados.forEach(e->{
             comboEstado.getItems().add(e.getEstado());
         });
+    }
+    
+    private boolean checkFields(){
+       if(txtTel.textProperty().getValue().equals("") || txtDestinatario.textProperty().getValue().equals("") ||txtDireccion.textProperty().getValue().equals("") || dateSalida.getValue()==null || comboCliente.getValue()==null || comboEstado.getValue()==null || comboPais.getValue()==null){
+           Utils.alertGenerator("ERROR", "", "Complete todos los campos obligatorios (*)", 4);
+            return false;
+        }
+       if(tablePedido.getItems().isEmpty()){
+            Utils.alertGenerator("ERROR", "","Inserte al menos un producto en el pedido",4);
+            return false;
+       }
+        return true;
     }
 }

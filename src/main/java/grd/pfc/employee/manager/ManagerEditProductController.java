@@ -11,6 +11,7 @@ import grd.pfc.pojo.IVA;
 import grd.pfc.pojo.Marca;
 import grd.pfc.pojo.Producto;
 import grd.pfc.pojo.Seccion;
+import grd.pfc.singleton.InfoBundle;
 import grd.pfc.utils.Utils;
 import java.net.URL;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableView;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 public class ManagerEditProductController implements Initializable{
@@ -67,11 +69,29 @@ public class ManagerEditProductController implements Initializable{
 
     @FXML
     private TableView<Producto> tableProductos;
+    
+    @FXML
+    private ImageView delProducto;
 
     @FXML
     private JFXTextField idProd;
     private ArrayList<JFXCheckBox> checkList;
     private Producto producto;
+    
+    public void delProducto(){
+        if(idProd.textProperty().getValue().equals("")){
+            Utils.alertGenerator("ERROR", "", "Seleccione un producto para eliminarlo", 4);
+            return;
+        }
+        if(Utils.alertGenerator("ATENCIÓN", "", "Está a punto de eliminar un producto. Esta acción es irreversible y su referencia quedará en uso. ¿Desea continuar?", 3)){
+           ManagerDAO dao = new ManagerDAO();
+           dao.delProducto(Integer.parseInt(idProd.getText()));
+           Utils.alertGenerator("Éxito", "", "Producto eliminado con éxito", 2);
+           clean();
+           refreshTable();
+        }
+    }
+    
     public void clean() {
         idProd.setText("");
         txtReferencia.setText("");
@@ -187,7 +207,7 @@ public class ManagerEditProductController implements Initializable{
     private void refreshTable() {
         ManagerDAO dao = new ManagerDAO();
         ObservableList<Producto> productos = FXCollections.observableArrayList();
-        List<Producto> foundProductos = dao.getProductos();
+        List<Producto> foundProductos = dao.getProductos(InfoBundle.getInfoBundle().getIdEmpleado());
         productos.addAll(foundProductos);
         tableProductos.setItems(productos);
         

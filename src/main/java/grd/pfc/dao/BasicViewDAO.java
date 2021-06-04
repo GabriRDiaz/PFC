@@ -149,7 +149,7 @@ public ArrayList<IVA> getIvas(){
     public ArrayList<Producto> getProductos(String filter){
         ArrayList<Producto> productos = new ArrayList<Producto>();
         try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
-            PreparedStatement ps = connectDB.prepareStatement(getProductos.concat(InfoBundle.getInfoBundle().getIdEmpleado()+filter));
+            PreparedStatement ps = connectDB.prepareStatement(getProductos.concat(InfoBundle.getInfoBundle().getIdEmpleado()+filter+" AND p.Eliminado=0"));
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Producto producto = new Producto(

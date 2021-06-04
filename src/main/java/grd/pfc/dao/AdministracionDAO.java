@@ -42,7 +42,7 @@ public class AdministracionDAO {
                         "@pEmail =?,\n" +
                         "@pPassword=?,\n" +
                         "@pResult=@pResult OUTPUT";
-    String getEmpleados = "SELECT Id,Nombre,Apellidos,FechaContratacion,FechaSalida,Salario,IdTipoContrato,Email,Pwd FROM [PFC].[dbo].[Empleados] WHERE IdTipoContrato<>9";
+    String getEmpleados = "SELECT Id,Nombre,Apellidos,FechaContratacion,FechaSalida,Salario,IdTipoContrato,Email,Pwd FROM [PFC].[dbo].[Empleados] WHERE IdTipoContrato<>9 AND Eliminado=0";
     String editEmpleado = "UPDATE [PFC].[dbo].[Empleados] "
             + "SET Nombre=?,Apellidos=?,FechaContratacion=?,FechaSalida=?,Salario=?,IdTipoContrato=?,Email=? "
             + "WHERE Id=?";
@@ -58,6 +58,15 @@ public class AdministracionDAO {
                            "WHERE es.IdEmpleado=?";
     String updSeccionesEmp = "INSERT INTO [PFC].[dbo].[EmpleadoSecciones](IdSeccion,IdEmpleado) VALUES(?,?)";
     String delSeccionesEmp = "DELETE FROM [PFC].[dbo].[EmpleadosSecciones] WHERE IdEmpleado=?";
+    String delEmpleado = "UPDATE [PFC].[dbo].[Empleados] SET Eliminado=1 WHERE Id=?";
+    
+    public void delEmpleado(int idEmpleado){
+        try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+            PreparedStatement ps = connectDB.prepareStatement(delEmpleado);
+                ps.setInt(1,idEmpleado);
+                ps.executeUpdate();
+            }catch (SQLException ex) {ex.printStackTrace();}
+    }
     
     public int editPwd(int idEmpleado, String pwd){
         Connection conn=getConnetion();

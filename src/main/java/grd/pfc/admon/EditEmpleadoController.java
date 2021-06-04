@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import grd.pfc.dao.AdministracionDAO;
+import grd.pfc.dao.ManagerDAO;
 import grd.pfc.pojo.Empleado;
 import grd.pfc.utils.Utils;
 import java.net.URL;
@@ -106,7 +107,17 @@ public class EditEmpleadoController implements Initializable {
         editOn=false;
     }
     public void delete(){
-        
+        if(editOn){
+        if(Utils.alertGenerator("ATENCIÓN", "", "Está a punto de eliminar un empleado. Esta acción es irreversible. ¿Desea continuar?", 3)){
+           AdministracionDAO dao = new AdministracionDAO();
+           dao.delEmpleado(Integer.parseInt(empleadoId.getText()));
+           Utils.alertGenerator("Éxito", "", "Empleado eliminado con éxito", 2);
+           refreshTable();
+           clean();
+        }
+        }else{
+            Utils.alertGenerator("ERROR", "", "Seleccione un empleado de la tabla para eliminarlo", 4);
+        }
     }
     private void clean() {
         txtNombre.setText("");

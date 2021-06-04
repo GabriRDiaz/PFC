@@ -58,7 +58,7 @@ public class ManagerDAO {
                           "JOIN [PFC].[dbo].[Secciones] s ON sp.IdSeccion=s.Id " +
                           "JOIN [PFC].[dbo].[EmpleadosSecciones] es ON s.Id=es.IdSeccion " +
                           "JOIN [PFC].[dbo].[Empleados] e ON es.IdEmpleado=e.Id " +
-                          "WHERE e.Id=";
+                          "WHERE e.Id=? AND p.Eliminado=0";
     //Get sections for each product in EditProduct
     String getProductSections ="SELECT s.Id,s.Nombre from [PFC].[dbo].[Secciones] s " +
                                "INNER JOIN [PFC].[dbo].[SeccionesProductos] sp ON s.Id=sp.IdSeccion " +
@@ -91,7 +91,16 @@ public class ManagerDAO {
     
     String getLineasPedido = "SELECT Producto,Cantidad,PrecioSinIVA,Subtotal,IVA,Total FROM [PFC].[dbo].[ValorLineasPedidos] WHERE Id=?";
     
+    String delProducto = "UPDATE [PFC].[dbo].[Productos] SET Eliminado=1 WHERE Id=?";
     public ManagerDAO(){}
+    
+    public void delProducto(int idProducto){
+        try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+            PreparedStatement ps = connectDB.prepareStatement(delProducto);
+                ps.setInt(1,idProducto);
+                ps.executeUpdate();
+            }catch (SQLException ex) {ex.printStackTrace();}
+    }
     
     public ArrayList<LineaPedido> desglosarPedido(int idPedido){
     ArrayList<LineaPedido> lineas = new ArrayList<LineaPedido>();
@@ -306,10 +315,11 @@ public class ManagerDAO {
                return secciones;
            }
     //Get productos for EditProduct
-    public ArrayList<Producto> getProductos(){
+    public ArrayList<Producto> getProductos(int idEmpleado){
         ArrayList<Producto> productos = new ArrayList<Producto>();
         try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
-            PreparedStatement ps = connectDB.prepareStatement(getProductos.concat(""+InfoBundle.getInfoBundle().getIdEmpleado()));
+            PreparedStatement ps = connectDB.prepareStatement(getProductos);
+            ps.setInt(1,idEmpleado);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Producto producto = new Producto(

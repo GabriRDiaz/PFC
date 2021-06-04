@@ -11,6 +11,7 @@ import grd.pfc.pojo.Seccion;
 import grd.pfc.singleton.InfoBundle;
 import grd.pfc.utils.Utils;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -18,6 +19,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 
@@ -55,12 +58,43 @@ public class ManagerRegStockController implements Initializable{
 
     @FXML
     private JFXTextField productStock;
-
+    
     @FXML
     private ImageView plus;
+    
+    @FXML
+    private ImageView showDesglose;
+    
     private int stockValue;
     private Producto producto;
     private String filterQuery;
+    
+    public void showDesglose(){
+        if(productStock.textProperty().getValue().equals("") ||productStock.textProperty().getValue()==null){
+            Utils.alertGenerator("ERROR", "", "¡Seleccione un producto!", 4); return;
+        }
+        Alert alert = new Alert(Alert.AlertType.NONE, "Referencia: #"+producto.getReferencia(), ButtonType.OK);
+        alert.setTitle("Información económica");
+        DecimalFormat df=new DecimalFormat("#.##");
+        
+        double valorIVA = producto.getPrecioSinIVA()+producto.getPrecioSinIVA()*Double.parseDouble(producto.getIvaStr())/100;
+
+        double subtotal = valorIVA-producto.getDescuento();
+        double beneficio = producto.getPrecioSinIVA()-producto.getDescuento()-producto.getCoste();
+        double porcBen = beneficio*100/producto.getCoste();
+        alert.setHeaderText(
+        "Producto: "+producto.getNombre()+
+        "\nPrecio sin IVA: "+df.format(producto.getPrecioSinIVA())+"€"+
+        "\nPrecio con IVA: "+df.format(valorIVA)+"€ ("+producto.getIvaStr()+"%)"+
+        "\nDescuento: "+df.format(producto.getDescuento())+"€"+
+        "\nSubtotal: "+df.format(subtotal)+"€\n"+
+        "-------------------------------------------------------------------"+
+        "\nCoste: "+df.format(producto.getCoste())+"€"+
+        "\nBeneficio: "+df.format(beneficio)+"€ ("+df.format(porcBen)+"%)");
+        
+        alert.showAndWait();
+    }
+    
     public void addStock() {
         productStock.textProperty().setValue(""+(++stockValue));
     }

@@ -23,12 +23,12 @@
          </font>
       </Text>
       <Separator layoutY="51.0" prefHeight="9.0" prefWidth="966.0" />
-      <JFXButton fx:id="butSave" layoutX="794.0" layoutY="432.0" minHeight="20.0" onAction="#save" prefHeight="51.0" prefWidth="139.0" ripplerFill="#668cff" style="-fx-border-color: #4059a9; -fx-border-radius: 8; -fx-border-width: 2;" text="Guardar" textFill="#4059a9">
+      <JFXButton fx:id="butSave" layoutX="794.0" layoutY="388.0" minHeight="20.0" onAction="#save" prefHeight="51.0" prefWidth="139.0" ripplerFill="#668cff" style="-fx-border-color: #4059a9; -fx-border-radius: 8; -fx-border-width: 2;" text="Guardar" textFill="#4059a9">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="butClean" layoutX="794.0" layoutY="514.0" minHeight="20.0" onAction="#clean" prefHeight="51.0" prefWidth="139.0" ripplerFill="#668cff" style="-fx-border-color: #4059a9; -fx-border-radius: 8; -fx-border-width: 2;" text="Limpiar" textFill="#4059a9">
+      <JFXButton fx:id="butClean" layoutX="794.0" layoutY="453.0" minHeight="20.0" onAction="#clean" prefHeight="51.0" prefWidth="139.0" ripplerFill="#668cff" style="-fx-border-color: #4059a9; -fx-border-radius: 8; -fx-border-width: 2;" text="Limpiar" textFill="#4059a9">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
@@ -159,6 +159,11 @@
       <ImageView fx:id="plus" disable="true" fitHeight="34.0" fitWidth="34.0" layoutX="919.0" layoutY="339.0" onMouseClicked="#addStock" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../multimedia/plus.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="showDesglose" fitHeight="72.0" fitWidth="68.0" layoutX="831.0" layoutY="512.0" onMouseClicked="#showDesglose" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../multimedia/euro.png" />
          </image>
       </ImageView>
    </children>

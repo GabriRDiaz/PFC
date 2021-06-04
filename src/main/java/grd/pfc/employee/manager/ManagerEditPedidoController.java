@@ -82,6 +82,7 @@ public class ManagerEditPedidoController implements Initializable{
             Alert alert = new Alert(Alert.AlertType.NONE, "Pedido: #"+pedido.getId(), ButtonType.OK);
             alert.setTitle("Líneas del pedido");
             TableView tableView = new TableView();
+            
 //            tableView.getStylesheets().add("../resources/grd/pfc/generalCss/table.css");
             TableColumn<LineaPedido,String> producto = new TableColumn<>("Producto");
             producto.setCellValueFactory(new PropertyValueFactory<>("nombre"));

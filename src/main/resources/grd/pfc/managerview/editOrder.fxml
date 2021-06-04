@@ -108,5 +108,10 @@
             <Font name="Arial Bold" size="18.0" />
          </font>
       </JFXButton>
+      <JFXButton fx:id="butDesglose" layoutX="313.0" layoutY="314.0" minHeight="20.0" onAction="#showDesglose" prefHeight="82.0" prefWidth="174.0" ripplerFill="#668cff" style="-fx-border-color: #4059a9; -fx-border-radius: 8; -fx-border-width: 2;" text="Desglose pedido" textFill="#4059a9">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

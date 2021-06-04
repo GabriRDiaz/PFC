@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXTextField;
 import grd.pfc.dao.ManagerDAO;
 import grd.pfc.pojo.Cliente;
 import grd.pfc.pojo.Estado;
+import grd.pfc.pojo.LineaPedido;
 import grd.pfc.pojo.Pais;
 import grd.pfc.pojo.Pedido;
 import grd.pfc.pojo.Producto;
@@ -20,7 +21,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 
 public class ManagerEditPedidoController implements Initializable{
@@ -63,9 +66,55 @@ public class ManagerEditPedidoController implements Initializable{
 
     @FXML
     private TableView<Pedido> listaPedidos;
+    
+    @FXML
+    private JFXButton butDesglose;
 
     private ManagerDAO dao;
     private Pedido pedido;
+    
+    public void showDesglose() {
+    if(idPedido.getText().equals("")){
+            Utils.alertGenerator("Error", "", "Seleccione un pedido de la tabla", 4);
+            return;
+        }
+            ArrayList<LineaPedido> lineas = dao.desglosarPedido(pedido.getId());
+            Alert alert = new Alert(Alert.AlertType.NONE, "Pedido: #"+pedido.getId(), ButtonType.OK);
+            alert.setTitle("Líneas del pedido");
+            TableView tableView = new TableView();
+//            tableView.getStylesheets().add("../resources/grd/pfc/generalCss/table.css");
+            TableColumn<LineaPedido,String> producto = new TableColumn<>("Producto");
+            producto.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+            tableView.getColumns().add(producto);
+            
+            TableColumn<LineaPedido, Integer> unidades = new TableColumn<>("Uds.");
+            unidades.setCellValueFactory(new PropertyValueFactory<>("Cantidad"));
+            tableView.getColumns().add(unidades);
+            
+            TableColumn<LineaPedido, Double> precioSinIva = new TableColumn<>("Sin IVA");
+            precioSinIva.setCellValueFactory(new PropertyValueFactory<>("precioSinIva"));
+            tableView.getColumns().add(precioSinIva);
+            
+            TableColumn<LineaPedido, Double> subtotal = new TableColumn<>("Subtotal");
+            subtotal.setCellValueFactory(new PropertyValueFactory<>("subtotal"));
+            tableView.getColumns().add(subtotal);
+            
+            TableColumn<LineaPedido, Double> iva = new TableColumn<>("IVA");
+            iva.setCellValueFactory(new PropertyValueFactory<>("iva"));
+            tableView.getColumns().add(iva);
+            
+            TableColumn<LineaPedido, Double> total = new TableColumn<>("Total");
+            total.setCellValueFactory(new PropertyValueFactory<>("total"));
+            tableView.getColumns().add(total);
+            
+            lineas.forEach(l->{
+                tableView.getItems().add(l);
+            });
+            
+            alert.getDialogPane().setContent(tableView);
+            
+            alert.showAndWait();
+    }
     
     public void showInfo(){
         if(idPedido.getText().equals("")){

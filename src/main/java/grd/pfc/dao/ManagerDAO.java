@@ -8,6 +8,7 @@ package grd.pfc.dao;
 import grd.pfc.pojo.Cliente;
 import grd.pfc.pojo.Empleado;
 import grd.pfc.pojo.Estado;
+import grd.pfc.pojo.LineaPedido;
 import grd.pfc.pojo.Pais;
 import grd.pfc.pojo.Pedido;
 import grd.pfc.pojo.Producto;
@@ -88,7 +89,29 @@ public class ManagerDAO {
                         "INNER JOIN [PFC].[dbo].[EstadosPedidos] e ON ped.IdEstado=e.Id "+
                         "WHERE e.Id<>5";
     
+    String getLineasPedido = "SELECT Producto,Cantidad,PrecioSinIVA,Subtotal,IVA,Total FROM [PFC].[dbo].[ValorLineasPedidos] WHERE Id=?";
+    
     public ManagerDAO(){}
+    
+    public ArrayList<LineaPedido> desglosarPedido(int idPedido){
+    ArrayList<LineaPedido> lineas = new ArrayList<LineaPedido>();
+        try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
+            PreparedStatement ps = connectDB.prepareStatement(getLineasPedido);
+            ps.setInt(1,idPedido);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                lineas.add(new LineaPedido(
+                        rs.getString("Producto"),
+                        rs.getInt("Cantidad"),
+                        rs.getDouble("PrecioSinIVA"),
+                        rs.getDouble("Subtotal"),
+                        rs.getDouble("IVA"),
+                        rs.getDouble("Total")
+                ));
+            }
+        }catch (SQLException ex) {ex.printStackTrace();}
+        return lineas;
+    }
     
     public int editPedido(Pedido pedido){
         Connection conn=getConnection();

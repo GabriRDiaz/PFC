@@ -159,7 +159,14 @@ public class ManagerEditPedidoController implements Initializable{
     
     public void save() {
         if(checkFields()){
-            Pedido pedidoUpdate = new Pedido(
+            boolean edit = true;
+            if(comboEstado.getValue().equals("Cancelado")){
+                if(!Utils.alertGenerator("ATENCIÓN", "", "Está a punto de cancelar un pedido. Esta acción es irreversible. ¿Desea continuar?", 3)){
+                    edit = false;
+                }
+            }System.out.println(edit);
+            if(edit){
+                Pedido pedidoUpdate = new Pedido(
                 Integer.parseInt(idPedido.getText()),
                 comboCliente.getValue(),
                 null,
@@ -174,8 +181,8 @@ public class ManagerEditPedidoController implements Initializable{
             Utils.alertGenerator("Éxito", "", "Pedido editado con éxito", 2);
             refreshTable();
             clean();
-        }
-       
+            }
+        }    
     }
     
 

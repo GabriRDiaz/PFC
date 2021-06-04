@@ -188,11 +188,6 @@ public class ManagerRegStockController implements Initializable{
             if(event.getClickCount()==2) {
                 if(tableProductos.getSelectionModel().getSelectedItem()!=null){
                     producto = tableProductos.getSelectionModel().getSelectedItem();
-                    double precioIVA = producto.getPrecioSinIVA() + producto.getPrecioSinIVA()*producto.getIva()/100;
-                    double precioDesc = precioIVA - (producto.getDescuento()*precioIVA)/100;
-                    System.out.println("Producto sin IVA: "+producto.getPrecioSinIVA());
-                    System.out.println("Producto con IVA: "+precioIVA);
-                    System.out.println("Producto con descuento: "+precioDesc);
                     productName.setText(producto.getNombre());
                     plus.setDisable(false);
                     minus.setDisable(false);

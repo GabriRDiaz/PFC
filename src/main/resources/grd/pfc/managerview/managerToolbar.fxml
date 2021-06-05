@@ -26,7 +26,7 @@
             <Insets />
          </VBox.margin>
       </HBox>
-      <JFXButton fx:id="regStock" minHeight="88.0" minWidth="175.0" onAction="#regStock" prefHeight="88.0" prefWidth="175.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Regulariz Stock" textFill="#596eb3" wrapText="true">
+      <JFXButton fx:id="regStock" minHeight="88.0" minWidth="175.0" onAction="#regStock" prefHeight="104.0" prefWidth="175.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Regulariz Stock" textFill="#596eb3" wrapText="true">
          <font>
             <Font name="Liberation Sans Bold" size="18.0" />
          </font>
@@ -38,7 +38,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="addProduct" minHeight="88.0" onAction="#addProduct" prefHeight="88.0" prefWidth="190.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Añadir Producto" textFill="#596eb3" wrapText="true">
+      <JFXButton fx:id="addProduct" minHeight="88.0" onAction="#addProduct" prefHeight="104.0" prefWidth="190.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Añadir Producto" textFill="#596eb3" wrapText="true">
          <font>
             <Font name="Liberation Sans Bold" size="18.0" />
          </font>
@@ -50,7 +50,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="manageProduct" minHeight="88.0" onAction="#manageProduct" prefHeight="88.0" prefWidth="190.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Gestionar Productos" textFill="#596eb3" wrapText="true">
+      <JFXButton fx:id="manageProduct" minHeight="88.0" onAction="#manageProduct" prefHeight="104.0" prefWidth="190.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Gestionar Productos" textFill="#596eb3" wrapText="true">
          <font>
             <Font name="Liberation Sans Bold" size="17.0" />
          </font>
@@ -62,7 +62,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="addOrder" minHeight="88.0" onAction="#addOrder" prefHeight="88.0" prefWidth="190.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Añadir Pedidos" textFill="#596eb3" wrapText="true">
+      <JFXButton fx:id="addOrder" minHeight="88.0" onAction="#addOrder" prefHeight="104.0" prefWidth="190.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Añadir Pedidos" textFill="#596eb3" wrapText="true">
          <font>
             <Font name="Liberation Sans Bold" size="18.0" />
          </font>
@@ -74,7 +74,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="manageOrder" minHeight="88.0" onAction="#manageOrders" prefHeight="88.0" prefWidth="175.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Gestionar Pedidos" textFill="#596eb3" wrapText="true">
+      <JFXButton fx:id="manageOrder" minHeight="88.0" onAction="#manageOrders" prefHeight="104.0" prefWidth="175.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Gestionar Pedidos" textFill="#596eb3" wrapText="true">
          <font>
             <Font name="Liberation Sans Bold" size="18.0" />
          </font>
@@ -86,19 +86,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="genInvoice" minHeight="88.0" onAction="#genInvoice" prefHeight="88.0" prefWidth="175.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Generar Factura" textFill="#596eb3" wrapText="true">
-         <font>
-            <Font name="Liberation Sans Bold" size="18.0" />
-         </font>
-         <graphic>
-            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../multimedia/genInvoice.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </JFXButton>
-      <JFXButton fx:id="manageRequests" minHeight="88.0" onAction="#manageRequests" prefHeight="99.0" prefWidth="175.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Sugerencias" textFill="#596eb3" wrapText="true">
+      <JFXButton fx:id="manageRequests" minHeight="88.0" onAction="#manageRequests" prefHeight="104.0" prefWidth="175.0" ripplerFill="#113dcd" style="-fx-border-color: gray;" text="Sugerencias" textFill="#596eb3" wrapText="true">
          <font>
             <Font name="Liberation Sans Bold" size="16.0" />
          </font>

@@ -70,7 +70,9 @@ public class NavBarController implements Initializable {
     public void viewGraph() {
     }
     
-    public void genRep() {
+    public void genRep() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/grd/pfc/menu/admon/genInvoice.fxml"));    
+        AdministracionController.stPane.getChildren().setAll(pane);
     }
     
 }

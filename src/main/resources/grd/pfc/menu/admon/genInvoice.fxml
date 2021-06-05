@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grd.pfc.admon.GenInvoiceController">
+   <children>
+      <Text fill="#4059a9" layoutX="236.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Generar Factura">
+         <font>
+            <Font name="Arial Bold" size="36.0" />
+         </font>
+      </Text>
+      <Separator layoutY="46.0" prefHeight="5.0" prefWidth="751.0" />
+      <VBox layoutY="49.0" prefHeight="357.0" prefWidth="743.0">
+         <children>
+            <TableView fx:id="tablePedidos" prefHeight="353.0" prefWidth="231.0" styleClass="table-row-cell" stylesheets="@../../generalCss/table.css">
+              <columns>
+                <TableColumn prefWidth="57.0" text="ID">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="id" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn prefWidth="113.0" text="Cliente">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="cliente" />
+                    </cellValueFactory>
+                </TableColumn>
+                  <TableColumn prefWidth="95.0" text="Fecha Exp.">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="fechaExp" />
+                    </cellValueFactory>
+                </TableColumn>
+                  <TableColumn prefWidth="70.0" text="Estado">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="estado" />
+                    </cellValueFactory>
+                    </TableColumn>
+                  <TableColumn prefWidth="195.0" text="Dirección">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="direccion" />
+                    </cellValueFactory>
+                </TableColumn>
+                  <TableColumn minWidth="0.0" prefWidth="113.0" text="Teléfono">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="telefono" />
+                    </cellValueFactory>
+                </TableColumn>
+                  <TableColumn prefWidth="100.0" text="País">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="pais" />
+                    </cellValueFactory>
+                </TableColumn>
+              </columns>
+            </TableView>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

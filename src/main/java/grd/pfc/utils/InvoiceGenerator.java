@@ -6,6 +6,7 @@
 package grd.pfc.utils;
 
 import com.itextpdf.io.font.FontConstants;
+import com.itextpdf.kernel.color.Color;
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -19,13 +20,17 @@ import com.itextpdf.layout.element.Tab;
 import com.itextpdf.layout.element.TabStop;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.element.Text;
+import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TabAlignment;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
+import grd.pfc.dao.ManagerDAO;
+import grd.pfc.pojo.LineaPedido;
 import grd.pfc.pojo.Pedido;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,23 +52,22 @@ public class InvoiceGenerator {
     PdfDocument pdfDocument = new PdfDocument(new PdfWriter(saveLocation));
     Document layoutDocument = new Document(pdfDocument);
     
-    // title
     addTitle(layoutDocument);
 
-    // customer reference information
     addCustomerInfo(layoutDocument);
     addTable(layoutDocument);
-
-    // articles
+    
     layoutDocument.close();
+    
     }
     private void addTitle(Document layoutDocument){
         Style title = new Style();
         PdfFont font;
         try {
             font = PdfFontFactory.createFont(FontConstants.TIMES_ROMAN);
-            title.setFont(font).setFontSize(22);
-            layoutDocument.add(new Paragraph(new Text("Factura\nProforma").addStyle(title)).setBold().setUnderline().setTextAlignment(TextAlignment.LEFT));
+            title.setFont(font).setFontSize(26);
+            title.setFontColor(Color.BLUE);
+            layoutDocument.add(new Paragraph(new Text("Factura\nProforma").addStyle(title)).setBold().setTextAlignment(TextAlignment.CENTER));
             
         } catch (IOException ex) {
             Logger.getLogger(InvoiceGenerator.class.getName()).log(Level.SEVERE, null, ex);
@@ -91,44 +95,46 @@ public class InvoiceGenerator {
         empresa.setBorder(Border.NO_BORDER);
         table.addCell(empresa);
         table.addCell(cliente);
-//        Paragraph p = new Paragraph("Cliente: "+pedido.getCliente()+"\n"
-//                + "Dirección: "+pedido.getDireccion()+"\n"
-//                + "Teléfono: "+pedido.getTelefono()+"\n"
-//                + "Fecha Exp.: "+pedido.getFechaExp());
-//        p.add(new Tab());
-//        p.addTabStops(new TabStop(1000, TabAlignment.RIGHT));
-//        p.add("PFC S.L.\n"
-//            + "Avd PFC Nº5 5ºD: \n"
-//            + "27850 Viveiro,Lugo \n"
-//            + "España");
+
         layoutDocument.add(table);
-//    layoutDocument.add(new Paragraph("Cliente: "+pedido.getCliente()).setTextAlignment(TextAlignment.RIGHT).setMultipliedLeading(0.2f));
-//    layoutDocument.add(new Paragraph("Dirección: "+pedido.getDireccion()).setTextAlignment(TextAlignment.RIGHT).setMultipliedLeading(.2f));
-//    layoutDocument.add(new Paragraph("Teléfono: "+pedido.getTelefono()).setTextAlignment(TextAlignment.RIGHT).setMultipliedLeading(.2f));
-//    layoutDocument.add(new Paragraph("Fecha Exp.: "+pedido.getFechaExp()).setTextAlignment(TextAlignment.RIGHT).setMultipliedLeading(.2f));
-//    
-//    layoutDocument.add(new Paragraph("PFC S.L.").setTextAlignment(TextAlignment.LEFT).setMultipliedLeading(0.2f));
-//    layoutDocument.add(new Paragraph("Avd PFC Nº5 5ºD").setMultipliedLeading(.2f));
-//    layoutDocument.add(new Paragraph("27850 Viveiro,Lugo").setMultipliedLeading(.2f));
-//    layoutDocument.add(new Paragraph("España").setMultipliedLeading(.2f));
+
 }
     
     private void addTable(Document layoutDocument){
-    Table table = new Table(UnitValue.createPointArray(new float[]{60f, 180f, 50f, 80f, 110f}));
-
-    // headers
+    layoutDocument.add(new Paragraph("\n\n"));
+    
+    ArrayList<LineaPedido> lineas = new ManagerDAO().desglosarPedido(pedido.getId());
+    Table table = new Table(UnitValue.createPointArray(new float[]{180f, 60f, 70f, 60f, 50f}));
+    table.setHorizontalAlignment(HorizontalAlignment.CENTER);
     table.addCell(new Paragraph("Producto").setBold());
     table.addCell(new Paragraph("Cantidad").setBold());
     table.addCell(new Paragraph("Precio").setBold());
     table.addCell(new Paragraph("Tipo IVA").setBold());
-    table.addCell(new Paragraph("Total").setBold());
-
-    table.addCell(new Paragraph("Motosierra"));
-        table.addCell(new Paragraph(""+1));
-        table.addCell(new Paragraph(""+99));
-        table.addCell(new Paragraph(""+21+"%"));
-        table.addCell(new Paragraph(""+190));
-
+    table.addCell(new Paragraph("Subtotal").setBold());
+    
+    DecimalFormat df = new DecimalFormat("#.##");
+    double total=0;
+    for(int i=0; i<lineas.size(); i++){
+        table.addCell(new Paragraph(lineas.get(i).getNombre()));
+        table.addCell(new Paragraph(""+lineas.get(i).getCantidad()));
+        table.addCell(new Paragraph(""+df.format(lineas.get(i).getPrecioSinIva())+"€"));
+        table.addCell(new Paragraph(""+df.format(lineas.get(i).getIva())+"%"));
+        table.addCell(new Paragraph(""+df.format(lineas.get(i).getSubtotal())+"€"));
+        total=total+lineas.get(i).getTotal();
+    }
+    
     layoutDocument.add(table);
+    
+    Table tbTotal = new Table(UnitValue.createPointArray(new float[]{370f, 50f}));
+    tbTotal.setHorizontalAlignment(HorizontalAlignment.CENTER);
+     Cell cellTotal = new Cell().add(new Paragraph("Total+IVA: ").setBold());
+        cellTotal.setTextAlignment(TextAlignment.RIGHT);
+    Cell cellTotalValue = new Cell().add(new Paragraph(df.format(total)+"€").setBold());
+        cellTotalValue.setTextAlignment(TextAlignment.RIGHT);
+    tbTotal.addCell(cellTotal);
+    tbTotal.addCell(cellTotalValue);
+    layoutDocument.add(tbTotal);
+//    layoutDocument.add(new Paragraph(new Text("Importe total + IVA: "+df.format(total))).setBold().setTextAlignment(TextAlignment.RIGHT));
+    
 }
 }

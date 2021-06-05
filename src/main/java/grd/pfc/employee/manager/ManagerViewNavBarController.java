@@ -29,7 +29,6 @@ public class ManagerViewNavBarController implements Initializable{
     @FXML
     private JFXButton manageOrder;
 
-
     @FXML
     private JFXButton viewRequests;
     

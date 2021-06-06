@@ -67,7 +67,9 @@ public class NavBarController implements Initializable {
         AdministracionController.stPane.getChildren().setAll(pane);
     }
     
-    public void viewGraph() {
+    public void viewGraph() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/grd/pfc/menu/admon/viewGraphs.fxml"));    
+        AdministracionController.stPane.getChildren().setAll(pane);
     }
     
     public void genRep() throws IOException {

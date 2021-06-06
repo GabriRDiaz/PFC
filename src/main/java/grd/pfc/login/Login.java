@@ -30,14 +30,14 @@ public class Login {
         DAO dao = new DAO();
         int userId=dao.login(userInput.getText(), pwdInput.getText());
 //        System.out.println("USER="+userId);
-        userId=1; //3-> 2s 
+//        userId=1; //3-> 2s 
         if(userId>0){
             InfoBundle.getInfoBundle().setIdEmpleado(userId);
             Stage stage = new Stage();
             Parent container;
             Scene scene;
             int profileId = dao.getProfileId(userId);
-            profileId=3;
+//            profileId=3;
             switch(profileId){
                 case 0:
                     Utils.alertGenerator("ERROR", "Usuario sin perfil", "Su usuario está registrado pero todavía no cuenta con un perfil válido. Contacte con el apartado de administración de su empresa", 4);

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="grd.pfc.admon.ViewGraphsController">
+   <children>
+      <TabPane prefHeight="406.0" prefWidth="751.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Empleados/Sección">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="399.0">
+                     <children>
+                        <BarChart fx:id="chartEmpleados" layoutX="20.0" layoutY="5.0" prefHeight="361.0" prefWidth="708.0" stylesheets="@../../generalCss/charts.css" title="Empleados por sección">
+                           <xAxis>
+                              <CategoryAxis fx:id="axisSecciones" label="Sección" side="BOTTOM" tickLabelFill="WHITE" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis label="Empleados" side="LEFT" tickLabelFill="WHITE" />
+                           </yAxis>
+                        </BarChart>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Pedidos/Cliente">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BarChart fx:id="chartPedidos" layoutX="20.0" layoutY="5.0" prefHeight="361.0" prefWidth="708.0" stylesheets="@../../generalCss/charts.css" title="Pedidos por cliente últimos 30d">
+                           <xAxis>
+                              <CategoryAxis fx:id="axisClientes" label="Cliente" side="BOTTOM" tickLabelFill="WHITE" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis label="Pedidos" side="LEFT" tickLabelFill="WHITE" />
+                           </yAxis>
+                        </BarChart>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

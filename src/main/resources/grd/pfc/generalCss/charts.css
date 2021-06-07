@@ -3,7 +3,9 @@
    -fx-padding: 20px;
 }
 .chart-bar {
-    -fx-bar-fill: #586070; 
+    -fx-bar-fill: #d1e1ff; 
+    -fx-border-color: black;
+    -fx-border-size: 4px;
 }
 .chart-legend-item-symbol{
    -fx-background-radius: 0;

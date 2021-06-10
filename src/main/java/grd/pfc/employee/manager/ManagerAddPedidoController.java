@@ -154,7 +154,7 @@ public class ManagerAddPedidoController implements Initializable{
     
     public void substractQ() {
         if(productQ.getText().equals("")){Utils.alertGenerator("Error", "", "Seleccione algún producto", 4); return;}
-        if(Integer.parseInt(productQ.getText())==0){
+        if(Integer.parseInt(productQ.getText())==1){
             Utils.alertGenerator("Error", "", "El pedido ha de tener al menos una unidad del producto", 4);
             productQ.setText(""+(Integer.parseInt(productQ.getText())));
         }

@@ -21,7 +21,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class AdministracionController implements Initializable{
-    
 
 @FXML
 private ImageView butLogout;

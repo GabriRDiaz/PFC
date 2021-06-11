@@ -1,7 +1,6 @@
 package grd.pfc.dao;
 
 import grd.pfc.pojo.Cliente;
-import grd.pfc.pojo.Empleado;
 import grd.pfc.pojo.Estado;
 import grd.pfc.pojo.LineaPedido;
 import grd.pfc.pojo.Pais;
@@ -9,7 +8,6 @@ import grd.pfc.pojo.Pedido;
 import grd.pfc.pojo.Producto;
 import grd.pfc.pojo.Seccion;
 import grd.pfc.pojo.Sugerencia;
-import grd.pfc.singleton.InfoBundle;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -390,9 +388,7 @@ public class ManagerDAO {
         }catch (SQLException ex) {ex.printStackTrace();}
         return null;
     }
-    public ArrayList<Sugerencia> getSugerencias(){
-        return null;
-    }
+
     public int getMarcaId(String marca){
         try(Connection connectDB = DriverManager.getConnection(connectionUrl)){
             PreparedStatement ps = connectDB.prepareStatement(getMarcaId);

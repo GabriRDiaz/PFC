@@ -1,6 +1,5 @@
 package grd.pfc.admon;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBasicCloseTransition;
@@ -12,11 +11,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.SubScene;
-import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -72,29 +68,6 @@ private HamburgerBasicCloseTransition transition;
         stage.show();
         stage = (Stage) butLogout.getScene().getWindow();
         stage.close();
-    }
-    
-    public void addPerfil() {
-
-    }
-
-    
-    public void editEmpleado() {
-
-    }
-
-    
-    public void editPerfil() {
-
-    }
-
-    public void genRep() {
-
-    }
-
-    
-    public void viewGraph() {
-
     }
 
     @Override

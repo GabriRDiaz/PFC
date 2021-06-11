@@ -6,9 +6,7 @@
 package grd.pfc.employee.basic;
 
 import com.jfoenix.controls.JFXComboBox;
-import grd.pfc.dao.AdministracionDAO;
 import grd.pfc.dao.BasicViewDAO;
-import grd.pfc.pojo.Empleado;
 import grd.pfc.pojo.IVA;
 import grd.pfc.pojo.Marca;
 import grd.pfc.pojo.Producto;

@@ -12,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 
 public class ViewGraphsController implements Initializable{

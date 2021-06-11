@@ -6,19 +6,16 @@
 package grd.pfc.dao;
 
 import grd.pfc.pojo.Empleado;
-import grd.pfc.pojo.Producto;
 import grd.pfc.pojo.Seccion;
 import grd.pfc.utils.Utils;
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -69,7 +66,7 @@ public class AdministracionDAO {
     }
     
     public int editPwd(int idEmpleado, String pwd){
-        Connection conn=getConnetion();
+        Connection conn=getConnection();
         if(conn!=null){
             CallableStatement cstmt;
             try {
@@ -95,7 +92,7 @@ public class AdministracionDAO {
         }catch (SQLException ex) {ex.printStackTrace();}
     }
     public int updSeccionesEmpleados(String seccion,int idEmpleado){
-        Connection conn=getConnetion();
+        Connection conn=getConnection();
         if(conn!=null){
             CallableStatement cstmt;
             try {
@@ -212,7 +209,7 @@ public class AdministracionDAO {
         }
     
     public int addEmpleado(Empleado empleado){
-        Connection conn=getConnetion();
+        Connection conn=getConnection();
         if(conn!=null){
             CallableStatement cstmt;
             try {
@@ -291,7 +288,7 @@ public class AdministracionDAO {
         return tipo;
     }
     
-        private Connection getConnetion() {
+        private Connection getConnection() {
         Connection conn=null;
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");

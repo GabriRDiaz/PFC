@@ -13,7 +13,7 @@
    <children>
       <ImageView fx:id="butLogout" fitHeight="55.0" fitWidth="65.0" layoutX="828.0" layoutY="485.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../multimedia/PowerOff.png" />
+            <Image url="@../multimedia/Logout.png" />
          </image>
       </ImageView>
       <Text fill="#4059a9" layoutX="331.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Productos">

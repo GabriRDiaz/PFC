@@ -80,7 +80,7 @@ public class AddEmpleadoController implements Initializable {
         comboContrato.getSelectionModel().clearSelection();
     }
     private boolean checkFields(){
-        if(txtNombre.getText().equals("") || txtApellidos.getText().equals("") || dateContrato.getValue()==null || txtSalario.getText().equals("") || comboContrato.getValue()==null || txtUsuario.getText().equals("")){
+        if(txtNombre.getText().equals("") || txtApellidos.getText().equals("") || dateContrato.getValue()==null || txtSalario.getText().equals("") || comboContrato.getValue()==null || txtUsuario.getText().equals("") || txtPwd.getText().equals("")){
             return false;
         }else{return true;}
     }

@@ -111,7 +111,7 @@
                   <Insets />
                </VBox.margin>
             </JFXComboBox>
-            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña" textAlignment="CENTER" wrappingWidth="230.05078125">
+            <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña*" textAlignment="CENTER" wrappingWidth="230.05078125">
                <font>
                   <Font name="Arial Bold" size="24.0" />
                </font>

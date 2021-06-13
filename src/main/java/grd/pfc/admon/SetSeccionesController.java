@@ -73,6 +73,7 @@ public class SetSeccionesController implements Initializable{
         tableempleados.setItems(empleados);
         tableempleados.setOnMouseClicked(event -> {
             if(event.getClickCount()==2) {
+               if(tableempleados.getSelectionModel().getSelectedItem()==null){return;}
                Empleado empleado = tableempleados.getSelectionModel().getSelectedItem();
                empleadoId.setText(""+empleado.getId());
                txtNombre.setText(empleado.getNombre());

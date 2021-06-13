@@ -72,12 +72,16 @@ public class EditEmpleadoController implements Initializable {
         if(editOn){
             if(Utils.alertGenerator("Aviso", "Empleado: "+txtNombre.getText()+" "+txtApellidos.getText(), "¿Seguro que desea guardar los cambios?", 1)){
                 AdministracionDAO adminDao = new AdministracionDAO();
+                java.sql.Date sqlSalida=null;
+                if(dateSalida.getValue()!=null){
+                    sqlSalida = Utils.pickerToSql(dateSalida);
+                }
                 Empleado empleado = new Empleado(
                     Integer.parseInt(empleadoId.getText()),
                     txtNombre.getText(),
                     txtApellidos.getText(),
                     Utils.pickerToSql(dateContrato),
-                    Utils.pickerToSql(dateSalida),
+                    sqlSalida,
                     Double.parseDouble(txtSalario.getText()),
                     adminDao.getContratoId(comboContrato.getValue()),
                     txtUsuario.getText(),
@@ -129,6 +133,7 @@ public class EditEmpleadoController implements Initializable {
         
         tableempleados.setOnMouseClicked( event -> {
             if(event.getClickCount()==2) {
+               if(tableempleados.getSelectionModel().getSelectedItem()==null){return;}
                editOn=true;
                Empleado empleado = tableempleados.getSelectionModel().getSelectedItem();
                empleadoId.setText(""+empleado.getId());

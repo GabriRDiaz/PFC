@@ -69,6 +69,7 @@ public class EditPerfilController implements Initializable{
         tableempleados.setItems(empleados);
         tableempleados.setOnMouseClicked( event -> {
             if(event.getClickCount()==2) {
+                if(tableempleados.getSelectionModel().getSelectedItem()==null){return;}
                comboPerfiles.setDisable(false);
                Empleado empleado = tableempleados.getSelectionModel().getSelectedItem();
                empleadoId.setText(""+empleado.getId());

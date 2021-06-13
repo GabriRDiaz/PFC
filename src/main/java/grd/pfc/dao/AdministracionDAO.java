@@ -43,7 +43,12 @@ public class AdministracionDAO {
     String editEmpleado = "UPDATE [PFC].[dbo].[Empleados] "
             + "SET Nombre=?,Apellidos=?,FechaContratacion=?,FechaSalida=?,Salario=?,IdTipoContrato=?,Email=? "
             + "WHERE Id=?";
-    String getEmpPerfil = "SELECT emp.Id,emp.Nombre,emp.Apellidos,p.Perfil from [PFC].[dbo].[Empleados] emp JOIN [PFC].[dbo].[Perfiles] p ON emp.IdPerfil=p.Id WHERE p.Perfil NOT LIKE 'Jefe'";
+    String editPwd = "DECLARE @pResult SMALLINT \n"+
+            "EXEC pEditPwd \n"+
+            "@pId=?,\n"+
+            "@pPassword=?,\n"+
+            "@pResult=@pResult OUTPUT";
+    String getEmpPerfil = "SELECT emp.Id,emp.Nombre,emp.Apellidos,p.Perfil from [PFC].[dbo].[Empleados] emp JOIN [PFC].[dbo].[Perfiles] p ON emp.IdPerfil=p.Id WHERE p.Perfil NOT LIKE 'Jefe' AND emp.Eliminado=0";
     String getPerfiles = "SELECT [Perfil] AS perfil from [PFC].[dbo].[Perfiles] WHERE Perfil NOT LIKE 'Jefe'";
     String getPerfilId = "SELECT [Id] AS id from [PFC].[dbo].[Perfiles] WHERE [Perfil] LIKE ?";
     String editPerfilEmpleado = "UPDATE [PFC].[dbo].[Empleados] SET IdPerfil=? WHERE Id=?";
@@ -238,7 +243,7 @@ public class AdministracionDAO {
             ps.setString(1,empleado.getNombre());
             ps.setString(2,empleado.getApellidos());
             ps.setDate(3,Utils.dateToSql(empleado.getContrato()));
-            ps.setDate(4,Utils.dateToSql(empleado.getSalida()));
+            ps.setDate(4,empleado.getSalida());
             ps.setDouble(5,empleado.getSalario());
             ps.setInt(6,empleado.getIdTipoContrato());
             ps.setString(7,empleado.getMail());
@@ -248,7 +253,17 @@ public class AdministracionDAO {
             if(empleado.getPwd().equals("")){
                 System.out.println("No modifica pwd");
             }else{
-                System.out.println("Modifica pwd");
+            try{
+                Connection conn=getConnection();
+                CallableStatement cstmt;
+                cstmt = conn.prepareCall("{call [PFC].[dbo].[pEditPwd](?,?,?)}");
+                cstmt.setInt(1,empleado.getId());
+                cstmt.setString(2,empleado.getPwd());
+            cstmt.registerOutParameter(3, Types.INTEGER);
+            cstmt.execute();
+            } catch (SQLException ex) {
+                Logger.getLogger(AdministracionDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
             }
     }
     
